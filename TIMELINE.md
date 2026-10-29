@@ -18,6 +18,11 @@ Format:
   - Trust: calm h2 caption, grayscale logos at a uniform optical size; JS marquee (clones aria-hidden, 40s loop, edge fade, pauses on hover/focus); static centred row without JS or with reduced motion.
 - Why: sections 1-3 of the Racking master; nothing above the fold animates in, so the hero renders immediately.
 
+## 2026-10-29 14:05 · builder:problem-gallery-process-why
+- Built sections 4–7 on `feat/problem-gallery-process-why`: `sections/{problem,gallery,process,why}.njk`, `styles/sections/{problem,gallery,process,why}.css`, `scripts/sections/gallery-carousel.js`. No shared files or copy changed; macros used as-is.
+- Problem: 5/7 split with sticky intro from 80rem (stacked head + 2x2 cards below that), CTA row. Gallery: full-bleed scroll-snap row (slides rest on the container edges, scroll out to the viewport), prev/next + « 01 / 06 » counter + arrow/Home/End keys, aria-disabled ends, no autoplay; plain scrollable row without JS. Process: photo column stretched to the steps' height, numbered chips joined by a hairline rail, CTA. Why: centred head, 6 cards, grayscale certification strip; no CTA (form follows).
+- Verified: build clean; 360–1920 screenshots; carousel Playwright test 34/34 in Chrome 156 and 32/32 in Edge (buttons, keys, swipe counter, reduced motion, no-JS). Found: `settle()` in shoot.mjs doesn't reach the page bottom (smooth scroll), so lazy images low on long pages show blank in harness shots (see report).
+
 ## 2026-10-29 13:45 · lead
 - **Scaffold + foundation committed** (initial commit on `main`).
   - Eleventy 3 static build; content model `src/content/<slug>/<lang>.json` + `_shared`; loader with automatic FR typography (`src/_data/landings.js`); build modes preview / `LANDING=<slug>` / `SITE_ENV=production` / `PATH_PREFIX`.

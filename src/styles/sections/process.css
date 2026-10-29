@@ -1,0 +1,71 @@
+/* Process (#process, tint). Photo + three numbered steps joined by a thin rail, then the CTA row.
+   Composes .split and .media; the photo crop, step list and rail live here. */
+
+.process__media { aspect-ratio: 16 / 10; }
+.process__media img { object-position: 35% 45%; } /* keeps the installer and lift in frame */
+
+.process__steps {
+  display: grid;
+  gap: var(--space-l);
+  margin-top: var(--section-gap);
+}
+
+.process__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--space-xl) minmax(0, 1fr);
+  column-gap: var(--space-s);
+  align-items: start;
+}
+@media (min-width: 48rem) {
+  .process__step { column-gap: var(--space-m); }
+}
+
+/* Rail: a hairline from the bottom of one chip to the top of the next. */
+.process__step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: var(--space-xl);
+  bottom: calc(var(--space-l) * -1);
+  left: calc(var(--space-xl) / 2);
+  width: 1px;
+  background: var(--line);
+}
+
+.process__num {
+  display: grid;
+  place-items: center;
+  width: var(--space-xl);
+  height: var(--space-xl);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  color: var(--navy-900);
+  font-family: var(--font-condensed);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.process__body { padding-top: var(--space-2xs); }
+
+.process__title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+}
+
+.process__text {
+  margin-top: var(--space-2xs);
+  max-width: var(--measure-lead);
+  color: var(--text-2);
+}
+
+.process__content .cta-row { margin-top: var(--space-xl); }
+
+/* Desktop: the photo becomes a tall column that matches the height of the steps (about 4:5 at
+   1440, taller at 1024 where the copy column wraps more), so neither side ends early. */
+@media (min-width: 64rem) {
+  .process__layout { align-items: stretch; }
+  .process__media { aspect-ratio: auto; }
+}

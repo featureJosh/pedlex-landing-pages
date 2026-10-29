@@ -1,2 +1,26 @@
-{#- STUB: why section. Replaced by the section build. -#}
-<section class="section" id="why" aria-label="why"><div class="container"><p>[why]</p></div></section>
+{#- Why Pedlex (white). Data: c.why { eyebrow, title, cards[{ icon, title, text }],
+    certifications { label, items[{ image, name }] } }.
+    Centred head over a 3/2/1-column card grid, then a quiet certification strip that backs up the
+    « Sécurité et conformité » card. No CTA row: the form section follows immediately.
+    Styles: styles/sections/why.css -#}
+{%- from "components/ui.njk" import sectionHead, featureCard -%}
+<section class="section why" id="why" aria-labelledby="why-title">
+  <div class="container">
+    {{ sectionHead(c.why.eyebrow, c.why.title, null, { id: "why-title", align: "center" }) }}
+    <div class="grid grid--3 section-body" data-reveal-stagger>
+      {%- for card in c.why.cards %}
+      {{ featureCard(card) }}
+      {%- endfor %}
+    </div>
+    {%- if c.why.certifications %}
+    <div class="why__certs" data-reveal>
+      <p class="why__certs-label">{{ c.why.certifications.label | safe }}</p>
+      <ul class="why__certs-list" role="list">
+        {%- for item in c.why.certifications.items %}
+        <li class="why__cert">{% picture item.image, item.name, "160px", { class: "why__cert-img" } %}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endif %}
+  </div>
+</section>
