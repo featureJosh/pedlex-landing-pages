@@ -158,14 +158,10 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 > Agents: move items as you work: **To-do → In progress (with your branch name) → Done (with date)**. Never delete history; Done items stay.
 
 ### 🔄 In progress
-- [ ] Racking FR: section builds (hero, stats, trust, problem, gallery, process, why, form, faq). Assigned to builder agents via workflow. See TIMELINE.md.
-  - [ ] Hero, Stats, Trust bar: built on `feat/hero-stats-trust`, awaiting lead review
-  - problem, gallery (+ carousel JS), process, why: built on `feat/problem-gallery-process-why`, awaiting lead review
-  - Form (#consultation) + FAQ: built on `feat/form-faq`, awaiting lead review.
+- [ ] Racking FR: review round 1 (QA / User / Client agents) → lead triage into §8
 
 ### 📋 To-do
 - [ ] **BLOCKED (Josh):** team preview hosting: pick option A/B/C in §2
-- [ ] Racking FR: lead review + merge of section branches
 - [ ] Racking FR: QA agent pass → triage into §8 QA Notes
 - [ ] Racking FR: User agent pass → triage into §8 User Agent Notes
 - [ ] Racking FR: Client agent pass → triage into §8 Client Agent Notes
@@ -182,6 +178,8 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - [ ] Rousseau page (copy to come)
 
 ### ✅ Done
+- [x] 2026-10-29: Racking FR sections built by 3 builder agents, lead-reviewed and merged (1st attempt, no prunes): `feat/hero-stats-trust`, `feat/problem-gallery-process-why`, `feat/form-faq`
+- [x] 2026-10-29: Lead fixes from builder reports: `--line-strong` input borders (WCAG 1.4.11), motion tokens `--dur-drift` / `--dur-marquee`, header CTA nowrap, screenshot harness instant-scroll + image wait + static header for section shots
 - [x] 2026-10-29: Repo scaffold: Eleventy static build, CMS-agnostic content model, build modes (preview / single-landing / production)
 - [x] 2026-10-29: Asset intake: 9 Racking photos, 6 client logos, Pedlex logo + 3 certification badges (pedlex.com); responsive image pipeline
 - [x] 2026-10-29: Design system: tokens, fonts (stand-in), base, layout primitives, motion rules, button / card / header / footer / cookie banner components

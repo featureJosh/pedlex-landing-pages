@@ -6,6 +6,8 @@ src/assets/fonts/
 src/_data/images.json
 # Local QA artefacts (screenshots from scripts/shoot.mjs)
 qa/shots/
+# Agent worktrees (Claude Code workflows)
+.claude/worktrees/
 .DS_Store
 Thumbs.db
 *.log

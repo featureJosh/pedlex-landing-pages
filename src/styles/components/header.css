@@ -50,6 +50,11 @@
   }
 }
 
+.site-header__cta { white-space: nowrap; }
+@media (max-width: 23rem) {
+  .site-header__cta { padding-inline: var(--space-xs); font-size: var(--fs-xs); }
+}
+
 .lang-switch {
   display: inline-grid;
   place-items: center;

@@ -162,7 +162,7 @@
   width: 100%;
   min-height: var(--space-xl); /* 48px */
   padding: var(--space-xs) var(--space-s);
-  border: 1px solid var(--grey-200);
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius-s);
   background: var(--white);
   color: var(--ink);

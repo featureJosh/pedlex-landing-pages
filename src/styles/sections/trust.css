@@ -3,9 +3,8 @@
    [data-marquee-ready] (set by scripts/sections/trust-marquee.js): one slow seamless loop with soft
    edge fades; pauses on hover and keyboard focus. */
 .trust {
-  /* Section-scoped: one loop of the logo set (JS multiplies it if the set is cloned for width).
-     Candidate for a global token, e.g. --dur-marquee; see the builder report. */
-  --trust-loop: 40s;
+  /* One loop of the logo set; trust-marquee.js multiplies it if the set is cloned for width. */
+  --trust-loop: var(--dur-marquee);
   --trust-gap: var(--space-xl);
   --trust-logo-w: 7rem;
   --trust-logo-h: 2.25rem;

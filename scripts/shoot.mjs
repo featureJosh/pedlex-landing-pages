@@ -36,9 +36,14 @@ export async function launch({ port = 8090, width = 1440, height = 900 } = {}) {
 
 // Scroll through the page so lazy images load and scroll-reveal content becomes visible.
 export async function settle(page) {
+  // behavior "instant": html has scroll-behavior: smooth, which would make the loop barely move.
   await page.evaluate(async () => {
-    for (let y = 0; y < document.body.scrollHeight; y += 400) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); }
-    window.scrollTo(0, 0);
+    for (let y = 0; y < document.body.scrollHeight; y += 400) { window.scrollTo({ top: y, behavior: "instant" }); await new Promise((r) => setTimeout(r, 80)); }
+    window.scrollTo({ top: 0, behavior: "instant" });
+    await Promise.race([
+      Promise.all(Array.from(document.images).filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; }))),
+      new Promise((r) => setTimeout(r, 2500)),
+    ]);
   });
   await page.evaluate(() => document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible")));
   await page.waitForTimeout(800);
@@ -61,6 +66,8 @@ if (process.argv[1]?.endsWith("shoot.mjs")) {
     await settle(page);
     if (!args.includes("--no-full")) await page.screenshot({ path: path.join(out, `full-${w}.png`), fullPage: true });
     if (args.includes("--sections")) {
+      // The sticky header would cover the top of each element screenshot.
+      await page.addStyleTag({ content: "[data-header]{position:static !important}" });
       for (const id of await page.$$eval("main section[id]", (s) => s.map((x) => x.id))) {
         await page.locator(`#${id}`).screenshot({ path: path.join(out, `section-${id}-${w}.png`) });
       }

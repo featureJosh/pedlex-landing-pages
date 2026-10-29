@@ -11,6 +11,12 @@ Format:
 
 ---
 
+## 2026-10-29 14:35 · lead
+- **Reviewed and merged all three builder branches** (`feat/hero-stats-trust`, `feat/problem-gallery-process-why`, `feat/form-faq`) on the first attempt, so none were pruned. Audit: no raw hex, no px font sizes, no `!important`; macros, `{% picture %}` and `{% icon %}` used throughout; copy rendered from JSON only. The form JS keeps PII out of the dataLayer, has a honeypot, double-submit protection, accessible errors and UTM capture; checked by reading the code. Doc conflicts (PROJECT.md / TIMELINE.md) resolved as unions.
+- **Approved builder requests, applied by lead:** `--line-strong` (#8A949C, 3.1:1) for input borders; `--dur-drift` / `--dur-marquee` tokens (section vars now point at them); header CTA `nowrap` (+ smaller under 23rem); `shoot.mjs` `settle()` uses instant scroll and waits for images (it never reached the bottom under smooth scroll, so lazy images were blank in screenshots); section shots make the sticky header static; `.claude/worktrees/` gitignored.
+- **Declined:** none. Deferred: certification-badge optical normalisation (minor; better source files from Pedlex would fix it).
+- Lead visual pass at 1440 and 390: cohesive. One suspected bug (« projet(facultatif) » missing a space) was **disproved** with an element shot (the text is « projet (facultatif) »); it was a crop artefact. Mobile full-width CTAs wrap to 2 lines; left for the review round to weigh in independently.
+
 ## 2026-10-29 · builder:hero-stats-trust
 - Built Hero, Stats and Trust bar on `feat/hero-stats-trust` (`sections/{hero,stats,trust}.njk`, `styles/sections/{hero,stats,trust}.css`, `scripts/sections/{stats-counter,trust-marquee}.js`).
   - Hero: copy left (eyebrow, the one H1, lead, text, CTA + quiet phone link, check-icon trust line), photo right. From 64rem the photo bleeds to the right edge and sits on the stats band; slow 24s drift (off under reduced motion); small « Depuis 1976 » tag. LCP preload via new `{% preloadPicture %}` shortcode (`eleventy.config.js`) in `layouts/base.njk`.

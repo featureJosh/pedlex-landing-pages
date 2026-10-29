@@ -3,9 +3,7 @@
    can bleed to the right viewport edge and sit on the navy stats band (no radius on the bleeding
    sides). The photo drifts very slowly (the brief's "motion loop"); off under reduced motion. */
 .hero {
-  /* Section-scoped motion value: one slow, barely perceptible drift cycle.
-     (Candidate for a global token, e.g. --dur-drift; see the builder report.) */
-  --hero-drift: 24s;
+  --hero-drift: var(--dur-drift);
   padding-block: calc(var(--section-pad) * 0.5) calc(var(--section-pad) * 0.75);
 }
 

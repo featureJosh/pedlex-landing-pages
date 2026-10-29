@@ -19,8 +19,11 @@
 - Foundation is done and committed: see TIMELINE.md 13:45. Section partials in `src/_includes/sections/*.njk` are **stubs**.
 - Repo: https://github.com/featureJosh/pedlex-landing-pages (private, pushed). **GitHub Pages is BLOCKED**: free plan, private repo (HTTP 422). The workflow is gated on the repo var `PAGES_ENABLED`. Options A/B/C are in PROJECT.md §2, and Josh must choose. `ci.yml` builds every push.
 
+## In flight
+- 2026-10-29 ~14:00: builder workflow `wf_dfafde0c-e4b` (script: `~/.claude/projects/C--Users-jshqn-Documents-Luxy-Media-Pedlex-Pedlex-Landing-Page/82b30f4e-…/workflows/scripts/pedlex-build-sections-wf_dfafde0c-e4b.js`). Branches: `feat/hero-stats-trust` (A), `feat/problem-gallery-process-why` (B), `feat/form-faq` (C), each in its own worktree. If my session resets, check `git branch -a` and `git worktree list`, review whatever got committed, and re-run only the missing builders.
+
 ## Next actions
-1. Run the **builder workflow**: three builders in worktrees/branches (A: hero + stats + trust; B: problem + gallery + process + why; C: form + faq + form JS). Review each diff + screenshots, merge or prune.
+1. ~~Run the builder workflow~~ (running). Then review: three builders in worktrees/branches (A: hero + stats + trust; B: problem + gallery + process + why; C: form + faq + form JS). Review each diff + screenshots, merge or prune.
 2. Build → deploy → run **QA / User / Client** agents in parallel (reports in `qa/`).
 3. Triage into PROJECT.md §8, fix the approved items (builders or me), re-review.
 4. Update PROJECT.md status board, TIMELINE.md and this file. Final report to Josh: preview URL, what's done, client questions (PROJECT.md §9), what's blocked.

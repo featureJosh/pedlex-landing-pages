@@ -29,6 +29,7 @@
   --on-dark-3: rgb(255 255 255 / 0.6);
   --line: var(--grey-200);
   --line-dark: rgb(255 255 255 / 0.16);
+  --line-strong: #8A949C;  /* form control borders: 3.1:1 on white (WCAG 1.4.11) */
   --error: #B42318;
   --error-bg: #FEF3F2;
   --success: #067647;
@@ -114,6 +115,8 @@
   --dur: 250ms;
   --dur-slow: 700ms;
   --reveal-distance: 14px;
+  --dur-drift: 24s;      /* hero photo drift, one direction (alternates) */
+  --dur-marquee: 40s;    /* one loop of the client-logo set */
 
   --z-header: 50;
   --z-banner: 60;
