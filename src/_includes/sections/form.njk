@@ -1,2 +1,98 @@
-{#- STUB: form section. Replaced by the section build. -#}
-<section class="section" id="form" aria-label="form"><div class="container"><p>[form]</p></div></section>
+{#- Section 8 · Form (consultation request). The page's conversion point.
+    Data: c.form.{id, eyebrow, title, text[], reassurance[], callAlt, fields[], required, optional,
+          requiredNote, consent, submit, sending, errors{required,email,phone,summary,network}, honeypotLabel}
+          (page keys from src/content/<slug>/<lang>.json, UI microcopy from src/content/_shared/<lang>.json)
+          site.company.{phone, phoneHref, privacy}, site.form.endpoint, entry.{slug, thanksUrl}.
+    The section id MUST stay c.form.id: every CTA links to it and scroll-to.js focuses its first input.
+    Behaviour: src/scripts/sections/lead-form.js (validation, UTM capture, dataLayer, submit).
+    Without JS the browser's native validation runs and the form POSTs to the action; the script sets
+    novalidate itself so its accessible inline errors replace the native bubbles. Never method="get":
+    personal data must not end up in URLs. -#}
+{%- from "components/ui.njk" import sectionHead -%}
+{%- set f = c.form -%}
+{%- set fid = f.id -%}
+{#- Fields are laid out two per row from the container width up; when the number of single-line
+    fields is odd, the last one spans the full row so no row is left half empty. -#}
+{%- set singles = [] -%}
+{%- for field in f.fields %}{% if field.type != "textarea" %}{% set _ = singles.push(field.name) %}{% endif %}{% endfor -%}
+<section class="section section--dark consult" id="{{ fid }}" aria-labelledby="{{ fid }}-title">
+  <div class="container">
+    <div class="split consult__layout">
+      <div class="consult__intro">
+        {{ sectionHead(f.eyebrow, f.title, f.text, { id: fid + "-title" }) }}
+        <ul class="consult__reassure" role="list" data-reveal-stagger>
+          {%- for item in f.reassurance %}
+          <li class="consult__reassure-item"><span class="consult__check">{% icon "check" %}</span><span>{{ item | safe }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      <div class="consult__card" data-reveal>
+        <form class="lead-form" method="post" action="{{ site.form.endpoint or (entry.thanksUrl | url) }}" data-lead-form
+          data-error-required="{{ f.errors.required | plain }}"
+          data-error-email="{{ f.errors.email | plain }}"
+          data-error-phone="{{ f.errors.phone | plain }}"
+          data-error-summary="{{ f.errors.summary | plain }}"
+          data-error-network="{{ f.errors.network | plain }}"
+          data-sending="{{ f.sending | plain }}">
+          <p class="lead-form__note">{{ f.requiredNote | safe }}</p>
+
+          <div class="lead-form__alert" role="alert" data-form-alert></div>
+          <template data-form-alert-template><p class="lead-form__alert-box">{% icon "circle-alert" %}<span data-form-alert-text></span></p></template>
+
+          <div class="lead-form__grid">
+            {%- for field in f.fields %}
+            {%- set inputId = "lead-" + field.name %}
+            {%- set full = field.type == "textarea" or (singles.length % 2 == 1 and field.name == singles[singles.length - 1]) %}
+            <div class="lead-form__field{% if full %} lead-form__field--full{% endif %}" data-field>
+              <label class="lead-form__label" for="{{ inputId }}">
+                {{- field.label | safe -}}
+                {%- if field.required %}<span class="lead-form__req" aria-hidden="true">*</span><span class="visually-hidden"> ({{ f.required }})</span>
+                {%- else %} <span class="lead-form__optional">({{ f.optional }})</span>{% endif -%}
+              </label>
+              {%- if field.type == "textarea" %}
+              <textarea class="lead-form__input lead-form__input--textarea" id="{{ inputId }}" name="{{ field.name }}" rows="4"
+                {%- if field.placeholder %} placeholder="{{ field.placeholder | plain }}"{% endif %}
+                {%- if field.required %} required{% endif %}></textarea>
+              {%- else %}
+              <input class="lead-form__input" id="{{ inputId }}" name="{{ field.name }}" type="{{ field.type or 'text' }}"
+                {%- if field.autocomplete %} autocomplete="{{ field.autocomplete }}"{% endif %}
+                {%- if field.inputmode %} inputmode="{{ field.inputmode }}"{% endif %}
+                {%- if field.placeholder %} placeholder="{{ field.placeholder | plain }}"{% endif %}
+                {%- if field.type == "email" %} spellcheck="false" autocapitalize="off"{% endif %}
+                {%- if field.required %} required{% endif %} data-validate="{{ field.type or 'text' }}">
+              {%- endif %}
+              <p class="lead-form__error" id="{{ inputId }}-error" data-field-error hidden>{% icon "circle-alert" %}<span data-field-error-text></span></p>
+            </div>
+            {%- endfor %}
+          </div>
+
+          {#- Context for the lead (no personal data). page_url and utm_* are filled by lead-form.js. -#}
+          <input type="hidden" name="landing" value="{{ entry.slug }}">
+          <input type="hidden" name="lang" value="{{ lang }}">
+          <input type="hidden" name="page_url" value="" data-page-url>
+          {%- for key in ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] %}
+          <input type="hidden" name="{{ key }}" value="" data-utm="{{ key }}">
+          {%- endfor %}
+
+          {#- Honeypot: invisible to people and assistive tech; bots that fill it get a silent fake success. -#}
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="lead-website">{{ f.honeypotLabel }}</label>
+            <input id="lead-website" type="text" name="website" value="" tabindex="-1" autocomplete="off" data-honeypot>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg lead-form__submit" data-submit>
+            <span class="btn__label" data-submit-label>{{ f.submit | safe }}</span>{% icon "arrow-right", "btn__icon" %}
+          </button>
+
+          <p class="lead-form__consent">{{ f.consent | replace("{privacy}", site.company.privacy[lang]) | safe }}</p>
+        </form>
+      </div>
+
+      <p class="consult__call" data-reveal>
+        <span class="consult__call-label">{{ f.callAlt | safe }}</span>
+        <a class="consult__call-link" href="tel:{{ site.company.phoneHref }}">{% icon "phone" %}<span>{{ site.company.phone }}</span></a>
+      </p>
+    </div>
+  </div>
+</section>

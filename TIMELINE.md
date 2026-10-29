@@ -11,6 +11,12 @@ Format:
 
 ---
 
+## 2026-10-29 · builder:form-faq
+- Branch `feat/form-faq`: section 8 Form (`#consultation`, navy) and section 9 FAQ. Files: `sections/form.njk`, `faq.njk`, `styles/sections/form.css`, `faq.css`, `scripts/sections/lead-form.js`. No shared files, macros or content changed.
+- Form: `.split` with intro + reassurance + phone fallback left, white card right (card sits between intro and phone on mobile); 2-column fields from a container query; POST only; inline accessible errors (aria-invalid/describedby, `role="alert"` summary, focus first error), honeypot, UTM capture (URL → sessionStorage), `generate_lead` with no personal data, preview redirect / endpoint fetch. JS sets `novalidate` so no-JS visitors keep native validation.
+- FAQ: native `<details>` accordion (hairlines, plus → x), height ease via `::details-content` (reduced-motion off, no JS), closing card with `ctaRow` + phone.
+- Why: the form is the page's conversion point; tested with Playwright (validation, redirect, dataLayer, honeypot, endpoint failure, FAQ keyboard).
+
 ## 2026-10-29 13:45 · lead
 - **Scaffold + foundation committed** (initial commit on `main`).
   - Eleventy 3 static build; content model `src/content/<slug>/<lang>.json` + `_shared`; loader with automatic FR typography (`src/_data/landings.js`); build modes preview / `LANDING=<slug>` / `SITE_ENV=production` / `PATH_PREFIX`.
