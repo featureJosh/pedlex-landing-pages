@@ -28,6 +28,10 @@
   <link rel="preload" href="{{ '/assets/fonts/barlow-400.woff2' | url }}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{ '/assets/fonts/barlow-600.woff2' | url }}" as="font" type="font/woff2" crossorigin>
   {%- if preloadImage %}{{ preloadImage | safe }}{% endif %}
+  {%- if entry and ("hero" in c.sections) and c.hero.image %}
+  {#- Hero LCP image. Keep these sizes identical to the picture in sections/hero.njk. #}
+  {% preloadPicture c.hero.image, "(min-width: 64rem) 45vw, 100vw" %}
+  {%- endif %}
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | url }}?v={{ build.version }}">
   {% include "partials/tracking-head.njk" %}

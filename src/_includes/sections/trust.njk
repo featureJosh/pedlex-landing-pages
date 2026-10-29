@@ -1,2 +1,19 @@
-{#- STUB: trust section. Replaced by the section build. -#}
-<section class="section" id="trust" aria-label="trust"><div class="container"><p>[trust]</p></div></section>
+{#- Trust bar: client logos under a calm caption. Styles: styles/sections/trust.css
+    Data: c.trust.title, c.trust.logos[]: { image, name } (alt = company name).
+    Without JS (or with reduced motion) the logos sit in a static, centred, wrapping row.
+    scripts/sections/trust-marquee.js turns [data-marquee] into a slow seamless loop by cloning the
+    list (clones are aria-hidden, alt=""), then sets [data-marquee-ready] to start the CSS animation. -#}
+<section class="section section--compact trust" id="trust" aria-labelledby="trust-title">
+  <div class="container">
+    <h2 class="trust__title" id="trust-title" data-reveal>{{ c.trust.title | safe }}</h2>
+    <div class="trust__marquee" data-marquee data-reveal>
+      <div class="trust__rail" data-marquee-rail>
+        <ul class="trust__list" role="list" data-marquee-list>
+          {%- for logo in c.trust.logos %}
+          <li class="trust__logo">{% picture logo.image, logo.name, "200px", { class: "trust__img" } %}</li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
