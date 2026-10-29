@@ -1,2 +1,29 @@
-{#- STUB: process section. Replaced by the section build. -#}
-<section class="section" id="process" aria-label="process"><div class="container"><p>[process]</p></div></section>
+{#- Process (tint). Data: c.process { eyebrow, title, image, imageAlt, steps[{ title, text }] }.
+    Desktop: installer photo left (tall 4:5 frame), head + numbered steps + CTA right.
+    Mobile: photo above (16:10), then the steps. The step numbers are presentational (the <ol>
+    already conveys order), so they are aria-hidden. Styles: styles/sections/process.css -#}
+{%- from "components/ui.njk" import sectionHead, ctaRow -%}
+<section class="section section--tint process" id="process" aria-labelledby="process-title">
+  <div class="container">
+    <div class="split process__layout">
+      <div class="media process__media" data-reveal>
+        {% picture c.process.image, c.process.imageAlt, "(min-width: 80rem) 36rem, (min-width: 64rem) 46vw, 100vw" %}
+      </div>
+      <div class="process__content">
+        {{ sectionHead(c.process.eyebrow, c.process.title, null, { id: "process-title" }) }}
+        <ol class="process__steps" role="list" data-reveal-stagger>
+          {%- for step in c.process.steps %}
+          <li class="process__step">
+            <span class="process__num" aria-hidden="true">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>
+            <div class="process__body">
+              <h3 class="process__title">{{ step.title | safe }}</h3>
+              <p class="process__text">{{ step.text | safe }}</p>
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+        {{ ctaRow(c) }}
+      </div>
+    </div>
+  </div>
+</section>

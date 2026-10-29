@@ -1,0 +1,56 @@
+/* Why Pedlex (#why, white). Centred head, 6 feature cards (.grid--3), then a quiet
+   certification strip: hairline, condensed caps label, grayscale badges. */
+
+/* The FR H2 is long: a wider centred head sets it on two balanced lines on desktop instead of three. */
+.why .section-head { max-width: calc(var(--container-narrow) + var(--space-xl)); }
+
+.why__certs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-m) var(--space-xl);
+  margin-top: var(--section-gap);
+  padding-top: var(--space-xl);
+  border-top: var(--border);
+  text-align: center;
+}
+
+.why__certs-label {
+  flex-basis: 100%;
+  font-family: var(--font-condensed);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* One row at every width: on phones the badges shrink a little rather than orphan the third. */
+.why__certs-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-m);
+}
+.why__cert { min-width: 0; }
+
+.why__cert-img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: var(--space-xl);
+  mix-blend-mode: multiply;   /* badges are flattened on white */
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+@media (min-width: 48rem) {
+  .why__certs-list { gap: var(--space-xl); }
+}
+
+@media (min-width: 64rem) {
+  .why__certs { flex-wrap: nowrap; gap: var(--space-2xl); }
+  .why__certs-label { flex-basis: auto; text-align: start; }
+}

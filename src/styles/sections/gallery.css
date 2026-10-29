@@ -1,0 +1,155 @@
+/* Gallery « Réalisations » (#gallery, white). Full-bleed scroll-snap row of real installs: slides
+   rest on the container's content edges (first slide on the left edge, last slide on the right edge
+   at the end of the row) and scroll out to the viewport edges, so no slide is cut at the container.
+   The section is a size container so the bleed can be computed without 100vw (which would include
+   the scrollbar): bleed = (section width - container content width) / 2.
+   Controls are hidden until gallery-carousel.js marks the carousel .is-ready. */
+
+.gallery { container-type: inline-size; }
+
+.gallery__carousel {
+  /* Width of the container's content box, usable inside the track (whose own box is wider). */
+  --gallery-content: min(100cqw - var(--gutter) * 2, var(--container));
+  --gallery-bleed: calc((100cqw - var(--gallery-content)) / 2);
+  --gallery-gap: var(--grid-gap);
+  --gallery-slide: calc(var(--gallery-content) * 0.85);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "head"
+    "track"
+    "controls";
+}
+
+.gallery__head { grid-area: head; }
+
+/* ---------- Track ----------
+   Two classes so the padding beats the base `ul[role="list"] { padding: 0 }` reset. */
+.gallery__carousel .gallery__track {
+  grid-area: track;
+  display: flex;
+  gap: var(--gallery-gap);
+  margin-top: var(--section-gap);
+  margin-inline: calc(var(--gallery-bleed) * -1);
+  padding-inline: var(--gallery-bleed);
+  scroll-padding-inline: var(--gallery-bleed);
+  padding-block: var(--space-2xs); /* room for the inset focus ring */
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+/* The row reaches the viewport edges, so the focus ring is drawn inside it. */
+.gallery__track:focus-visible { outline-offset: calc(var(--space-3xs) * -1); border-radius: 0; }
+
+/* Hide the scrollbar only once the buttons exist; without JS the native bar stays usable. */
+.gallery__carousel.is-ready .gallery__track { scrollbar-width: none; }
+.gallery__carousel.is-ready .gallery__track::-webkit-scrollbar { display: none; }
+
+.gallery__slide {
+  flex: 0 0 var(--gallery-slide);
+  scroll-snap-align: start;
+}
+
+.gallery__figure { display: grid; gap: var(--space-s); padding-bottom: var(--space-2xs); }
+
+.gallery__media img {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+@media (hover: hover) {
+  .gallery__slide:hover .gallery__media img { transform: scale(1.03); }
+}
+
+.gallery__caption {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-condensed);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.gallery__caption::before {
+  content: "";
+  flex: none;
+  width: var(--space-s);
+  height: 1px;
+  background: var(--line);
+}
+
+/* ---------- Controls ---------- */
+.gallery__controls {
+  grid-area: controls;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  margin-top: var(--space-m);
+}
+.gallery__carousel.is-ready .gallery__controls { display: flex; }
+
+.gallery__counter {
+  font-family: var(--font-condensed);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+.gallery__counter-current { color: var(--navy-900); }
+.gallery__counter-sep { margin-inline: var(--space-2xs); color: var(--line); }
+
+.gallery__buttons { display: flex; gap: var(--space-2xs); }
+
+.gallery__nav {
+  display: inline-grid;
+  place-items: center;
+  width: var(--space-xl);   /* 48px: comfortably over the 44px touch target */
+  height: var(--space-xl);
+  padding: 0;
+  border: var(--border);
+  border-radius: var(--radius-s);
+  background: var(--white);
+  color: var(--navy-900);
+  transition: background-color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
+}
+.gallery__nav .icon { width: var(--space-m); height: var(--space-m); }
+.gallery__nav:hover {
+  border-color: var(--navy-900);
+  background: var(--blue-50);
+}
+.gallery__nav[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: default;
+  border-color: var(--line);
+  background: var(--white);
+}
+
+/* ---------- Tablet / desktop ---------- */
+@media (min-width: 48rem) {
+  .gallery__carousel { --gallery-slide: calc((var(--gallery-content) - var(--gallery-gap)) * 0.47); }
+}
+
+@media (min-width: 64rem) {
+  .gallery__carousel {
+    --gallery-slide: calc((var(--gallery-content) - var(--gallery-gap) * 2) * 0.4);
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "head controls"
+      "track track";
+    column-gap: var(--space-xl);
+  }
+  .gallery__controls {
+    align-self: end;
+    margin-top: 0;
+    gap: var(--space-m);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__slide:hover .gallery__media img { transform: none; }
+}

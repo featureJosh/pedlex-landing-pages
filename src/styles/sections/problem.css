@@ -1,0 +1,24 @@
+/* Problem + solution (#problem, tint). Intro column + 2x2 feature cards, then the CTA row.
+   Composes .split / .grid / .card; only the column ratio, card columns and sticky intro live here.
+   The split only kicks in at 80rem: between 64 and 80rem a 7/12 column would squeeze the four FR
+   cards to ~250px, so the head stays on top and the cards keep a roomy 2x2 below it. */
+
+.problem__layout { grid-template-columns: minmax(0, 1fr); }
+
+.problem__cards { grid-template-columns: minmax(0, 1fr); }
+
+@media (min-width: 40rem) {
+  .problem__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 80rem) {
+  .problem__layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+  /* Keep the argument in view while the cards scroll past. */
+  .problem__intro {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-l));
+  }
+}
