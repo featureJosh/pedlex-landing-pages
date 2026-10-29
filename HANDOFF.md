@@ -20,6 +20,10 @@
 - Repo: https://github.com/featureJosh/pedlex-landing-pages (private, pushed). Previews: **Cloudflare Pages on Josh's account** (he connects it; settings in PROJECT.md §2). No GitHub Pro; GitHub Pages only if the repo goes public. `ci.yml` builds every push.
 
 ## In flight
+
+> **⚠ Read this before any design work (Josh, 2026-10-29).** Be **inspired** by pedlex.com, never **guided** by it. **This landing page sets the precedent for Pedlex's NEW website**: the direction we set here is the direction their next site will take. So it has to look forward, not back.
+> The v1 attempt (on `main` up to ee05eb1) was **good**: clean, professional, well built, and the reviewers liked it. But it **failed at modernizing**. It mimicked the existing site's ideas (layout, components, type treatment) instead of proposing a new one. Don't repeat that: take Pedlex's *essence* (identity, values, real work, family story), not pedlex.com's *design*.
+
 - Dev server: `.claude/launch.json` → `pedlex-dev` (`npm run dev`, http://localhost:8080/racking/) for Josh to view locally.
 - **v2 redesign.** Josh, 2026-10-29: v1 "looks too much like the current (old) website… create something ENTIRELY new… more photo-heavy"; placeholders are fine. Round-1 polish builders were stopped and pruned. **Step 1 is NOT started yet** (the session hit its limit right after the docs were written). Launch it first: a Workflow with 3 parallel builder agents (`isolation: 'worktree'`), each building a FULL Racking page in one v2 direction on its own branch, with full-page shots at 390 and 1440 in `qa/shots/explore-<name>/`:
   - `explore/atelier`: light editorial, scania.com-like. White + warm concrete neutral, big mixed-case Scania Sans Bold, full-bleed photo bands, asymmetric grid, square corners, hairlines, bright-blue accent.
@@ -29,6 +33,7 @@
   Every brief must give the PROJECT.md §5 v2 rules (keep/retire lists, photo-led, placeholders, appetizer length budget, unchanged rules) plus CLAUDE.md. Give unique ports per agent (not 8080), and keep content JSON copy unchanged; adding image keys is OK.
 
 ## Next actions
+0. Josh is running other (non-Claude) agents on `explore/<agent>` branches. My own attempt goes on `explore/claude` (the three-direction exploration can feed it). Then compare every `qa/explore/*/` (shots + DESIGN-NOTES.md) and **combine the best points** into one page on `main`.
 1. Review the 3 explorations (390 + 1440 full pages, first phone screen, length budget). Pick one, possibly grafting the best ideas from the others; merge to `main`; record why in TIMELINE + PROJECT §10. Keep the losers' screenshots in `qa/explore/` so Josh can see the alternatives.
 2. Finishing builders on the winner: round-1 behaviour/a11y carry-overs (PROJECT §8 note), hero motion options (drift / video placeholder / slideshow) as preview variants, placeholder client logos to 10, compact cookie banner, merci page, EN check.
 3. Review round 2 (QA / User / Client), triage, report to Josh.

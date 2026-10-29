@@ -11,6 +11,10 @@ Format:
 
 ---
 
+## 2026-10-29 16:30 · lead
+- Josh, reiterated: be **inspired, not guided** by pedlex.com. **The landing page sets the precedent for Pedlex's new website.** v1 was good, but it failed at modernizing and only mimicked the existing site. A banner note was added at the top of CLAUDE.md, PROJECT.md §5 and HANDOFF.md "In flight", plus a §10 decision.
+- Josh will also run non-Claude agents on `explore/<agent>` branches with a shared brief. The lead builds `explore/claude`, then merges the best points of every attempt into one page on `main`. All attempts deliver `qa/explore/<name>/` (390/1440 shots + DESIGN-NOTES.md).
+
 ## 2026-10-29 16:15 · lead
 - **Josh retired the v1 look:** "It looks too much like the current website, which is the 'old' version… just a new polish of an old website. Loosely follow it but create something ENTIRELY new. And be a bit more photo-heavy." Placeholders are fine for missing photos. "This is a landing page, an appetizer… we don't want this insanely lengthy."
 - Stopped the round-1 polish workflow (`feat/r1-system`, `feat/r1-behaviour`; both barely started) and pruned its branches and worktrees. Their design-neutral items carry into v2 (PROJECT.md §8 note).

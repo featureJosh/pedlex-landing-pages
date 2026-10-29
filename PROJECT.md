@@ -118,6 +118,10 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 
 ## 5. Design direction: v2, "entirely new, photo-led" (Josh, 2026-10-29)
 
+> **⚠ Read this before any design work (Josh, 2026-10-29).** Be **inspired** by pedlex.com, never **guided** by it. **This landing page sets the precedent for Pedlex's NEW website**: the direction we set here is the direction their next site will take. So it has to look forward, not back.
+> The v1 attempt (on `main` up to ee05eb1) was **good**: clean, professional, well built, and the reviewers liked it. But it **failed at modernizing**. It mimicked the existing site's ideas (layout, components, type treatment) instead of proposing a new one. Don't repeat that: take Pedlex's *essence* (identity, values, real work, family story), not pedlex.com's *design*.
+
+
 > **Josh's feedback on v1:** "It looks **too much** like the current website, which is the 'old' version that will get updated, so this just seems like a new polish of an old website. Loosely follow it but create something ENTIRELY new. And be a bit more photo-heavy."
 > v1 (navy bands, condensed-caps eyebrows, icon-card grids, 4px navy caps buttons) is **retired**. It's on `main` until v2 replaces it; see `git log` before ee05eb1.
 
@@ -383,6 +387,7 @@ Josh, 2026-10-29: the content is followed loosely. The lead does what is right n
 | 2026-10-29 | Placeholders are allowed for missing assets (client logos, hero video) until real files arrive; they must look intentionally neutral and be listed in §9 | Josh |
 | 2026-10-29 | EN: Luxy draft translation now, replaced by Maïeutyk's copy later | Josh |
 | 2026-10-29 | **Landing = appetizer:** short, only what matters; lead may trim client copy; reviewers' "add more proof" requests default to declined | Josh |
+| 2026-10-29 | **Inspired, not guided, by pedlex.com: this landing page is the precedent for Pedlex's new website.** v1 was good but only mimicked the old site | Josh |
 | 2026-10-29 | **v1 look retired: v2 must be "entirely new" (not a polish of pedlex.com) and photo-heavy**; placeholders OK for missing photos | Josh |
 | 2026-10-29 | v2 process: 3 parallel direction explorations as full pages → lead picks/grafts → finishing builders → review round 2 | Lead |
 | 2026-10-29 | On phones (<30rem) the FR/EN toggle lives in the footer, not the header (room for phone + CTA) | Lead |

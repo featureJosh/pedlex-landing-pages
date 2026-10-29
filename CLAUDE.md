@@ -1,5 +1,9 @@
 # CLAUDE.md: agent instructions for the Pedlex landing pages
 
+> **⚠ Read this before any design work (Josh, 2026-10-29).** Be **inspired** by pedlex.com, never **guided** by it. **This landing page sets the precedent for Pedlex's NEW website**: the direction we set here is the direction their next site will take. So it has to look forward, not back.
+> The v1 attempt (on `main` up to ee05eb1) was **good**: clean, professional, well built, and the reviewers liked it. But it **failed at modernizing**. It mimicked the existing site's ideas (layout, components, type treatment) instead of proposing a new one. Don't repeat that: take Pedlex's *essence* (identity, values, real work, family story), not pedlex.com's *design*.
+
+
 You are working on Pedlex's campaign landing pages for Luxy Media. **Read [PROJECT.md](PROJECT.md) first**: it is the source of truth (scope, design direction, status board, approved review notes). Then read the part of this file that matches your role.
 
 > The `claude/` folder is Luxy's *assistant* context for the Pedlex account. Use `claude/context.md` as **read-only reference** (brand, contacts, proof figures). Its `Instructions.md` (meeting logging, etc.) does **not** apply to this project.
