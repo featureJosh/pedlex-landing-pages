@@ -52,6 +52,16 @@ export default function (eleventyConfig) {
     return `<picture><source type="image/webp" srcset="${set("webp")}" sizes="${sizes}"><img src="${url(`${img.base}-${img.widths.at(-1)}.jpg`)}" srcset="${set("jpg")}" sizes="${sizes}" ${attrs}></picture>`;
   });
 
+  // {% preloadPicture "racking/racking-2", sizes %} -> <link rel="preload"> for the LCP image (hero).
+  // Mirrors the WebP <source> that {% picture %} emits; `sizes` MUST match the picture's sizes.
+  eleventyConfig.addShortcode("preloadPicture", (key, sizes = "100vw") => {
+    const img = JSON.parse(fs.readFileSync("src/_data/images.json", "utf8"))[key];
+    if (!img) throw new Error(`[preloadPicture] "${key}" not in src/_data/images.json (run npm run images)`);
+    if (img.type === "logo") return `<link rel="preload" as="image" href="${url(img.base + ".webp")}" type="image/webp" fetchpriority="high">`;
+    const set = img.widths.map((w) => `${url(`${img.base}-${w}.webp`)} ${w}w`).join(", ");
+    return `<link rel="preload" as="image" imagesrcset="${set}" imagesizes="${sizes}" type="image/webp" fetchpriority="high">`;
+  });
+
   // Content strings may hold limited inline HTML (<strong>, <em>, <br>). Strip it for attributes/meta.
   eleventyConfig.addFilter("plain", (s = "") => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
 

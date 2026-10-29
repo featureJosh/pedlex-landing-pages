@@ -1,0 +1,178 @@
+/* Hero (sections/hero.njk). White surface, copy first, photo second.
+   >= 64rem: copy takes ~55% of the container; the photo is positioned against the section so it
+   can bleed to the right viewport edge and sit on the navy stats band (no radius on the bleeding
+   sides). The photo drifts very slowly (the brief's "motion loop"); off under reduced motion. */
+.hero {
+  /* Section-scoped motion value: one slow, barely perceptible drift cycle.
+     (Candidate for a global token, e.g. --dur-drift; see the builder report.) */
+  --hero-drift: 24s;
+  padding-block: calc(var(--section-pad) * 0.5) calc(var(--section-pad) * 0.75);
+}
+
+/* ---- Copy column ---- */
+.hero__title {
+  /* ~3 balanced lines on desktop (text-wrap: balance is set globally on h1). */
+  max-width: 21ch;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+}
+.hero__lead {
+  margin-top: var(--space-m);
+  max-width: var(--measure-lead);
+  color: var(--ink);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+}
+.hero__text {
+  margin-top: var(--space-s);
+  max-width: var(--measure-lead);
+  color: var(--text-2);
+}
+.hero__text > * + * { margin-top: var(--space-xs); }
+
+/* CTA + quiet phone link */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-l);
+  margin-top: var(--space-l);
+}
+.hero__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 3rem;
+  color: var(--navy-900);
+  text-decoration: none;
+}
+.hero__phone-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--border);
+  border-radius: 50%;
+  transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
+}
+.hero__phone-icon .icon { width: 1.125rem; height: 1.125rem; }
+.hero__phone-text { display: grid; line-height: var(--lh-snug); }
+.hero__phone-label { color: var(--text-3); font-size: var(--fs-xs); }
+.hero__phone-number {
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hero__phone:hover { color: var(--navy-900); }
+.hero__phone:hover .hero__phone-icon { border-color: var(--navy-900); background: var(--blue-50); }
+.hero__phone:hover .hero__phone-number {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+/* Trust line: three short reassurances, separated by space (no pipes). */
+.hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-m);
+  margin-top: var(--space-l);
+  padding-top: var(--space-m);
+  border-top: var(--border);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+}
+.hero__trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+.hero__trust-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--color-accent);
+}
+
+/* ---- Photo column ---- */
+.hero__media {
+  position: relative;
+  margin-top: var(--space-xl);
+}
+.hero__frame { aspect-ratio: 4 / 3; }
+.hero__img {
+  transform-origin: 60% 45%;
+  animation: hero-drift var(--hero-drift) var(--ease-in-out) infinite alternate;
+}
+@keyframes hero-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.06) translate3d(-1%, -0.6%, 0); }
+}
+
+/* Small "Depuis 1976" tag on the photo corner: understated, navy on white. */
+.hero__badge {
+  position: absolute;
+  left: var(--space-s);
+  bottom: var(--space-s);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-s);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  box-shadow: var(--shadow-m);
+  color: var(--navy-900);
+  font-family: var(--font-condensed);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
+}
+.hero__badge-icon { width: 1.125rem; height: 1.125rem; color: var(--color-accent); }
+
+/* Phones: the CTA spans the column, like every other CTA row. Tighter side padding keeps the
+   full label on one line down to 360px. */
+@media (max-width: 40rem) {
+  .hero__actions .hero__cta { width: 100%; padding-inline: var(--space-s); }
+}
+
+@media (min-width: 40rem) {
+  .hero__frame { aspect-ratio: 16 / 10; }
+}
+
+/* ---- Desktop: split with a bleeding photo ---- */
+@media (min-width: 64rem) {
+  .hero {
+    padding-block: calc(var(--section-pad) * 0.6) calc(var(--section-pad) * 0.75);
+  }
+  .hero__content {
+    width: 55%;
+    padding-inline-end: var(--space-2xl);
+  }
+  .hero__media {
+    /* Content-box inset of .container, resolved against the section's width. */
+    --hero-inset: max(var(--gutter), (100% - var(--container)) / 2);
+    position: absolute;
+    top: calc(var(--section-pad) * 0.6);
+    right: 0;
+    bottom: 0;
+    left: calc(var(--hero-inset) + (100% - 2 * var(--hero-inset)) * 0.55);
+    margin-top: 0;
+  }
+  .hero__frame {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: var(--radius-l) 0 0 0;
+  }
+  .hero__badge {
+    left: var(--space-l);
+    bottom: var(--space-l);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__img { animation: none; }
+}

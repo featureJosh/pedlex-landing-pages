@@ -159,6 +159,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 
 ### 🔄 In progress
 - [ ] Racking FR: section builds (hero, stats, trust, problem, gallery, process, why, form, faq). Assigned to builder agents via workflow. See TIMELINE.md.
+  - [ ] Hero, Stats, Trust bar: built on `feat/hero-stats-trust`, awaiting lead review
 
 ### 📋 To-do
 - [ ] **BLOCKED (Josh):** team preview hosting: pick option A/B/C in §2

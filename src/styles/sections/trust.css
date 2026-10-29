@@ -1,0 +1,90 @@
+/* Trust bar (sections/trust.njk). White, compact: a calm caption over client logos.
+   Default (no JS / reduced motion): static, centred, wrapping row.
+   [data-marquee-ready] (set by scripts/sections/trust-marquee.js): one slow seamless loop with soft
+   edge fades; pauses on hover and keyboard focus. */
+.trust {
+  /* Section-scoped: one loop of the logo set (JS multiplies it if the set is cloned for width).
+     Candidate for a global token, e.g. --dur-marquee; see the builder report. */
+  --trust-loop: 40s;
+  --trust-gap: var(--space-xl);
+  --trust-logo-w: 7rem;
+  --trust-logo-h: 2.25rem;
+}
+
+.trust__title {
+  max-width: 34ch;
+  margin-inline: auto;
+  color: var(--ink);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  text-align: center;
+}
+
+.trust__marquee { margin-top: var(--space-l); }
+.trust__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-m) var(--trust-gap);
+}
+.trust__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--trust-logo-w);
+  height: var(--trust-logo-h);
+  flex: none;
+}
+/* Uniform optical size: every logo fits the same box, so wide wordmarks don't dominate. */
+.trust__img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.7;
+  mix-blend-mode: multiply;
+  transition: filter var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
+}
+.trust__logo:hover .trust__img { filter: none; opacity: 1; }
+
+/* ---- Marquee (JS only) ---- */
+.trust__marquee[data-marquee-ready] {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, var(--white) 12%, var(--white) 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, var(--white) 12%, var(--white) 88%, transparent);
+}
+.trust__marquee[data-marquee-ready] .trust__rail {
+  display: flex;
+  width: max-content;
+  animation: trust-marquee var(--trust-loop) linear infinite;
+}
+.trust__marquee[data-marquee-ready] .trust__list {
+  flex: none;
+  flex-wrap: nowrap;
+  /* Trailing gap so the seam between copies matches the gap between logos. */
+  padding-inline-end: var(--trust-gap);
+}
+.trust__marquee[data-marquee-ready]:hover .trust__rail,
+.trust__marquee[data-marquee-ready]:focus-within .trust__rail {
+  animation-play-state: paused;
+}
+@keyframes trust-marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (min-width: 48rem) {
+  .trust {
+    --trust-gap: var(--space-2xl);
+    --trust-logo-w: 9rem;
+    --trust-logo-h: 3rem;
+  }
+  .trust__marquee { margin-top: var(--space-xl); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust__marquee[data-marquee-ready] .trust__rail { animation: none; }
+}
