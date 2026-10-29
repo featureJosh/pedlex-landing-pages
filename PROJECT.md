@@ -126,11 +126,12 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 
 **System:**
 - **One type scale** (`00-tokens.css`): h1 36–68, h2 28–42, h3 18–22, lead 17–20, body 17 (16 on phones), card text 15, meta 13, labels 11–12. H1/H2 are Scania Sans **regular** mixed case (`--fw-display`), h3 and card titles bold. **Scania Sans Headline** (caps, extended) is the label voice only: eyebrows, chips, captions, top-bar FR/EN. Barlow Condensed is no longer used by any rule (`--font-condensed` aliases the label face).
-- **Buttons:** pills, Scania Sans bold mixed case, trailing icon in a round badge (BrokerFlo). Variants: primary (navy), secondary, on-dark (white), glass (on photos). Full-width CTA rows on phones drop the badge so the label stays on one line.
+- **Shape: square-based** (Josh, 2026-10-29: Pedlex likes its square design). Every corner is 2px (`--radius-s/m/l`); markers, chips, badges, number tiles and avatars are square. Rounds only where they are needed: the video play/pause controls (`--radius-round`). The rounded variant is kept on branch **`rounded-branch`** (39f9468) for comparison.
+- **Buttons:** square-cornered, Scania Sans bold mixed case, trailing icon in a square badge (BrokerFlo, squared). Variants: primary (navy), secondary, on-dark (white), glass (on photos). Full-width CTA rows on phones drop the badge so the label stays on one line.
 - **Header:** top bar (navy-950: family-company message + « Consultation gratuite » link, phone and FR/EN at the side; scrolls away) + sticky header (bigger logo + CTA), transparent with the white logo over the hero, white with the navy logo once scrolled.
 - **Hero:** full-bleed photo (A) or background video (B) under a navy scrim; tag chip, H1, **one** subheadline, CTA + phone; the three stats sit on its bottom edge as one line with hairline dividers. Phones: copy low on the photo, CTA (short label) + round call button side by side. **Variant B** is previewable at `/racking/video/` (`src/_data/landingPages.js`, preview builds only): muted loop started by JS (never under reduced motion), pause button (WCAG 2.2.2), neutral placeholder loop in `assets-source/placeholders/`.
 - **Réalisations:** all photos visible at once. Phones: one wide + 2-column grid; desktop: 12-column mosaic (1 large + 2 stacked, then 2 wide), numbered title under each photo.
-- **Process:** dark band over the installer photo (strong scrim), centred head, numbered white circles joined by a hairline, one centred CTA.
+- **Process:** dark band over the installer photo (strong scrim), centred head, numbered white squares joined by a hairline, one centred CTA.
 - **Why Pedlex:** company-video frame (placeholder: real hq-fleet photo as poster, decorative play badge, dashed « vidéo à venir » tag) beside the head and the four reasons as a flat icon list; certification strip below.
 - **Testimonials:** three cards; **placeholders only** (dashed tag, grey bars, note) until Pedlex supplies approved quotes. Never invent quotes. Phones: horizontal snap row.
 - Lengths after the pass: ~8 870px at 390, ~7 400px at 1440 (two new sections were added: video + testimonials).
@@ -423,6 +424,7 @@ Josh, 2026-10-29: the content is followed loosely. The lead does what is right n
 | 2026-10-29 | FR/EN toggle moves to the top bar's side (visible at every width); footer link stays | Lead (per Raffi) |
 | 2026-10-29 | Hero variants A (photo) / B (video) both built; B previewed at `/<slug>/video/` in preview builds only | Lead |
 | 2026-10-29 | No AI-generated or upscaled media from agents: Raffi/Josh supply them; placeholders meanwhile | Josh |
+| 2026-10-29 | **Square-based shapes** (2px corners); rounded only where needed (video controls). Rounded round-2 variant kept on `rounded-branch` | Josh |
 
 ---
 

@@ -38,7 +38,7 @@
 .site-header[data-scrolled] .site-header__logo-img--dark,
 .site-header--solid .site-header__logo-img--dark { opacity: 1; }
 
-/* CTA: white pill over the photo, the standard navy pill once solid. */
+/* CTA: white button over the photo, the standard navy button once solid. */
 .site-header__cta { white-space: nowrap; }
 .site-header:not([data-scrolled]):not(.site-header--solid) .site-header__cta {
   --btn-bg: var(--white);

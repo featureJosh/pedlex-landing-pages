@@ -25,7 +25,6 @@
   flex: none;
   width: calc(var(--space-2xs) * 0.75);
   height: calc(var(--space-2xs) * 0.75);
-  border-radius: 50%;
   background: var(--blue-300);
 }
 .topbar__text strong { color: var(--on-dark); font-weight: var(--fw-bold); }

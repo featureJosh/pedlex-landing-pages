@@ -1,5 +1,5 @@
-/* Buttons (rendered by the `button` macro). Pill actions in Scania Sans bold, mixed case. A trailing
-   icon sits in a round badge that nudges on hover. One primary CTA style site-wide.
+/* Buttons (rendered by the `button` macro). Square-cornered actions in Scania Sans bold, mixed case.
+   A trailing icon sits in a square badge that nudges on hover. One primary CTA style site-wide.
    Variants: primary (navy), secondary (outline), on-dark (white, for dark sections and photos),
    glass (translucent white outline, the quiet second action on photos). */
 .btn {
@@ -16,7 +16,7 @@
   min-height: 3rem;
   padding: var(--space-2xs) var(--space-m);
   border: 1px solid var(--btn-border);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-s);
   background: var(--btn-bg);
   color: var(--btn-fg);
   font-family: var(--font-sans);
@@ -38,8 +38,8 @@
 }
 .btn:active { transform: translateY(1px); box-shadow: none; }
 
-/* Round icon badge at the end of the pill (BrokerFlo-style). The pill's end padding tightens so
-   the badge sits evenly inside the curve. */
+/* Square icon badge at the end of the button (BrokerFlo-style, squared). The end padding tightens
+   so the badge sits evenly inside the button. */
 .btn:has(.btn__badge) { padding-inline-end: var(--space-2xs); }
 .btn__badge {
   display: inline-grid;
@@ -47,7 +47,7 @@
   flex: none;
   width: var(--space-l);
   height: var(--space-l);
-  border-radius: 50%;
+  border-radius: var(--radius-s);
   background: var(--btn-badge-bg);
   color: var(--btn-badge-fg);
   transition: background-color var(--dur) var(--ease-out);

@@ -6,7 +6,7 @@
    Palette: pedlex.com official colours (brief §7.2). Do NOT use #005DA4 / #8EA4B0.
    Round 2 (Raffi, 2026-10-29): same brand fonts and colours, elevated. One tighter type
    scale used everywhere; mixed-case Scania Sans headlines; Scania Sans Headline (caps,
-   extended) only for small labels; pill actions; dark photo hero.
+   extended) only for small labels; square-cornered actions; dark photo hero.
    ========================================================================== */
 :root {
   /* --- Brand palette (official) --- */
@@ -118,11 +118,13 @@
   --split-gap: clamp(2rem, 1rem + 4vw, 5rem);            /* text <-> media columns */
   --gallery-row: clamp(11rem, 2rem + 13vw, 15rem);       /* mosaic row height (>= 64rem) */
 
-  /* --- Shape --- */
-  --radius-s: 6px;      /* inputs */
-  --radius-m: 12px;     /* cards */
-  --radius-l: 16px;     /* large media */
-  --radius-pill: 999px; /* actions, chips */
+  /* --- Shape: square-based, like Pedlex's own design (Josh, 2026-10-29). Corners are only
+     softened enough to stay crisp; true rounds are kept for the few places that need them
+     (video play/pause controls). The rounded variant lives on branch `rounded-branch`. --- */
+  --radius-s: 2px;      /* buttons, inputs, chips, icon tiles */
+  --radius-m: 2px;      /* cards */
+  --radius-l: 2px;      /* media frames */
+  --radius-round: 50%;  /* video controls only */
   --border: 1px solid var(--line);
 
   /* --- Elevation (navy-tinted, subtle) --- */

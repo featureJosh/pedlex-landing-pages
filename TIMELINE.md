@@ -11,6 +11,11 @@ Format:
 
 ---
 
+## 2026-10-29 19:05 · lead
+- **Square-based shapes on `main`** (Josh: « Pedlex likes its square-based design… rounded things aren't banned, but keep them to a minimum »). Radius tokens to 2px (`--radius-s/m/l`), `--radius-pill` replaced by `--radius-round` (video play/pause only). Buttons, button badges, hero tag chip, top-bar/hero dots, process numbers, FAQ toggle, form checks, testimonial tags/avatars/bars, thank-you icon and steps are now square. Files: `00-tokens.css`, `button.css`, `topbar.css`, `header.css`, `hero.css`, `process.css`, `reviews.css`, `why.css`, `faq.css`, `form.css`, `pages/thanks.css`, `ui.njk` (comment).
+- **`rounded-branch`** created at 39f9468: the round-2 build with pills and round badges, kept for comparison (local only).
+- QA: build clean; `qa/shots/r2sq/` at 390 + 1440; no overflow, no console errors.
+
 ## 2026-10-29 18:30 · lead
 - **Round 2: Raffi's client review implemented on `main`** (base = the white v1, elevated). Files: tokens, base, layout, button, new `partials/topbar.njk` + `components/topbar.css`, header, hero (+ `partials/proof-strip.njk`, replaces the stats section; `scripts/sections/hero-video.js`), gallery (Kimi mosaic, carousel JS removed), process, why, new `sections/reviews.njk` + `reviews.css`, faq (closing block removed), `src/_data/landingPages.js` (hero-video twin pages in preview), `src/landing.njk` (auto-numbered eyebrows), `eleventy.config.js` (passthrough `assets-source/placeholders` + `assets-source/video`), FR/EN content + `_shared` UI strings.
 - New tokens: `--fs-2xs`, `--fw-display`, `--ls-display`, `--ls-label-tight`, `--font-label`, `--blue-300`, `--glass`, `--glass-hover`, `--blur-glass`, `--header-bg`, `--topbar-h`, `--hero-measure`, `--split-gap`, `--gallery-row`, `--radius-pill`, `--scrim-*`; scale, radii, section padding retuned (smaller). Macros: `button` gains `glass` variant, round icon badge and `attrs`; `sectionHead` gains `index`.

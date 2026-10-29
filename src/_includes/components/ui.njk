@@ -5,7 +5,7 @@
 {#- Button / CTA link.
     opts: variant ("primary" | "secondary" | "on-dark" | "glass"), size ("sm" | "md" | "lg"),
           class, short (shorter label shown on narrow screens), icon (Lucide name, trailing, drawn in
-          a round badge), attrs (extra raw attributes, e.g. aria-label) -#}
+          a square badge), attrs (extra raw attributes, e.g. aria-label) -#}
 {% macro button(label, href, opts = {}) -%}
 {%- set variant = opts.variant or "primary" -%}
 <a class="btn btn--{{ variant }} btn--{{ opts.size or 'md' }}{% if opts.class %} {{ opts.class }}{% endif %}" href="{{ href }}"{% if href.startsWith('#') %} data-scroll-to{% endif %}{% if opts.attrs %} {{ opts.attrs | safe }}{% endif %}>

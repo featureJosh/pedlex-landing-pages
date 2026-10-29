@@ -59,7 +59,7 @@
   gap: var(--space-2xs);
   padding: var(--space-2xs) var(--space-s);
   border: 1px solid var(--line-dark);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-s);
   background: var(--glass);
   -webkit-backdrop-filter: var(--blur-glass);
   backdrop-filter: var(--blur-glass);
@@ -74,7 +74,6 @@
   flex: none;
   width: calc(var(--space-2xs) * 0.75);
   height: calc(var(--space-2xs) * 0.75);
-  border-radius: 50%;
   background: var(--blue-300);
 }
 .hero__title {
@@ -150,7 +149,7 @@
 .hero__placeholder {
   padding: var(--space-3xs) var(--space-xs);
   border: 1px dashed var(--line-dark);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-s);
   color: var(--on-dark-2);
   font-family: var(--font-label);
   font-size: var(--fs-2xs);
@@ -164,7 +163,7 @@
   height: var(--space-xl);
   padding: 0;
   border: 1px solid var(--line-dark);
-  border-radius: 50%;
+  border-radius: var(--radius-round);
   background: var(--glass);
   -webkit-backdrop-filter: var(--blur-glass);
   backdrop-filter: var(--blur-glass);

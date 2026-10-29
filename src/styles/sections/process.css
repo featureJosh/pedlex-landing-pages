@@ -46,7 +46,7 @@
   place-items: center;
   width: var(--space-xl);
   height: var(--space-xl);
-  border-radius: 50%;
+  border-radius: var(--radius-s);
   background: var(--white);
   color: var(--navy-900);
   font-size: var(--fs-md);
