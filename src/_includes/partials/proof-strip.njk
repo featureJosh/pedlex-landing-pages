@@ -1,0 +1,28 @@
+{#- Proof strip: the key figures on one line at the bottom of the hero (Raffi: « trust bar in the
+    hero, one line, smaller »). Included by sections/hero.njk. Styles: sections/hero.css (.hero__proof).
+    Data: c.stats.label (list label), c.stats.items[]: { prefix?, from?, value?, suffix?, text?, label }.
+    `from` makes a range (« 30 à 50 % »), joined by c.ui.rangeSep; both numbers count up.
+    The FINAL value is in the HTML. scripts/sections/stats-counter.js counts [data-count-to] up from 0
+    once, when the row enters the viewport. The animated figure is aria-hidden; screen readers get the
+    real value from the visually-hidden copy next to it. -#}
+<ul class="hero__proof" role="list" aria-label="{{ c.stats.label | plain }}" data-stats>
+  {%- for item in c.stats.items %}
+  {#- A leading space in the suffix (" %", " ans") becomes a no-break space; none ("%") = attached. #}
+  {%- set suffix = (item.suffix or "") | trim %}
+  {%- set gap = "&nbsp;" if (item.suffix and item.suffix != suffix) else "" %}
+  <li class="hero__proof-item">
+    <p class="hero__proof-figure">
+      {%- if item.prefix %}<span>{{ item.prefix | safe }}</span>{% endif %}
+      {%- if item.value is defined %}
+      <span aria-hidden="true">
+        {%- if item.from is defined %}<span class="hero__proof-number" data-count-to="{{ item.from }}">{{ item.from | num(lang) }}</span><span class="hero__proof-sep">{{ c.ui.rangeSep }}</span>{% endif -%}
+        <span class="hero__proof-number" data-count-to="{{ item.value }}">{{ item.value | num(lang) }}</span>{% if suffix %}{{ gap | safe }}{{ suffix | safe }}{% endif %}</span>
+      <span class="visually-hidden">{% if item.from is defined %}{{ item.from | num(lang) }} {{ c.ui.rangeSep }} {% endif %}{{ item.value | num(lang) }}{% if suffix %}{{ gap | safe }}{{ suffix | safe }}{% endif %}</span>
+      {%- else %}
+      <span>{{ item.text | safe }}</span>
+      {%- endif %}
+    </p>
+    <p class="hero__proof-label">{{ item.label | safe }}</p>
+  </li>
+  {%- endfor %}
+</ul>

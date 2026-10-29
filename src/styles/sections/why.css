@@ -1,16 +1,88 @@
-/* Why Pedlex (#why, white). Centred head, 6 feature cards (.grid--3), then a quiet
-   certification strip: hairline, condensed caps label, grayscale badges. */
+/* Why Pedlex (#why, white). Video frame + head and four compact reasons, then the certification
+   strip (hairline, small caps label, grayscale badges). The reasons reuse the featureCard macro in
+   a flat list form: icon chip beside title + text, no card box. */
+.why__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "head" "video" "list";
+  gap: var(--space-l);
+}
+.why__head { grid-area: head; }
+.why__video { grid-area: video; }
+.why__list { grid-area: list; }
 
-/* The FR H2 is long: a wider centred head sets it on two balanced lines on desktop instead of three. */
-.why .section-head { max-width: calc(var(--container-narrow) + var(--space-xl)); }
-
-/* 4 cards in a 2x2 (grid--3 left a 3+1 orphan). Capped so the pair stays card-like
-   instead of stretching full container width. */
-.why__grid {
-  max-width: 62rem;
-  margin-inline: auto;
+/* ---- Video (placeholder poster) ---- */
+.why__video-frame { aspect-ratio: 16 / 10; }
+.why__video-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-media);
+}
+.why__play {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: calc(var(--space-2xl) + var(--space-2xs));
+  height: calc(var(--space-2xl) + var(--space-2xs));
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--navy-900);
+  box-shadow: var(--shadow-l);
+  transform: translate(-50%, -50%);
+}
+.why__play .icon { width: var(--space-m); height: var(--space-m); margin-left: var(--space-3xs); fill: currentColor; }
+.why__video-tag {
+  position: absolute;
+  z-index: 1;
+  left: var(--space-s);
+  bottom: var(--space-s);
+  padding: var(--space-3xs) var(--space-xs);
+  border: 1px dashed var(--on-dark-3);
+  border-radius: var(--radius-pill);
+  color: var(--on-dark);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+.why__video-caption {
+  margin-top: var(--space-s);
+  text-wrap: balance;
+  color: var(--ink);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
 }
 
+/* ---- Reasons: flat list built from featureCard ---- */
+.why__list {
+  display: grid;
+  gap: var(--space-m) var(--space-l);
+}
+.why__list .card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  column-gap: var(--space-s);
+  row-gap: var(--space-3xs);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+.why__list .card:hover { box-shadow: none; transform: none; }
+.why__list .card__icon {
+  grid-row: span 2;
+  width: var(--space-xl);
+  height: var(--space-xl);
+  margin: 0;
+}
+.why__list .card__icon .icon { width: var(--space-m); height: var(--space-m); }
+
+/* ---- Certifications ---- */
 .why__certs {
   display: flex;
   flex-wrap: wrap;
@@ -18,22 +90,19 @@
   justify-content: center;
   gap: var(--space-m) var(--space-xl);
   margin-top: var(--section-gap);
-  padding-top: var(--space-xl);
+  padding-top: var(--space-l);
   border-top: var(--border);
   text-align: center;
 }
-
 .why__certs-label {
   flex-basis: 100%;
-  font-family: var(--font-condensed);
-  font-size: var(--fs-eyebrow);
-  font-weight: var(--fw-semibold);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
   letter-spacing: var(--ls-caps);
   line-height: var(--lh-snug);
   text-transform: uppercase;
   color: var(--text-3);
 }
-
 /* One row at every width: on phones the badges shrink a little rather than orphan the third. */
 .why__certs-list {
   display: flex;
@@ -42,7 +111,6 @@
   gap: var(--space-m);
 }
 .why__cert { min-width: 0; }
-
 .why__cert-img {
   width: auto;
   max-width: 100%;
@@ -53,11 +121,25 @@
   opacity: 0.7;
 }
 
+@media (min-width: 40rem) {
+  .why__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (min-width: 48rem) {
   .why__certs-list { gap: var(--space-xl); }
 }
-
 @media (min-width: 64rem) {
-  .why__certs { flex-wrap: nowrap; gap: var(--space-2xl); }
-  .why__certs-label { flex-basis: auto; text-align: start; }
+  .why__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "video head" "video list";
+    column-gap: var(--split-gap);
+    align-items: start;
+  }
+  .why__certs { flex-wrap: nowrap; justify-content: space-between; gap: var(--space-2xl); text-align: start; }
+  .why__certs-label { flex-basis: auto; max-width: 34ch; }
+}
+
+/* 64-80rem: the text column is too narrow for two reasons side by side; stack them. */
+@media (min-width: 64rem) and (max-width: 79.99rem) {
+  .why__list { grid-template-columns: minmax(0, 1fr); }
 }

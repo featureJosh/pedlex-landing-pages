@@ -11,6 +11,13 @@ Format:
 
 ---
 
+## 2026-10-29 18:30 · lead
+- **Round 2: Raffi's client review implemented on `main`** (base = the white v1, elevated). Files: tokens, base, layout, button, new `partials/topbar.njk` + `components/topbar.css`, header, hero (+ `partials/proof-strip.njk`, replaces the stats section; `scripts/sections/hero-video.js`), gallery (Kimi mosaic, carousel JS removed), process, why, new `sections/reviews.njk` + `reviews.css`, faq (closing block removed), `src/_data/landingPages.js` (hero-video twin pages in preview), `src/landing.njk` (auto-numbered eyebrows), `eleventy.config.js` (passthrough `assets-source/placeholders` + `assets-source/video`), FR/EN content + `_shared` UI strings.
+- New tokens: `--fs-2xs`, `--fw-display`, `--ls-display`, `--ls-label-tight`, `--font-label`, `--blue-300`, `--glass`, `--glass-hover`, `--blur-glass`, `--header-bg`, `--topbar-h`, `--hero-measure`, `--split-gap`, `--gallery-row`, `--radius-pill`, `--scrim-*`; scale, radii, section padding retuned (smaller). Macros: `button` gains `glass` variant, round icon badge and `attrs`; `sectionHead` gains `index`.
+- Placeholders: `assets-source/placeholders/hero-video-placeholder.webm` + `hero-video-poster.jpg` (neutral grey loop recorded from a canvas, labelled PLACEHOLDER; not AI, not stock), why-video poster = real hq-fleet photo with a « vidéo à venir » tag, 3 testimonial placeholder cards. All listed in PROJECT.md §9.
+- QA (lead): build clean; shots at 360/390/768/1024/1440/1920 in `qa/shots/r2/` (+ `r2-video/`); no horizontal overflow; 1 H1, no missing alt, no console errors on FR, EN and video pages; hero CTA scrolls to the form and focuses « Prénom et nom »; header switches to solid on scroll; video pause button toggles play state and label. Page length 390: ~8 870px.
+- Why: Raffi (2026-10-29) picked the white version as the base, asked for consistent and smaller typography, a BrokerFlo-like hero with the trust bar inside it, the Kimi gallery, a St-Amour-like process, a company video, testimonials, FAQ before the form, and a shorter mobile page.
+
 ## 2026-10-29 16:30 · lead
 - Josh, reiterated: be **inspired, not guided** by pedlex.com. **The landing page sets the precedent for Pedlex's new website.** v1 was good, but it failed at modernizing and only mimicked the existing site. A banner note was added at the top of CLAUDE.md, PROJECT.md §5 and HANDOFF.md "In flight", plus a §10 decision.
 - Josh will also run non-Claude agents on `explore/<agent>` branches with a shared brief. The lead builds `explore/claude`, then merges the best points of every attempt into one page on `main`. All attempts deliver `qa/explore/<name>/` (390/1440 shots + DESIGN-NOTES.md).

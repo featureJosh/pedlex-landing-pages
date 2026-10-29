@@ -3,22 +3,24 @@
     Import with: {% from "components/ui.njk" import button, sectionHead, ctaRow %} -#}
 
 {#- Button / CTA link.
-    opts: variant ("primary" | "secondary" | "ghost" | "on-dark"), size ("sm" | "md" | "lg"),
-          class, short (shorter label shown on narrow screens), icon (Lucide name, trailing) -#}
+    opts: variant ("primary" | "secondary" | "on-dark" | "glass"), size ("sm" | "md" | "lg"),
+          class, short (shorter label shown on narrow screens), icon (Lucide name, trailing, drawn in
+          a round badge), attrs (extra raw attributes, e.g. aria-label) -#}
 {% macro button(label, href, opts = {}) -%}
 {%- set variant = opts.variant or "primary" -%}
-<a class="btn btn--{{ variant }} btn--{{ opts.size or 'md' }}{% if opts.class %} {{ opts.class }}{% endif %}" href="{{ href }}"{% if href.startsWith('#') %} data-scroll-to{% endif %}>
+<a class="btn btn--{{ variant }} btn--{{ opts.size or 'md' }}{% if opts.class %} {{ opts.class }}{% endif %}" href="{{ href }}"{% if href.startsWith('#') %} data-scroll-to{% endif %}{% if opts.attrs %} {{ opts.attrs | safe }}{% endif %}>
   {%- if opts.short %}<span class="btn__label btn__label--long">{{ label | safe }}</span><span class="btn__label btn__label--short" aria-hidden="true">{{ opts.short | safe }}</span>
   {%- else %}<span class="btn__label">{{ label | safe }}</span>{% endif -%}
-  {%- if opts.icon %}{% icon opts.icon, "btn__icon" %}{% endif -%}
+  {%- if opts.icon %}<span class="btn__badge" aria-hidden="true">{% icon opts.icon, "btn__icon" %}</span>{% endif -%}
 </a>
 {%- endmacro %}
 
 {#- Section heading block: eyebrow + h2 + optional lead paragraph(s).
-    opts: align ("start" | "center"), id (for the h2, used by aria-labelledby), tone ("light" | "dark") -#}
+    opts: align ("start" | "center"), id (for the h2, used by aria-labelledby),
+          index (section number shown in the eyebrow, e.g. "02" -> « 02 · Réalisations ») -#}
 {% macro sectionHead(eyebrow, title, lead, opts = {}) -%}
 <div class="section-head section-head--{{ opts.align or 'start' }}" data-reveal>
-  {%- if eyebrow %}<p class="eyebrow">{{ eyebrow | safe }}</p>{% endif %}
+  {%- if eyebrow %}<p class="eyebrow">{% if opts.index %}<span class="eyebrow__index">{{ opts.index }}</span><span aria-hidden="true">·</span>{% endif %}<span>{{ eyebrow | safe }}</span></p>{% endif %}
   <h2 class="section-title"{% if opts.id %} id="{{ opts.id }}"{% endif %}>{{ title | safe }}</h2>
   {%- if lead %}
     {%- if lead is string %}<p class="section-lead">{{ lead | safe }}</p>

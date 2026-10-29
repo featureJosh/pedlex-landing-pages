@@ -1,20 +1,16 @@
-{#- Minimal campaign header: logo, FR/EN toggle, persistent CTA. No navigation (brief §4.4). -#}
+{#- Campaign header: bigger logo + the one CTA. No navigation (brief §4.4); phone and FR/EN live in
+    the top bar (partials/topbar.njk). Sticky. Over the dark hero it is transparent with the white
+    logo; once the page scrolls ([data-scrolled], scripts/components/header.js) it turns white with
+    the navy logo. Pages without the dark hero (thank-you) use the solid state from the start. -#}
 {%- from "components/ui.njk" import button -%}
-<header class="site-header" data-header>
+<header class="site-header{% if isThanks %} site-header--solid{% endif %}" data-header>
   <div class="container site-header__inner">
     <a class="site-header__logo" href="{{ entry.url | url }}" aria-label="{{ c.ui.logoAlt | plain }}">
-      {% picture "brand/pedlex-logo", c.ui.logoAlt | plain, "160px", { loading: "eager", class: "site-header__logo-img" } %}
+      {% picture "brand/pedlex-logo-white", "", "184px", { loading: "eager", class: "site-header__logo-img site-header__logo-img--light" } %}
+      {% picture "brand/pedlex-logo", "", "184px", { loading: "eager", class: "site-header__logo-img site-header__logo-img--dark" } %}
     </a>
-    <div class="site-header__actions">
-      <a class="site-header__phone" href="tel:{{ site.company.phoneHref }}">
-        {% icon "phone" %}<span class="visually-hidden">{{ c.ui.phoneLabel }} </span><span class="site-header__phone-number">{{ site.company.phone }}</span>
-      </a>
-      {%- if entry.alt %}
-      <a class="lang-switch" href="{{ (entry.alt.thanksUrl if isThanks else entry.alt.url) | url }}" hreflang="{{ entry.alt.lang }}" lang="{{ entry.alt.lang }}" aria-label="{{ c.ui.langSwitch.aria }}">{{ c.ui.langSwitch.label }}</a>
-      {%- endif %}
-      {%- if not isThanks %}
-      {{ button(c.ui.cta, "#" + c.form.id, { size: "sm", class: "site-header__cta", short: c.ui.ctaShort }) }}
-      {%- endif %}
-    </div>
+    {%- if not isThanks %}
+    {{ button(c.ui.cta, "#" + c.form.id, { size: "sm", class: "site-header__cta", short: c.ui.ctaShort, icon: "arrow-right" }) }}
+    {%- endif %}
   </div>
 </header>

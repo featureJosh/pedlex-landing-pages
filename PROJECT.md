@@ -2,7 +2,7 @@
 
 > **Source of truth for every human and agent on this project.** If something here is wrong, fix it here first.
 > Agent rules live in [CLAUDE.md](CLAUDE.md). The change log is [TIMELINE.md](TIMELINE.md). Lead session state is [HANDOFF.md](HANDOFF.md).
-> Last updated: 2026-10-29 16:15 by the project lead (Claude).
+> Last updated: 2026-10-29 18:30 by the project lead (Claude).
 
 ---
 
@@ -118,6 +118,23 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 
 ## 5. Design direction: v2, "entirely new, photo-led" (Josh, 2026-10-29)
 
+> **⚠ Round 2 (Raffi, client review, 2026-10-29) supersedes the v2 exploration plan.** The client chose the **white v1 on `main` as the base**, to be **elevated, not replaced**: same brand fonts (Scania Sans) and colours (official navy/blue), with a tighter type scale, a BrokerFlo-style dark photo hero with the proof strip built in, a top bar + sticky header, the explore/kimi « Réalisations » mosaic (titles under each photo), a St-Amour-style 1-2-3 process, a Why Pedlex video, testimonials, and FAQ before the form. References: brokerflo.io (hero; also by Luxy), manufacturingusa.st-amour.com (structure), starlit-salmiakki-bc0617.netlify.app. Media (upscaled photos, hero video, company video) come from Raffi/Josh: **builders use placeholders and never generate or upscale images or video.** Details: §5 « Round 2 » below; log: TIMELINE 2026-10-29 18:30.
+
+### Round 2: the elevated v1 (built 2026-10-29 on `main`)
+
+**Page order (Raffi):** top bar → sticky header → hero (+ proof strip) → client logos → problem (01) → réalisations (02) → process (03) → why Pedlex (04) → testimonials (05) → FAQ (06) → form (always last) → footer. Eyebrows are numbered automatically from the page order (`src/landing.njk`).
+
+**System:**
+- **One type scale** (`00-tokens.css`): h1 36–68, h2 28–42, h3 18–22, lead 17–20, body 17 (16 on phones), card text 15, meta 13, labels 11–12. H1/H2 are Scania Sans **regular** mixed case (`--fw-display`), h3 and card titles bold. **Scania Sans Headline** (caps, extended) is the label voice only: eyebrows, chips, captions, top-bar FR/EN. Barlow Condensed is no longer used by any rule (`--font-condensed` aliases the label face).
+- **Buttons:** pills, Scania Sans bold mixed case, trailing icon in a round badge (BrokerFlo). Variants: primary (navy), secondary, on-dark (white), glass (on photos). Full-width CTA rows on phones drop the badge so the label stays on one line.
+- **Header:** top bar (navy-950: family-company message + « Consultation gratuite » link, phone and FR/EN at the side; scrolls away) + sticky header (bigger logo + CTA), transparent with the white logo over the hero, white with the navy logo once scrolled.
+- **Hero:** full-bleed photo (A) or background video (B) under a navy scrim; tag chip, H1, **one** subheadline, CTA + phone; the three stats sit on its bottom edge as one line with hairline dividers. Phones: copy low on the photo, CTA (short label) + round call button side by side. **Variant B** is previewable at `/racking/video/` (`src/_data/landingPages.js`, preview builds only): muted loop started by JS (never under reduced motion), pause button (WCAG 2.2.2), neutral placeholder loop in `assets-source/placeholders/`.
+- **Réalisations:** all photos visible at once. Phones: one wide + 2-column grid; desktop: 12-column mosaic (1 large + 2 stacked, then 2 wide), numbered title under each photo.
+- **Process:** dark band over the installer photo (strong scrim), centred head, numbered white circles joined by a hairline, one centred CTA.
+- **Why Pedlex:** company-video frame (placeholder: real hq-fleet photo as poster, decorative play badge, dashed « vidéo à venir » tag) beside the head and the four reasons as a flat icon list; certification strip below.
+- **Testimonials:** three cards; **placeholders only** (dashed tag, grey bars, note) until Pedlex supplies approved quotes. Never invent quotes. Phones: horizontal snap row.
+- Lengths after the pass: ~8 870px at 390, ~7 400px at 1440 (two new sections were added: video + testimonials).
+
 > **⚠ Read this before any design work (Josh, 2026-10-29).** Be **inspired** by pedlex.com, never **guided** by it. **This landing page sets the precedent for Pedlex's NEW website**: the direction we set here is the direction their next site will take. So it has to look forward, not back.
 > The v1 attempt (on `main` up to ee05eb1) was **good**: clean, professional, well built, and the reviewers liked it. But it **failed at modernizing**. It mimicked the existing site's ideas (layout, components, type treatment) instead of proposing a new one. Don't repeat that: take Pedlex's *essence* (identity, values, real work, family story), not pedlex.com's *design*.
 
@@ -214,6 +231,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 > Agents: move items as you work: **To-do → In progress (with your branch name) → Done (with date)**. Never delete history; Done items stay.
 
 ### 🔄 In progress
+- [ ] **Round 2 (Raffi's review) on `main`:** built 2026-10-29 (TIMELINE 18:30). Next: Josh/Raffi drop in real media (upscaled hero photo, hero video, company video, testimonials), then a full QA / User / Client review round before the Netlify demo (Josh deploys)
 - [ ] **v2 redesign (Josh, 2026-10-29: "entirely new, photo-heavy").** Step 1 (**not started yet**; briefs in HANDOFF.md): three direction explorations in parallel (`explore/atelier`, `explore/nuit`, `explore/plan`), each a full Racking page. Lead picks one (or grafts) → `main`. Step 2: finishing builders (round-1 behaviour fixes, hero motion options, placeholders, cookie banner, merci, EN). Step 3: review round 2
 - [x] ~~Round-1 polish builders (`feat/r1-system`, `feat/r1-behaviour`)~~ stopped and pruned 2026-10-29: they polished v1, which Josh retired. Their design-neutral items carry into v2 step 2
 
@@ -233,6 +251,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - [ ] Rousseau page (copy to come)
 
 ### ✅ Done
+- [x] 2026-10-29: **Round 2 (Raffi):** top bar + sticky header, BrokerFlo-style hero with proof strip + video variant B, Kimi mosaic gallery with titles, St-Amour process, Why Pedlex video placeholder, testimonials placeholders, FAQ before form, one type scale, pill buttons, mobile length pass
 - [x] 2026-10-29: Photo intake for v2: 7 real Pedlex photos from pedlex.com → `assets-source/web/` (sources logged)
 - [x] 2026-10-29: Review round 1 run (QA / User / Client agents) and triaged into §8
 - [x] 2026-10-29: Josh's answers applied: CTA labels follow the copy doc per section; stat « 30 à 50 % » (stats + FAQ); « 1 jour ouvrable » kept; certification badges kept (label made accurate); Cloudflare Pages on Josh's account for previews
@@ -347,7 +366,10 @@ Round 1 report: [qa/client-2026-10-29-r1.md](qa/client-2026-10-29-r1.md). Verdic
 | Shared Google Sheet for leads | TBD | Form routing | Waiting |
 | Meta pixel status, LinkedIn Insight ID, GTM tag ownership | Erin | Conversion tracking | Waiting |
 | Platform decision (WordPress vs static) | Raffi + Elke | Form endpoint, deploy | Open (brief §10 #1) |
-| Hero treatment: photo vs motion loop | Francis | Hero | Open (brief §10 #4) |
+| Hero treatment: photo (A) vs background video (B), both previewable (`/racking/` vs `/racking/video/`) | Raffi / Francis | Hero | Open: B uses a neutral placeholder loop; real 2–3 shots of 2–3 s (installer) from Raffi/Josh |
+| Upscaled hero photo (variant A) | Raffi (Higgsfield) | Hero sharpness | Waiting; racking-2 meanwhile |
+| Pedlex company / team video | Pedlex / Raffi | Why Pedlex video frame (placeholder poster now) | Waiting |
+| **Client testimonials** (name, title, company, approved quote; 3 ideal) | Pedlex | Testimonials section (placeholders now) | Waiting: Raffi calls this the most important piece |
 | Original full-res racking-2 (hero) + higher-res Racking photos (max 1662px now) | Pedlex | Hero looks over-processed at 2× (CLIENT-19) | **Before go-live** |
 
 ### Client questions (raise at next review)
@@ -365,6 +387,12 @@ Josh, 2026-10-29: the content is followed loosely. The lead does what is right n
    - **appetizer trims:** hero 2nd paragraph, problem 1st paragraph, why cards « 50 ans d'expertise » + « Expertise technique » (repeat stats/hero), form 2nd paragraph, FAQ « s'occupe aussi de l'installation ? » (covered by « clé en main »);
    - footer link « Découvrir pedlex.com ».
 7. **EN copy** is a Luxy draft; Maïeutyk's version replaces it wholesale.
+8. **Round 2 lead copy changes (2026-10-29, Raffi's review):**
+   - hero: second paragraph (« Pedlex conçoit… ») and the 3-item check-list removed (one subheadline); « Entreprise familiale québécoise depuis 1976 » moved to the top bar and the Why Pedlex video caption;
+   - top bar: « Entreprise familiale québécoise depuis 1976 · Réponse d'un expert en 1 jour ouvrable » + « Consultation gratuite »;
+   - testimonials head « Témoignages » / « Ce que nos clients disent de Pedlex. » (Luxy microcopy) + placeholder cards;
+   - FAQ closing block (« Vous avez d'autres questions ? ») removed: the form now follows the FAQ directly;
+   - hero CTA shows « Consultation gratuite » on phones (`ui.ctaShort`).
 
 ---
 
@@ -391,6 +419,10 @@ Josh, 2026-10-29: the content is followed loosely. The lead does what is right n
 | 2026-10-29 | **v1 look retired: v2 must be "entirely new" (not a polish of pedlex.com) and photo-heavy**; placeholders OK for missing photos | Josh |
 | 2026-10-29 | v2 process: 3 parallel direction explorations as full pages → lead picks/grafts → finishing builders → review round 2 | Lead |
 | 2026-10-29 | On phones (<30rem) the FR/EN toggle lives in the footer, not the header (room for phone + CTA) | Lead |
+| 2026-10-29 | **Round 2 (client review): base = white v1 on `main`, elevated** (supersedes the three-direction exploration plan); BrokerFlo hero; Kimi « Réalisations » mosaic; testimonials + FAQ before the form; form last | Raffi / Josh |
+| 2026-10-29 | FR/EN toggle moves to the top bar's side (visible at every width); footer link stays | Lead (per Raffi) |
+| 2026-10-29 | Hero variants A (photo) / B (video) both built; B previewed at `/<slug>/video/` in preview builds only | Lead |
+| 2026-10-29 | No AI-generated or upscaled media from agents: Raffi/Josh supply them; placeholders meanwhile | Josh |
 
 ---
 

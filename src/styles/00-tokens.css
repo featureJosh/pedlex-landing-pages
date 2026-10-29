@@ -4,6 +4,9 @@
    one-off spacing values anywhere else (QA checks this). Need a new value? Add a
    token here and log it in TIMELINE.md.
    Palette: pedlex.com official colours (brief §7.2). Do NOT use #005DA4 / #8EA4B0.
+   Round 2 (Raffi, 2026-10-29): same brand fonts and colours, elevated. One tighter type
+   scale used everywhere; mixed-case Scania Sans headlines; Scania Sans Headline (caps,
+   extended) only for small labels; pill actions; dark photo hero.
    ========================================================================== */
 :root {
   /* --- Brand palette (official) --- */
@@ -21,15 +24,20 @@
   /* --- Derived (tints/shades of the official palette only) --- */
   --navy-950: #0A2A45;   /* footer, deepest surface */
   --navy-700: #1E4A73;   /* hover on navy surfaces */
+  --blue-300: #9DB4DB;   /* markers on dark surfaces */
   --blue-50: #F4F6FA;    /* tinted section background */
   --blue-100: #E6ECF4;   /* icon chips, subtle fills */
   --text-3: #5C646B;     /* meta / captions (5.9:1 on white) */
   --on-dark: #FFFFFF;
-  --on-dark-2: rgb(255 255 255 / 0.78);
-  --on-dark-3: rgb(255 255 255 / 0.6);
+  --on-dark-2: rgb(255 255 255 / 0.8);
+  --on-dark-3: rgb(255 255 255 / 0.64);
   --line: var(--grey-200);
-  --line-dark: rgb(255 255 255 / 0.16);
+  --line-dark: rgb(255 255 255 / 0.18);
   --line-strong: #8A949C;  /* form control borders: 3.1:1 on white (WCAG 1.4.11) */
+  --glass: rgb(255 255 255 / 0.1);        /* secondary action on photos */
+  --glass-hover: rgb(255 255 255 / 0.18);
+  --blur-glass: blur(8px);
+  --header-bg: rgb(255 255 255 / 0.94);   /* scrolled header (with blur) */
   --error: #B42318;
   --error-bg: #FEF3F2;
   --success: #067647;
@@ -45,38 +53,45 @@
   --color-focus: var(--blue-600);
 
   /* --- Typography ---
-     Scania Sans (brand) for body and headings; Barlow Condensed for condensed caps labels until a
-     Scania Sans Condensed WOFF2 exists (01-fonts.css). Scania ships 400 + 700 only: 500 renders
-     as 400, 600 as 700. */
+     Scania Sans (brand, 400 + 700 only) for body and every heading, in mixed case. Headings use
+     the regular weight at display sizes (h1, h2) and bold below (h3, cards).
+     Scania Sans Headline (caps-only, extended) is the brand's label voice: eyebrows, chips,
+     captions, small meta. Nothing else. */
   --font-sans: "Scania Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-display: "Scania Sans Headline", var(--font-sans);  /* caps-only, extended: the H1 only (as on pedlex.com) */
-  --font-condensed: "Scania Sans Condensed", "Barlow Condensed", "Arial Narrow", var(--font-sans);
+  --font-display: var(--font-sans);
+  --font-label: "Scania Sans Headline", var(--font-sans);
+  --font-condensed: var(--font-label);  /* legacy alias: older rules used the condensed caps face */
 
-  --fs-xs: 0.8125rem;                                         /* 13px  meta, legal */
-  --fs-sm: 0.9375rem;                                         /* 15px  captions, labels */
-  --fs-base: 1.0625rem;                                       /* 17px  body */
-  --fs-md: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);        /* 17-19 card titles */
-  --fs-lg: clamp(1.125rem, 1.04rem + 0.4vw, 1.3125rem);       /* 18-21 lead */
-  --fs-h3: clamp(1.1875rem, 1.1rem + 0.45vw, 1.4375rem);      /* 19-23 */
-  --fs-h2: clamp(1.75rem, 1.3rem + 1.9vw, 2.75rem);           /* 28-44 */
-  --fs-h1: clamp(1.875rem, 1.35rem + 2.3vw, 3.25rem);         /* 30-52: display face is extended caps */
-  --fs-stat: clamp(2.75rem, 2rem + 3.2vw, 4.5rem);            /* 44-72 */
-  --fs-eyebrow: 0.875rem;                                     /* 14px uppercase condensed */
+  /* One scale, used site-wide. Comments give the 360 -> 1440 range. */
+  --fs-2xs: 0.6875rem;                                        /* 11  label caps (extended face) */
+  --fs-xs: 0.8125rem;                                         /* 13  meta, legal */
+  --fs-sm: 0.9375rem;                                         /* 15  card text, captions */
+  --fs-base: 1.0625rem;                                       /* 17  body (16 on phones) */
+  --fs-md: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);            /* 16-18 card titles, FAQ */
+  --fs-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);           /* 17-20 leads */
+  --fs-h3: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);       /* 18-22 */
+  --fs-h2: clamp(1.75rem, 1.35rem + 1.6vw, 2.625rem);         /* 28-42 */
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);           /* 36-68 */
+  --fs-stat: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);        /* 20-26 hero proof strip */
+  --fs-eyebrow: 0.75rem;                                      /* 12  extended caps */
   --fs-btn: 1rem;
 
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
   --fw-bold: 700;
+  --fw-display: 400;   /* h1 / h2 */
 
   --lh-tight: 1.08;
   --lh-snug: 1.25;
   --lh-body: 1.6;
-  --ls-tight: -0.015em;
+  --ls-tight: -0.02em;
+  --ls-display: -0.03em;
   --ls-caps: 0.08em;
+  --ls-label-tight: 0.03em;  /* long caps labels on phones */
 
   --measure: 62ch;       /* max line length for body copy */
-  --measure-lead: 54ch;
+  --measure-lead: 52ch;
 
   /* --- Spacing (8px grid) --- */
   --space-3xs: 0.25rem;  /* 4  */
@@ -89,26 +104,37 @@
   --space-2xl: 4rem;     /* 64 */
   --space-3xl: 6rem;     /* 96 */
 
-  --section-pad: clamp(4rem, 2.6rem + 5.5vw, 7.5rem);   /* vertical padding of every section */
-  --section-gap: clamp(2.5rem, 1.8rem + 2.8vw, 4rem);   /* section head -> content */
-  --grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);        /* card grids */
+  --section-pad: clamp(3rem, 1.9rem + 4.6vw, 6.5rem);    /* vertical padding of every section: 48-104 */
+  --section-gap: clamp(1.75rem, 1.35rem + 1.9vw, 3.25rem); /* section head -> content: 28-52 */
+  --grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);         /* card grids */
 
   /* --- Layout --- */
   --container: 76rem;          /* 1216px */
   --container-narrow: 50rem;   /* 800px: FAQ, thank-you */
   --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
-  --header-h: 4.5rem;
+  --header-h: 5rem;
+  --topbar-h: 2.5rem;
+  --hero-measure: 46rem;                                 /* hero copy column */
+  --split-gap: clamp(2rem, 1rem + 4vw, 5rem);            /* text <-> media columns */
+  --gallery-row: clamp(11rem, 2rem + 13vw, 15rem);       /* mosaic row height (>= 64rem) */
 
   /* --- Shape --- */
-  --radius-s: 4px;    /* buttons, inputs: crisp, industrial */
-  --radius-m: 8px;    /* cards */
-  --radius-l: 12px;   /* large media */
+  --radius-s: 6px;      /* inputs */
+  --radius-m: 12px;     /* cards */
+  --radius-l: 16px;     /* large media */
+  --radius-pill: 999px; /* actions, chips */
   --border: 1px solid var(--line);
 
   /* --- Elevation (navy-tinted, subtle) --- */
   --shadow-s: 0 1px 2px rgb(15 58 95 / 0.06), 0 1px 3px rgb(15 58 95 / 0.08);
   --shadow-m: 0 6px 16px -4px rgb(15 58 95 / 0.12), 0 2px 4px rgb(15 58 95 / 0.06);
   --shadow-l: 0 24px 48px -16px rgb(15 58 95 / 0.28);
+
+  /* --- Scrims (text on photography; every text zone >= 4.5:1) --- */
+  --scrim-hero: linear-gradient(180deg, rgb(10 42 69 / 0.55) 0%, rgb(10 42 69 / 0.35) 28%, rgb(10 42 69 / 0.86) 58%, rgb(10 42 69 / 0.97) 100%);
+  --scrim-hero-wide: linear-gradient(90deg, rgb(10 42 69 / 0.92) 0%, rgb(10 42 69 / 0.74) 42%, rgb(10 42 69 / 0.18) 78%), linear-gradient(0deg, rgb(10 42 69 / 0.9) 0%, rgb(10 42 69 / 0) 34%);
+  --scrim-band: linear-gradient(180deg, rgb(10 42 69 / 0.9) 0%, rgb(10 42 69 / 0.94) 100%);
+  --scrim-media: linear-gradient(180deg, rgb(10 42 69 / 0.1) 0%, rgb(10 42 69 / 0.55) 100%);
 
   /* --- Motion (subtle: "not a theme park") --- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -127,6 +153,7 @@
 @media (max-width: 47.99rem) {
   :root {
     --header-h: 4rem;
+    --topbar-h: 2.75rem;   /* 44px touch targets for the phone / FR-EN links */
     --fs-base: 1rem;
   }
 }

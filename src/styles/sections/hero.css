@@ -1,108 +1,39 @@
-/* Hero (sections/hero.njk). White surface, copy first, photo second.
-   >= 64rem: copy takes ~55% of the container; the photo is positioned against the section so it
-   can bleed to the right viewport edge and sit on the navy stats band (no radius on the bleeding
-   sides). The photo drifts very slowly (the brief's "motion loop"); off under reduced motion. */
+/* Hero (sections/hero.njk). BrokerFlo-style: full-bleed photo (A) or video (B) under a navy scrim,
+   copy on the left, the proof strip on the bottom edge. The section slides up under the transparent
+   sticky header (negative margin = header height) so the photo starts at the top bar.
+   Phones: copy sits on the lower part of the photo (vertical scrim). From 64rem: copy left on a
+   horizontal scrim, vertically centred, proof strip pinned to the bottom. */
 .hero {
   --hero-drift: var(--dur-drift);
-  padding-block: calc(var(--section-pad) * 0.5) calc(var(--section-pad) * 0.75);
-}
-
-/* ---- Copy column ---- */
-.hero__title {
-  /* Brand display face (Scania Sans Headline: caps-only, extended), tracked at 0 because the
-     global -0.015em crushes it. ~4 balanced lines on desktop (text-wrap: balance is global). */
-  max-width: 21ch;
-  font-family: var(--font-display);
-  font-size: var(--fs-h1);
-  line-height: var(--lh-tight);
-  letter-spacing: 0;
-}
-.hero__lead {
-  margin-top: var(--space-m);
-  max-width: var(--measure-lead);
-  color: var(--ink);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-snug);
-}
-.hero__text {
-  margin-top: var(--space-s);
-  max-width: var(--measure-lead);
-  color: var(--text-2);
-}
-.hero__text > * + * { margin-top: var(--space-xs); }
-
-/* CTA + quiet phone link */
-.hero__actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-s) var(--space-l);
-  margin-top: var(--space-l);
-}
-.hero__phone {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  min-height: 3rem;
-  color: var(--navy-900);
-  text-decoration: none;
-}
-.hero__phone-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: var(--border);
-  border-radius: 50%;
-  transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
-}
-.hero__phone-icon .icon { width: 1.125rem; height: 1.125rem; }
-.hero__phone-text { display: grid; line-height: var(--lh-snug); }
-.hero__phone-label { color: var(--text-3); font-size: var(--fs-xs); }
-.hero__phone-number {
-  font-weight: var(--fw-semibold);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.hero__phone:hover { color: var(--navy-900); }
-.hero__phone:hover .hero__phone-icon { border-color: var(--navy-900); background: var(--blue-50); }
-.hero__phone:hover .hero__phone-number {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  flex-direction: column;
+  min-height: calc(100svh - var(--topbar-h));
+  margin-top: calc(var(--header-h) * -1);
+  padding-block: calc(var(--header-h) + var(--space-xl)) var(--space-l);
+  overflow: hidden;
+  background: var(--navy-950);
+  isolation: isolate;
 }
 
-/* Trust line: three short reassurances, separated by space (no pipes). */
-.hero__trust {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2xs) var(--space-m);
-  margin-top: var(--space-l);
-  padding-top: var(--space-m);
-  border-top: var(--border);
-  color: var(--text-2);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-snug);
-}
-.hero__trust-item {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2xs);
-}
-.hero__trust-icon {
-  width: 1.125rem;
-  height: 1.125rem;
-  color: var(--color-accent);
-}
-
-/* ---- Photo column ---- */
+/* ---- Media layer ---- */
 .hero__media {
-  position: relative;
-  margin-top: var(--space-xl);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
 }
-.hero__frame { aspect-ratio: 4 / 3; }
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-hero);
+}
+.hero__img,
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 40%;
+}
 .hero__img {
   transform-origin: 60% 45%;
   animation: hero-drift var(--hero-drift) var(--ease-in-out) infinite alternate;
@@ -112,66 +43,174 @@
   to { transform: scale(1.06) translate3d(-1%, -0.6%, 0); }
 }
 
-/* Small "Depuis 1976" tag on the photo corner: understated, navy on white. */
-.hero__badge {
-  position: absolute;
-  left: var(--space-s);
-  bottom: var(--space-s);
+/* ---- Copy ---- */
+.hero__inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.hero__content {
+  margin-top: auto;   /* phones: copy sits low, the photo shows above it */
+  max-width: var(--hero-measure);
+}
+.hero__tag {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
   padding: var(--space-2xs) var(--space-s);
-  border-radius: var(--radius-m);
-  background: var(--white);
-  box-shadow: var(--shadow-m);
-  color: var(--navy-900);
-  font-family: var(--font-condensed);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  color: var(--on-dark);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
   letter-spacing: var(--ls-caps);
   line-height: var(--lh-snug);
   text-transform: uppercase;
 }
-.hero__badge-icon { width: 1.125rem; height: 1.125rem; color: var(--color-accent); }
+.hero__tag-dot {
+  flex: none;
+  width: calc(var(--space-2xs) * 0.75);
+  height: calc(var(--space-2xs) * 0.75);
+  border-radius: 50%;
+  background: var(--blue-300);
+}
+.hero__title {
+  margin-top: var(--space-m);
+  max-width: 18ch;
+  color: var(--on-dark);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+}
+.hero__lead {
+  margin-top: var(--space-m);
+  max-width: 44ch;
+  color: var(--on-dark-2);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-body);
+}
 
-/* Phones: the CTA spans the column, like every other CTA row. Tighter side padding keeps the
-   full label on one line down to 360px. */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-l);
+}
+.hero__phone { font-variant-numeric: tabular-nums; }
+
+/* ---- Proof strip (partials/proof-strip.njk): one line of figures with hairline dividers ---- */
+.hero__proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--space-xl);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--line-dark);
+}
+.hero__proof-item {
+  padding-inline: var(--space-xs);
+  border-left: 1px solid var(--line-dark);
+}
+.hero__proof-item:first-child { padding-inline-start: 0; border-left: 0; }
+.hero__proof-item:last-child { padding-inline-end: 0; }
+.hero__proof-figure {
+  color: var(--on-dark);
+  font-size: var(--fs-stat);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  white-space: nowrap;
+}
+.hero__proof-number { display: inline-block; text-align: end; }
+.hero__proof-sep {
+  margin-inline: 0.2em;
+  font-size: 0.7em;
+  font-weight: var(--fw-regular);
+  color: var(--on-dark-2);
+}
+.hero__proof-label {
+  margin-top: var(--space-3xs);
+  color: var(--on-dark-2);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+
+/* ---- Video variant (B): placeholder tag + pause control, bottom right ---- */
+.hero__video-ui {
+  position: absolute;
+  top: calc(var(--header-h) + var(--space-s));
+  right: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+.hero__placeholder {
+  padding: var(--space-3xs) var(--space-xs);
+  border: 1px dashed var(--line-dark);
+  border-radius: var(--radius-pill);
+  color: var(--on-dark-2);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+.hero__pause {
+  display: inline-grid;
+  place-items: center;
+  width: var(--space-xl);
+  height: var(--space-xl);
+  padding: 0;
+  border: 1px solid var(--line-dark);
+  border-radius: 50%;
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  color: var(--on-dark);
+  transition: background-color var(--dur) var(--ease-out);
+}
+.hero__pause:hover { background: var(--glass-hover); }
+.hero__pause-icon { width: var(--space-s); height: var(--space-s); }
+.hero__pause-icon--play,
+.hero__pause[data-paused] .hero__pause-icon--pause { display: none; }
+.hero__pause[data-paused] .hero__pause-icon--play { display: block; }
+
+/* Phones (BrokerFlo mobile): the CTA (short label) and a round call button side by side. */
 @media (max-width: 40rem) {
-  .hero__actions .hero__cta { width: 100%; padding-inline: var(--space-s); }
+  .hero__tag { letter-spacing: var(--ls-label-tight); }
+  .hero__actions { flex-wrap: nowrap; }
+  .hero__cta { flex: 1; justify-content: space-between; padding-inline-start: var(--space-m); font-size: var(--fs-base); white-space: nowrap; }
+  .hero__phone { flex: none; padding: var(--space-2xs); }
+  .hero__phone .btn__label { display: none; }
+}
+@media (max-width: 23.99rem) {
+  .hero__tag { letter-spacing: 0; }
+  .hero__cta { padding-inline-start: var(--space-s); gap: var(--space-2xs); }
 }
 
-@media (min-width: 40rem) {
-  .hero__frame { aspect-ratio: 16 / 10; }
+@media (min-width: 48rem) {
+  .hero__proof-item { padding-inline: var(--space-l); }
+  .hero__proof-label { font-size: var(--fs-sm); }
 }
 
-/* ---- Desktop: split with a bleeding photo ---- */
+/* ---- Desktop: horizontal scrim, copy centred in the space above the strip ---- */
 @media (min-width: 64rem) {
   .hero {
-    padding-block: calc(var(--section-pad) * 0.6) calc(var(--section-pad) * 0.75);
+    min-height: min(calc(100svh - var(--topbar-h)), 60rem);
+    padding-block: calc(var(--header-h) + var(--space-xl)) var(--space-xl);
   }
-  .hero__content {
-    width: 55%;
-    padding-inline-end: var(--space-2xl);
+  .hero__media::after { background: var(--scrim-hero-wide); }
+  .hero__content { margin-block: auto; }
+  .hero__proof {
+    display: flex;
+    margin-top: var(--space-2xl);
+    padding-top: 0;
+    border-top: 0;
   }
-  .hero__media {
-    /* Content-box inset of .container, resolved against the section's width. */
-    --hero-inset: max(var(--gutter), (100% - var(--container)) / 2);
-    position: absolute;
-    top: calc(var(--section-pad) * 0.6);
-    right: 0;
-    bottom: 0;
-    left: calc(var(--hero-inset) + (100% - 2 * var(--hero-inset)) * 0.55);
-    margin-top: 0;
-  }
-  .hero__frame {
-    height: 100%;
-    aspect-ratio: auto;
-    border-radius: var(--radius-l) 0 0 0;
-  }
-  .hero__badge {
-    left: var(--space-l);
-    bottom: var(--space-l);
-  }
+  .hero__proof-item { padding-inline: var(--space-xl); }
+  .hero__proof-label { margin-top: var(--space-3xs); }
 }
 
 @media (prefers-reduced-motion: reduce) {

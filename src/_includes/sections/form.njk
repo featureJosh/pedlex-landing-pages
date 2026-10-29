@@ -82,7 +82,7 @@
           </div>
 
           <button type="submit" class="btn btn--primary btn--lg lead-form__submit" data-submit>
-            <span class="btn__label" data-submit-label>{{ f.submit | safe }}</span>{% icon "arrow-right", "btn__icon" %}
+            <span class="btn__label" data-submit-label>{{ f.submit | safe }}</span><span class="btn__badge" aria-hidden="true">{% icon "arrow-right", "btn__icon" %}</span>
           </button>
 
           <p class="lead-form__consent">{{ f.consent | replace("{privacy}", site.company.privacy[lang]) | safe }}</p>

@@ -1,41 +1,47 @@
-{#- Hero: the page's only <h1>. Message-matches the video ad. Styles: styles/sections/hero.css
-    Data: c.hero.{eyebrow, title, lead, text[], trust[], image, imageAlt, cta?}, c.ui.{cta, since, phoneLabel},
-          c.form.id, site.company.{phone, phoneHref}.
-    The image is the LCP element: eager + fetchpriority high, and preloaded in layouts/base.njk
-    with the SAME sizes string (keep both in sync). Its slow drift is CSS-only (hero.css). -#}
+{#- Hero (BrokerFlo-style, Raffi 2026-10-29): full-bleed photo or video under a navy scrim, a tag chip,
+    the page's only <h1>, ONE subheadline, two actions, and the proof strip (key figures) on its bottom
+    edge. Pulls itself up under the transparent sticky header. Styles: styles/sections/hero.css
+    Data: c.hero.{eyebrow, title, lead, cta?, image, imageAlt, variant?, video?}, c.stats (proof strip),
+          c.ui.{cta, phoneLabel, video.{pause, play, placeholder}}, c.form.id, site.company.{phone, phoneHref}.
+    Media variants: c.hero.variant "image" (A, default) or "video" (B). B needs c.hero.video
+    { src, poster, placeholder? }: muted, looped, started by scripts/sections/hero-video.js (never
+    under reduced motion), with a visible pause button (WCAG 2.2.2). In preview builds every page with
+    a hero.video also gets a /video/ twin so both variants can be compared (src/_data/landings.js).
+    Variant A's image is the LCP element: eager + fetchpriority high, and preloaded in layouts/base.njk
+    with the SAME sizes string (keep both in sync). -#}
 {%- from "components/ui.njk" import button -%}
-<section class="section hero" id="hero" aria-labelledby="hero-title">
+{%- set variant = "video" if (c.hero.variant == "video" and c.hero.video) else "image" -%}
+<section class="section section--dark hero hero--{{ variant }}" id="hero" aria-labelledby="hero-title">
+  <div class="hero__media">
+    {%- if variant == "video" %}
+    <video class="hero__video" muted loop playsinline preload="metadata" poster="{{ ('/assets/' + c.hero.video.poster) | url }}" data-hero-video>
+      <source src="{{ ('/assets/' + c.hero.video.src) | url }}" type="video/{{ 'webm' if c.hero.video.src.endsWith('.webm') else 'mp4' }}">
+    </video>
+    {%- else %}
+    {% picture c.hero.image, c.hero.imageAlt | plain, "100vw", { loading: "eager", fetchpriority: "high", class: "hero__img" } %}
+    {%- endif %}
+  </div>
+
   <div class="container hero__inner">
     <div class="hero__content">
-      <p class="eyebrow">{{ c.hero.eyebrow | safe }}</p>
+      <p class="hero__tag"><span class="hero__tag-dot" aria-hidden="true"></span>{{ c.hero.eyebrow | safe }}</p>
       <h1 class="hero__title" id="hero-title">{{ c.hero.title | safe }}</h1>
       <p class="hero__lead">{{ c.hero.lead | safe }}</p>
-      <div class="hero__text">
-        {%- for p in c.hero.text %}
-        <p>{{ p | safe }}</p>
-        {%- endfor %}
-      </div>
       <div class="hero__actions">
-        {{ button(c.hero.cta or c.ui.cta, "#" + c.form.id, { size: "lg", icon: "arrow-right", class: "hero__cta" }) }}
-        <a class="hero__phone" href="tel:{{ site.company.phoneHref }}">
-          <span class="hero__phone-icon">{% icon "phone" %}</span>
-          <span class="hero__phone-text">
-            <span class="hero__phone-label">{{ c.ui.phoneLabel }}</span>
-            <span class="hero__phone-number">{{ site.company.phone }}</span>
-          </span>
-        </a>
+        {{ button(c.hero.cta or c.ui.cta, "#" + c.form.id, { size: "lg", variant: "on-dark", icon: "arrow-right", class: "hero__cta", short: c.ui.ctaShort }) }}
+        {{ button(site.company.phone, "tel:" + site.company.phoneHref, { size: "lg", variant: "glass", icon: "phone", class: "hero__phone", attrs: 'aria-label="' + (c.ui.phoneLabel | plain) + ' ' + site.company.phone + '"' }) }}
       </div>
-      <ul class="hero__trust" role="list">
-        {%- for item in c.hero.trust %}
-        <li class="hero__trust-item">{% icon "circle-check", "hero__trust-icon" %}<span>{{ item | safe }}</span></li>
-        {%- endfor %}
-      </ul>
     </div>
-    <div class="hero__media">
-      <div class="media hero__frame">
-        {% picture c.hero.image, c.hero.imageAlt | plain, "(min-width: 64rem) 45vw, 100vw", { loading: "eager", fetchpriority: "high", class: "hero__img" } %}
-      </div>
-      <p class="hero__badge">{% icon "award", "hero__badge-icon" %}<span>{{ c.ui.since }}</span></p>
-    </div>
+
+    {% include "partials/proof-strip.njk" %}
   </div>
+
+  {%- if variant == "video" %}
+  <div class="hero__video-ui">
+    {%- if c.hero.video.placeholder %}<p class="hero__placeholder">{{ c.ui.video.placeholder | safe }}</p>{% endif %}
+    <button class="hero__pause" type="button" aria-pressed="false" data-hero-pause data-label-pause="{{ c.ui.video.pause | plain }}" data-label-play="{{ c.ui.video.play | plain }}" aria-label="{{ c.ui.video.pause | plain }}" hidden>
+      {% icon "pause", "hero__pause-icon hero__pause-icon--pause" %}{% icon "play", "hero__pause-icon hero__pause-icon--play" %}
+    </button>
+  </div>
+  {%- endif %}
 </section>

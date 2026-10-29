@@ -7,51 +7,28 @@
   },
   "sections": [
     "hero",
-    "stats",
     "trust",
     "problem",
     "gallery",
     "process",
     "why",
-    "form",
-    "faq"
+    "reviews",
+    "faq",
+    "form"
   ],
   "hero": {
     "eyebrow": "Maximisez votre capacité d'entreposage",
     "title": "Votre entrepôt est plein… ou simplement mal optimisé?",
     "lead": "Gagnez de l'espace, facilitez l'accès à votre inventaire et réduisez les déplacements inutiles.",
-    "text": [
-      "Pedlex conçoit des systèmes de palettiers industriels adaptés à vos produits, à votre espace et à vos opérations."
-    ],
-    "trust": [
-      "Entreprise familiale québécoise depuis 1976",
-      "Solutions sur mesure",
-      "Optimisation de l'espace existant"
-    ],
+    "cta": "Demandez une consultation gratuite",
+    "variant": "image",
     "image": "racking/racking-2",
     "imageAlt": "Grande installation de palettiers bleus et orange dans un entrepôt réalisée par Pedlex",
-    "cta": "Demandez une consultation gratuite"
-  },
-  "stats": {
-    "label": "Pedlex en chiffres",
-    "items": [
-      {
-        "from": 30,
-        "value": 50,
-        "suffix": " %",
-        "label": "d'espace récupéré dans certains projets"
-      },
-      {
-        "value": 50,
-        "suffix": " ans",
-        "label": "d'expertise en entreposage"
-      },
-      {
-        "value": 10000,
-        "suffix": "+",
-        "label": "entreprises servies au Québec et ailleurs"
-      }
-    ]
+    "video": {
+      "src": "placeholders/hero-video-placeholder.webm",
+      "poster": "placeholders/hero-video-poster.jpg",
+      "placeholder": true
+    }
   },
   "trust": {
     "title": "Ils nous font confiance pour optimiser leur entreposage.",
@@ -206,7 +183,61 @@
           "name": "ComplyWorks"
         }
       ]
+    },
+    "video": {
+      "image": "web/hq-fleet",
+      "alt": "La flotte de véhicules Pedlex devant le siège social d'Anjou",
+      "title": "Une entreprise familiale québécoise depuis 1976",
+      "label": "Vidéo Pedlex à venir",
+      "placeholder": true
     }
+  },
+  "reviews": {
+    "eyebrow": "Témoignages",
+    "title": "Ce que nos clients disent de Pedlex.",
+    "placeholderNote": "Placeholder : témoignages réels à fournir par Pedlex (nom, poste, entreprise, citation approuvée).",
+    "items": [
+      {
+        "placeholder": true,
+        "quote": "Témoignage client à venir.",
+        "name": "Nom du client",
+        "role": "Poste, entreprise"
+      },
+      {
+        "placeholder": true,
+        "quote": "Témoignage client à venir.",
+        "name": "Nom du client",
+        "role": "Poste, entreprise"
+      },
+      {
+        "placeholder": true,
+        "quote": "Témoignage client à venir.",
+        "name": "Nom du client",
+        "role": "Poste, entreprise"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Questions fréquentes",
+    "title": "Vos questions, nos réponses.",
+    "items": [
+      {
+        "q": "En quoi consiste la consultation gratuite avec Pedlex?",
+        "a": "La consultation gratuite est un premier échange avec notre équipe pour discuter de votre entrepôt, de vos besoins et de vos défis d'entreposage. Nous pourrons ainsi mieux comprendre votre situation et explorer les solutions possibles pour optimiser votre espace et vos opérations."
+      },
+      {
+        "q": "Est-ce que Pedlex peut optimiser un système de palettiers existant?",
+        "a": "Oui. Pedlex peut analyser votre configuration actuelle afin d'identifier des moyens de mieux exploiter votre espace et de l'adapter à vos opérations."
+      },
+      {
+        "q": "Est-ce qu'un nouveau système de palettiers peut augmenter ma capacité de stockage?",
+        "a": "Oui. Une configuration mieux adaptée peut vous permettre d'exploiter davantage la superficie et la hauteur disponibles, tout en facilitant l'accès à votre inventaire. Chez certains clients, cela a permis de récupérer de 30 à 50 % d'espace supplémentaire."
+      },
+      {
+        "q": "Je ne sais pas quel type de palettier convient à mon entrepôt. Pouvez-vous m'aider?",
+        "a": "Oui. Notre équipe analyse votre espace, vos produits et votre façon de travailler afin de vous guider vers une solution adaptée à votre réalité."
+      }
+    ]
   },
   "form": {
     "eyebrow": "Consultation gratuite",
@@ -260,33 +291,28 @@
       }
     ]
   },
-  "thanks": {
-    "back": "Retour à la page Palettiers"
-  },
-  "faq": {
-    "eyebrow": "Questions fréquentes",
-    "title": "Vos questions, nos réponses.",
+  "stats": {
+    "label": "Pedlex en chiffres",
     "items": [
       {
-        "q": "En quoi consiste la consultation gratuite avec Pedlex?",
-        "a": "La consultation gratuite est un premier échange avec notre équipe pour discuter de votre entrepôt, de vos besoins et de vos défis d'entreposage. Nous pourrons ainsi mieux comprendre votre situation et explorer les solutions possibles pour optimiser votre espace et vos opérations."
+        "from": 30,
+        "value": 50,
+        "suffix": " %",
+        "label": "d'espace récupéré dans certains projets"
       },
       {
-        "q": "Est-ce que Pedlex peut optimiser un système de palettiers existant?",
-        "a": "Oui. Pedlex peut analyser votre configuration actuelle afin d'identifier des moyens de mieux exploiter votre espace et de l'adapter à vos opérations."
+        "value": 50,
+        "suffix": " ans",
+        "label": "d'expertise en entreposage"
       },
       {
-        "q": "Est-ce qu'un nouveau système de palettiers peut augmenter ma capacité de stockage?",
-        "a": "Oui. Une configuration mieux adaptée peut vous permettre d'exploiter davantage la superficie et la hauteur disponibles, tout en facilitant l'accès à votre inventaire. Chez certains clients, cela a permis de récupérer de 30 à 50 % d'espace supplémentaire."
-      },
-      {
-        "q": "Je ne sais pas quel type de palettier convient à mon entrepôt. Pouvez-vous m'aider?",
-        "a": "Oui. Notre équipe analyse votre espace, vos produits et votre façon de travailler afin de vous guider vers une solution adaptée à votre réalité."
+        "value": 10000,
+        "suffix": "+",
+        "label": "entreprises servies au Québec et ailleurs"
       }
-    ],
-    "closing": {
-      "title": "Vous avez d'autres questions?",
-      "text": "Parlons de votre entrepôt. La consultation est gratuite et sans engagement."
-    }
+    ]
+  },
+  "thanks": {
+    "back": "Retour à la page Palettiers"
   }
 }

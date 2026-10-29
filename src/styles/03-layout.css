@@ -28,45 +28,52 @@
 /* Gap between a section head and the section's content. */
 .section-body { margin-top: var(--section-gap); }
 
-/* Eyebrow: condensed caps label with a short brand rule. Used above every h2. */
+/* Eyebrow: small extended caps (Scania Sans Headline) after a square brand marker, optionally
+   numbered (« 02 · Réalisations », sectionHead's `index` option). Used above every h2. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-2xs);
   margin-bottom: var(--space-s);
-  font-family: var(--font-condensed);
+  font-family: var(--font-label);
   font-size: var(--fs-eyebrow);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-regular);
   letter-spacing: var(--ls-caps);
-  line-height: 1.2;
+  line-height: var(--lh-snug);
   text-transform: uppercase;
   color: var(--color-accent);
 }
 .eyebrow::before {
   content: "";
-  width: 1.5rem;
-  height: 2px;
+  width: calc(var(--space-2xs) * 0.75);
+  height: calc(var(--space-2xs) * 0.75);
   background: currentColor;
   flex: none;
 }
-.section--dark .eyebrow { color: var(--on-dark-2); }
+.eyebrow__index { color: var(--text-3); font-variant-numeric: tabular-nums; }
+.section--dark .eyebrow { color: var(--blue-300); }
+.section--dark .eyebrow__index { color: var(--on-dark-3); }
 
 /* Section head (rendered by the sectionHead macro). */
-.section-head { max-width: 46rem; }
-.section-head--center { margin-inline: auto; text-align: center; }
-.section-head--center .eyebrow { justify-content: center; }
+.section-head { max-width: 44rem; }
+/* Centred heads stay left-aligned on phones: long FR eyebrows and titles wrap more cleanly. */
+@media (min-width: 48rem) {
+  .section-head--center { margin-inline: auto; text-align: center; }
+  .section-head--center .eyebrow { justify-content: center; }
+}
 .section-title {
   font-size: var(--fs-h2);
   line-height: var(--lh-tight);
 }
 .section-lead {
-  margin-top: var(--space-m);
+  margin-top: var(--space-s);
   max-width: var(--measure-lead);
   font-size: var(--fs-lg);
   line-height: var(--lh-body);
-  color: var(--color-text);
+  color: var(--text-2);
 }
-.section-lead + .section-lead { margin-top: var(--space-s); }
+.section--dark .section-lead { color: var(--on-dark-2); }
+.section-lead + .section-lead { margin-top: var(--space-xs); }
 .section-head--center .section-lead { margin-inline: auto; }
 
 /* Body copy block (paragraph stacks inside sections). */
@@ -90,7 +97,7 @@
 /* Two-column split (text + media). Stacks on mobile; media first via --media-first. */
 .split {
   display: grid;
-  gap: var(--space-xl) clamp(2rem, 1rem + 4vw, 5rem);
+  gap: var(--space-xl) var(--split-gap);
   align-items: center;
 }
 @media (min-width: 64rem) {

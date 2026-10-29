@@ -1,16 +1,33 @@
 {#- Why Pedlex (white). Data: c.why { eyebrow, title, cards[{ icon, title, text }],
-    certifications { label, items[{ image, name }] } }.
-    Centred head over a capped 2x2 card grid (grid--3 left a 3+1 orphan), then a quiet certification strip that backs up the
-    « Sécurité et conformité » card. No CTA row: the form section follows immediately.
+    video { image, alt, title, label, placeholder? }, certifications { label, items[{ image, name }] } }.
+    Raffi (2026-10-29): add the Pedlex company/team video. Phones: head, video, reasons. Desktop: the
+    video frame (left) beside the head and four compact reasons (right); the certification strip
+    closes the section. Grid areas in why.css place the three blocks.
+    The video is a PLACEHOLDER until Pedlex supplies the film: a real Pedlex photo as the poster, a
+    decorative play badge and a dashed « vidéo à venir » tag. Nothing is clickable yet.
     Styles: styles/sections/why.css -#}
 {%- from "components/ui.njk" import sectionHead, featureCard -%}
 <section class="section why" id="why" aria-labelledby="why-title">
   <div class="container">
-    {{ sectionHead(c.why.eyebrow, c.why.title, null, { id: "why-title", align: "center" }) }}
-    <div class="grid grid--2 section-body why__grid" data-reveal-stagger>
-      {%- for card in c.why.cards %}
-      {{ featureCard(card) }}
-      {%- endfor %}
+    <div class="why__layout">
+      {%- if c.why.video %}
+      <figure class="why__video" data-reveal>
+        <div class="media why__video-frame">
+          {% picture c.why.video.image, c.why.video.alt, "(min-width: 64rem) 36rem, 100vw" %}
+          <span class="why__play" aria-hidden="true">{% icon "play" %}</span>
+          {%- if c.why.video.placeholder %}<span class="why__video-tag">{{ c.why.video.label | safe }}</span>{% endif %}
+        </div>
+        <figcaption class="why__video-caption">{{ c.why.video.title | safe }}</figcaption>
+      </figure>
+      {%- endif %}
+      <div class="why__head">
+        {{ sectionHead(c.why.eyebrow, c.why.title, null, { id: "why-title", index: sectionIndex }) }}
+      </div>
+      <div class="why__list" data-reveal-stagger>
+        {%- for card in c.why.cards %}
+        {{ featureCard(card) }}
+        {%- endfor %}
+      </div>
     </div>
     {%- if c.why.certifications %}
     <div class="why__certs" data-reveal>

@@ -1,0 +1,81 @@
+/* Top announcement bar (partials/topbar.njk). Deep navy, one line, small type.
+   Phones: the long message hides; the CTA link, phone and FR/EN stay. */
+.topbar {
+  position: relative;
+  z-index: calc(var(--z-header) + 1);
+  background: var(--navy-950);
+  color: var(--on-dark-2);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  min-height: var(--topbar-h);
+}
+.topbar__message {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs) var(--space-s);
+  min-width: 0;
+}
+.topbar__dot {
+  flex: none;
+  width: calc(var(--space-2xs) * 0.75);
+  height: calc(var(--space-2xs) * 0.75);
+  border-radius: 50%;
+  background: var(--blue-300);
+}
+.topbar__text strong { color: var(--on-dark); font-weight: var(--fw-bold); }
+.topbar__cta,
+.topbar__phone,
+.topbar__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  min-height: var(--topbar-h);
+  color: var(--on-dark);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topbar__cta .icon { width: 1em; height: 1em; transition: transform var(--dur) var(--ease-out); }
+.topbar__cta:hover { color: var(--on-dark); text-decoration: underline; }
+.topbar__cta:hover .icon { transform: translateX(2px); }
+.topbar__phone { gap: var(--space-2xs); font-variant-numeric: tabular-nums; }
+.topbar__phone .icon { width: 1.1em; height: 1.1em; color: var(--blue-300); }
+.topbar__phone:hover { color: var(--on-dark); text-decoration: underline; }
+
+.topbar__side {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: var(--space-s);
+}
+/* FR/EN: a small outlined chip at the far side, separated from the phone by a hairline. */
+.topbar__lang {
+  position: relative;
+  padding-inline-start: var(--space-s);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-caps);
+}
+.topbar__lang::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: var(--space-s);
+  width: 1px;
+  background: var(--line-dark);
+  transform: translateY(-50%);
+}
+.topbar__lang:hover { color: var(--blue-300); }
+
+/* Phones: keep the CTA, drop the sentence and the dot. */
+@media (max-width: 47.99rem) {
+  .topbar__text, .topbar__dot { display: none; }
+}

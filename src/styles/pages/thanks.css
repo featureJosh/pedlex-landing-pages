@@ -4,7 +4,7 @@
   align-items: center;
 }
 .thanks__inner { max-width: calc(40rem + var(--gutter) * 2); text-align: center; }
-.thanks__inner .eyebrow { justify-content: center; }
+.thanks__inner .eyebrow { display: flex; justify-content: center; }
 .thanks__icon {
   display: inline-grid;
   place-items: center;

@@ -1,29 +1,27 @@
-{#- Process (tint). Data: c.process { eyebrow, title, image, imageAlt, steps[{ title, text }] }.
-    Desktop: installer photo left (tall 4:5 frame), head + numbered steps + CTA right.
-    Mobile: photo above (16:10), then the steps. The step numbers are presentational (the <ol>
-    already conveys order), so they are aria-hidden. Styles: styles/sections/process.css -#}
+{#- Process (dark, photo backdrop). Data: c.process { eyebrow, title, image, imageAlt, steps[{ title, text }], cta }.
+    St-Amour-style 1-2-3 (Raffi, 2026-10-29): centred head, numbered steps side by side joined by a
+    hairline, one centred CTA. The installer photo sits behind a strong navy scrim (decorative here, so
+    alt=""; the steps carry the content). Phones: steps stack along a vertical rail.
+    The step numbers are presentational (the <ol> conveys order), so they are aria-hidden.
+    Styles: styles/sections/process.css -#}
 {%- from "components/ui.njk" import sectionHead, ctaRow -%}
-<section class="section section--tint process" id="process" aria-labelledby="process-title">
+<section class="section section--dark process" id="process" aria-labelledby="process-title">
+  <div class="process__backdrop" aria-hidden="true">
+    {% picture c.process.image, "", "100vw", { class: "process__img" } %}
+  </div>
   <div class="container">
-    <div class="split process__layout">
-      <div class="media process__media" data-reveal>
-        {% picture c.process.image, c.process.imageAlt, "(min-width: 80rem) 36rem, (min-width: 64rem) 46vw, 100vw" %}
-      </div>
-      <div class="process__content">
-        {{ sectionHead(c.process.eyebrow, c.process.title, null, { id: "process-title" }) }}
-        <ol class="process__steps" role="list" data-reveal-stagger>
-          {%- for step in c.process.steps %}
-          <li class="process__step">
-            <span class="process__num" aria-hidden="true">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>
-            <div class="process__body">
-              <h3 class="process__title">{{ step.title | safe }}</h3>
-              <p class="process__text">{{ step.text | safe }}</p>
-            </div>
-          </li>
-          {%- endfor %}
-        </ol>
-        {{ ctaRow(c, { label: c.process.cta }) }}
-      </div>
-    </div>
+    {{ sectionHead(c.process.eyebrow, c.process.title, null, { id: "process-title", align: "center", index: sectionIndex }) }}
+    <ol class="process__steps section-body" role="list" data-reveal-stagger>
+      {%- for step in c.process.steps %}
+      <li class="process__step">
+        <span class="process__num" aria-hidden="true">{{ loop.index }}</span>
+        <div class="process__body">
+          <h3 class="process__title">{{ step.title | safe }}</h3>
+          <p class="process__text">{{ step.text | safe }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ol>
+    {{ ctaRow(c, { label: c.process.cta, align: "center", variant: "on-dark" }) }}
   </div>
 </section>

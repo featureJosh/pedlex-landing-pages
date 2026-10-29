@@ -1,25 +1,29 @@
-/* Buttons (rendered by the `button` macro). One primary CTA style site-wide. */
+/* Buttons (rendered by the `button` macro). Pill actions in Scania Sans bold, mixed case. A trailing
+   icon sits in a round badge that nudges on hover. One primary CTA style site-wide.
+   Variants: primary (navy), secondary (outline), on-dark (white, for dark sections and photos),
+   glass (translucent white outline, the quiet second action on photos). */
 .btn {
   --btn-bg: var(--navy-800);
   --btn-fg: var(--white);
   --btn-border: var(--navy-800);
   --btn-bg-hover: var(--navy-900);
+  --btn-badge-bg: var(--glass-hover);
+  --btn-badge-fg: var(--white);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2xs);
+  gap: var(--space-xs);
   min-height: 3rem;
-  padding: var(--space-xs) var(--space-m);
+  padding: var(--space-2xs) var(--space-m);
   border: 1px solid var(--btn-border);
-  border-radius: var(--radius-s);
+  border-radius: var(--radius-pill);
   background: var(--btn-bg);
   color: var(--btn-fg);
-  font-family: var(--font-condensed);
+  font-family: var(--font-sans);
   font-size: var(--fs-btn);
-  font-weight: var(--fw-semibold);
-  letter-spacing: 0.04em;
-  line-height: 1.15;
-  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0;
+  line-height: 1.2;
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -33,15 +37,32 @@
   box-shadow: var(--shadow-m);
 }
 .btn:active { transform: translateY(1px); box-shadow: none; }
-.btn__icon { width: 1.125em; height: 1.125em; transition: transform var(--dur) var(--ease-out); }
-.btn:hover .btn__icon { transform: translateX(3px); }
-.btn:hover .btn__icon.lucide-arrow-left { transform: translateX(-3px); }
+
+/* Round icon badge at the end of the pill (BrokerFlo-style). The pill's end padding tightens so
+   the badge sits evenly inside the curve. */
+.btn:has(.btn__badge) { padding-inline-end: var(--space-2xs); }
+.btn__badge {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--space-l);
+  height: var(--space-l);
+  border-radius: 50%;
+  background: var(--btn-badge-bg);
+  color: var(--btn-badge-fg);
+  transition: background-color var(--dur) var(--ease-out);
+}
+.btn__icon { width: 1.05em; height: 1.05em; transition: transform var(--dur) var(--ease-out); }
+.btn:hover .btn__icon { transform: translateX(2px); }
+.btn:hover .btn__icon.lucide-arrow-left { transform: translateX(-2px); }
 
 .btn--secondary {
   --btn-bg: transparent;
   --btn-fg: var(--navy-900);
   --btn-border: var(--grey-200);
   --btn-bg-hover: var(--blue-50);
+  --btn-badge-bg: var(--blue-100);
+  --btn-badge-fg: var(--navy-900);
 }
 .btn--secondary:hover { border-color: var(--navy-900); color: var(--navy-900); box-shadow: none; }
 
@@ -50,10 +71,24 @@
   --btn-fg: var(--navy-900);
   --btn-border: var(--white);
   --btn-bg-hover: var(--blue-100);
+  --btn-badge-bg: var(--navy-900);
+  --btn-badge-fg: var(--white);
 }
 
+.btn--glass {
+  --btn-bg: var(--glass);
+  --btn-fg: var(--white);
+  --btn-border: var(--line-dark);
+  --btn-bg-hover: var(--glass-hover);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+}
+.btn--glass:hover { box-shadow: none; }
+
 .btn--sm { min-height: 2.5rem; padding: var(--space-2xs) var(--space-s); font-size: var(--fs-sm); }
-.btn--lg { min-height: 3.5rem; padding: var(--space-s) var(--space-l); font-size: var(--fs-md); }
+.btn--sm .btn__badge { width: var(--space-m); height: var(--space-m); }
+.btn--lg { min-height: 3.5rem; padding: var(--space-xs) var(--space-l); font-size: var(--fs-md); }
+.btn--lg .btn__badge { width: calc(var(--space-l) + var(--space-2xs)); height: calc(var(--space-l) + var(--space-2xs)); }
 .btn[disabled], .btn[aria-disabled="true"] { opacity: 0.6; pointer-events: none; }
 
 /* Long/short label swap for tight spaces (header CTA on phones). */
@@ -74,6 +109,8 @@
 .cta-row--center { justify-content: center; text-align: center; }
 .cta-row__note { font-size: var(--fs-sm); color: var(--text-3); }
 .section--dark .cta-row__note { color: var(--on-dark-3); }
+/* Phones: full-width CTA rows; the badge goes so the label keeps one line. */
 @media (max-width: 40rem) {
-  .cta-row .btn { width: 100%; }
+  .cta-row .btn { width: 100%; padding-inline: var(--space-m); }
+  .cta-row .btn__badge { display: none; }
 }

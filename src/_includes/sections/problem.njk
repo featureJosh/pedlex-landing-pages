@@ -6,7 +6,7 @@
   <div class="container">
     <div class="split problem__layout">
       <div class="problem__intro">
-        {{ sectionHead(c.problem.eyebrow, c.problem.title, c.problem.text, { id: "problem-title" }) }}
+        {{ sectionHead(c.problem.eyebrow, c.problem.title, c.problem.text, { id: "problem-title", index: sectionIndex }) }}
         {{ ctaRow(c, { label: c.problem.cta }) }}
       </div>
       <div class="grid grid--2 problem__cards" data-reveal-stagger>

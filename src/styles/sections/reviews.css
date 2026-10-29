@@ -1,0 +1,102 @@
+/* Testimonials (#reviews, tint). White quote cards; placeholder cards look deliberately neutral
+   (dashed tag, grey bars instead of text). Phones: horizontal scroll-snap row that bleeds to the
+   screen edges; from 48rem: three equal columns. */
+/* Two classes so the padding beats the base `ul[role="list"] { padding: 0 }` reset. */
+.reviews .reviews__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 84%;
+  gap: var(--space-s);
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter);
+  padding-block: var(--space-3xs);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.reviews__list::-webkit-scrollbar { display: none; }
+.reviews__list:focus-visible { outline-offset: calc(var(--space-3xs) * -1); }
+.reviews__item { scroll-snap-align: start; }
+
+.reviews__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  height: 100%;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  border-radius: var(--radius-m);
+  background: var(--white);
+  box-shadow: var(--shadow-s);
+}
+.reviews__mark { width: var(--space-l); height: var(--space-l); color: var(--blue-600); }
+.reviews__tag {
+  position: absolute;
+  top: var(--space-m);
+  right: var(--space-m);
+  padding: var(--space-3xs) var(--space-xs);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--text-3);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+.reviews__quote {
+  flex: 1;
+  color: var(--ink);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+}
+.reviews__item--placeholder .reviews__quote p { color: var(--text-3); font-style: italic; }
+.reviews__lines { display: grid; gap: var(--space-2xs); margin-top: var(--space-s); }
+.reviews__lines span {
+  height: var(--space-2xs);
+  border-radius: var(--radius-pill);
+  background: var(--grey-100);
+}
+.reviews__lines span:last-child { width: 60%; }
+
+.reviews__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-top: var(--space-m);
+  border-top: var(--border);
+}
+.reviews__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--space-xl);
+  height: var(--space-xl);
+  border-radius: 50%;
+  background: var(--grey-100);
+  color: var(--text-3);
+}
+.reviews__who { display: grid; line-height: var(--lh-snug); }
+.reviews__name { color: var(--ink); font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+.reviews__role { color: var(--text-3); font-size: var(--fs-xs); }
+
+.reviews__note {
+  max-width: var(--measure);
+  margin: var(--space-m) auto 0;
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .reviews .reviews__list {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--grid-gap);
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+}

@@ -1,8 +1,8 @@
 ---
-# One page per entry in src/_data/landings.js (slug x language).
+# One page per entry in src/_data/landingPages.js (slug x language, + hero-video twins in preview).
 # Section order comes from the content file ("sections": [...]) so pages 2-4 can reorder or drop blocks.
 pagination:
-  data: landings
+  data: landingPages
   size: 1
   alias: entry
 permalink: "{{ entry.url }}"
@@ -14,6 +14,13 @@ eleventyComputed:
 ---
 {%- set c = entry.c -%}
 {%- set lang = entry.lang -%}
+{#- Sections listed here get a running number in their eyebrow (« 02 · Réalisations »), counted in
+    page order so reordering the content file renumbers them. An array, because a plain counter
+    reassigned inside a Nunjucks loop does not survive the iteration. -#}
+{%- set numbered = ["problem", "gallery", "process", "why", "reviews", "faq"] -%}
+{%- set counter = [] -%}
 {%- for s in c.sections %}
+{%- set sectionIndex = null -%}
+{%- if s in numbered %}{% set _ = counter.push(s) %}{% set sectionIndex = "0" + counter.length %}{% endif %}
 {% include "sections/" + s + ".njk" %}
 {%- endfor %}

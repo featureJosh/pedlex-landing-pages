@@ -1,41 +1,23 @@
-{#- Gallery « Réalisations » (white). Data: c.gallery { eyebrow, title, lead, items[{ image, alt, caption }] }
-    and c.ui { carouselLabel, carouselPrev, carouselNext, slideOf }.
-    A horizontal scroll-snap row that bleeds past the container's right edge. Without JS it is simply a
-    scrollable list; scripts/sections/gallery-carousel.js adds prev/next, the counter and arrow keys,
-    then reveals the controls ([data-carousel] gets .is-ready). Styles: styles/sections/gallery.css -#}
+{#- Gallery « Réalisations » (white). Data: c.gallery { eyebrow, title, lead, items[{ image, alt, caption }] }.
+    Everything visible at once (Raffi, 2026-10-29): the mosaic the client liked on explore/kimi, with a
+    title under each photo instead of over it. Phones: one wide photo, then a 2-column grid.
+    From 64rem: a 12-column mosaic (one large tile beside two stacked, then two wide).
+    Styles: styles/sections/gallery.css -#}
 {%- from "components/ui.njk" import sectionHead -%}
-{%- set total = c.gallery.items | length -%}
-{%- set pad = "0" if total < 10 else "" -%}
 <section class="section gallery" id="gallery" aria-labelledby="gallery-title">
   <div class="container">
-    <div class="gallery__carousel" role="region" aria-roledescription="carousel" aria-label="{{ c.ui.carouselLabel | plain }}" data-carousel>
-      <div class="gallery__head">
-        {{ sectionHead(c.gallery.eyebrow, c.gallery.title, c.gallery.lead, { id: "gallery-title" }) }}
-      </div>
-
-      <div class="gallery__controls" data-carousel-controls>
-        <p class="gallery__counter" aria-live="polite" aria-atomic="true">
-          <span aria-hidden="true"><span class="gallery__counter-current" data-carousel-current>{{ pad }}1</span><span class="gallery__counter-sep">/</span>{{ pad }}{{ total }}</span>
-          <span class="visually-hidden"><span data-carousel-current-sr>1</span> {{ c.ui.slideOf }} {{ total }}</span>
-        </p>
-        <div class="gallery__buttons">
-          <button class="gallery__nav" type="button" aria-label="{{ c.ui.carouselPrev | plain }}" data-carousel-prev>{% icon "chevron-left" %}</button>
-          <button class="gallery__nav" type="button" aria-label="{{ c.ui.carouselNext | plain }}" data-carousel-next>{% icon "chevron-right" %}</button>
-        </div>
-      </div>
-
-      <ul class="gallery__track" role="list" tabindex="0" aria-label="{{ c.ui.carouselLabel | plain }}" data-carousel-track>
-        {%- for item in c.gallery.items %}
-        <li class="gallery__slide" aria-roledescription="slide" aria-label="{{ loop.index }} {{ c.ui.slideOf }} {{ total }}" data-carousel-slide>
-          <figure class="gallery__figure">
-            <div class="media media--3x2 gallery__media">
-              {% picture item.image, item.alt, "(min-width: 80rem) 30rem, (min-width: 64rem) 38vw, (min-width: 48rem) 44vw, 85vw" %}
-            </div>
-            <figcaption class="gallery__caption">{{ item.caption | safe }}</figcaption>
-          </figure>
-        </li>
-        {%- endfor %}
-      </ul>
-    </div>
+    {{ sectionHead(c.gallery.eyebrow, c.gallery.title, c.gallery.lead, { id: "gallery-title", index: sectionIndex }) }}
+    <ul class="gallery__mosaic section-body" role="list" data-reveal-stagger>
+      {%- for item in c.gallery.items %}
+      <li class="gallery__tile">
+        <figure class="gallery__figure">
+          <div class="media gallery__media">
+            {% picture item.image, item.alt, ("(min-width: 64rem) 46vw, 92vw" if loop.first else "(min-width: 64rem) 34vw, 46vw") %}
+          </div>
+          <figcaption class="gallery__caption"><span class="gallery__num" aria-hidden="true">{{ "0" if loop.index < 10 }}{{ loop.index }}</span><span>{{ item.caption | safe }}</span></figcaption>
+        </figure>
+      </li>
+      {%- endfor %}
+    </ul>
   </div>
 </section>

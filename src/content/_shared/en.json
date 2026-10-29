@@ -20,7 +20,17 @@
     "carouselLabel": "Pedlex projects",
     "slideOf": "of",
     "rangeSep": "to",
-    "since": "50 years · 1976–2026"
+    "since": "50 years · 1976–2026",
+    "topbar": {
+      "message": "<strong>Family-owned Québec company since 1976</strong> · An expert replies within 1 business day",
+      "cta": "Free consultation"
+    },
+    "video": {
+      "pause": "Pause the video",
+      "play": "Play the video",
+      "placeholder": "Placeholder · video to come"
+    },
+    "placeholder": "Placeholder"
   },
   "form": {
     "id": "consultation",

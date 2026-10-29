@@ -1,13 +1,12 @@
-{#- Section 9 · FAQ. Native <details>/<summary> accordion (keyboard and screen-reader support
-    built in, works without JS), all items closed, then a closing CTA block before the footer.
-    Data: c.faq.{eyebrow, title, items[{q, a}], closing{title, text}}, c.ui.{cta, phoneLabel},
-          site.company.{phone, phoneHref}.
+{#- FAQ. Native <details>/<summary> accordion (keyboard and screen-reader support built in, works
+    without JS), all items closed. Sits right before the form (Raffi, 2026-10-29), so it has no
+    closing CTA of its own any more. Data: c.faq.{eyebrow, title, items[{q, a}]}.
     Motion: open/close height eases via CSS ::details-content (styles/sections/faq.css); browsers
     without support simply open instantly. No JS. -#}
-{%- from "components/ui.njk" import sectionHead, ctaRow -%}
+{%- from "components/ui.njk" import sectionHead -%}
 <section class="section faq" id="faq" aria-labelledby="faq-title">
   <div class="container container--narrow">
-    {{ sectionHead(c.faq.eyebrow, c.faq.title, null, { id: "faq-title", align: "center" }) }}
+    {{ sectionHead(c.faq.eyebrow, c.faq.title, null, { id: "faq-title", align: "center", index: sectionIndex }) }}
 
     <div class="faq__list section-body" data-reveal>
       {%- for item in c.faq.items %}
@@ -23,11 +22,5 @@
       {%- endfor %}
     </div>
 
-    {%- set phoneNote %}<a class="faq__phone" href="tel:{{ site.company.phoneHref }}">{% icon "phone" %}<span>{{ c.ui.phoneLabel }} {{ site.company.phone }}</span></a>{% endset %}
-    <div class="faq__closing" data-reveal>
-      <h3 class="faq__closing-title">{{ c.faq.closing.title | safe }}</h3>
-      <p class="faq__closing-text">{{ c.faq.closing.text | safe }}</p>
-      {{ ctaRow(c, { align: "center", note: phoneNote }) }}
-    </div>
   </div>
 </section>

@@ -32,11 +32,13 @@ picture { display: contents; }
 
 h1, h2, h3, h4 {
   color: var(--color-heading);
-  font-weight: var(--fw-semibold);
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-tight);
   text-wrap: balance;
 }
+h1, h2 { font-weight: var(--fw-display); letter-spacing: var(--ls-display); }
 p, li, dd { text-wrap: pretty; }
 
 a {

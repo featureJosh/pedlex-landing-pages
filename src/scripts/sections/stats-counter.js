@@ -1,7 +1,7 @@
 /* Stats counters: when a [data-stats] group enters the viewport, every [data-count-to] inside it
    counts up from 0 to its target over ~1.4s (ease-out), once. The HTML already holds the final
    value (no-JS and screen readers read it; the animated span is aria-hidden in the markup).
-   Skipped entirely under reduced motion. Markup: sections/stats.njk. */
+   Skipped entirely under reduced motion. Markup: partials/proof-strip.njk (in the hero). */
 (function () {
   const DURATION = 1400;
   const easeOut = (t) => 1 - Math.pow(1 - t, 4); // quartic: settles early, glides in

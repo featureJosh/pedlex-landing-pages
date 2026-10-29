@@ -25,3 +25,24 @@
   }
   .problem__intro .cta-row { margin-top: var(--space-l); }
 }
+
+/* Phones: compact cards (icon beside the title, tighter padding) so the four reasons don't add a
+   screen and a half to the page (Raffi: keep mobile short). */
+@media (max-width: 39.99rem) {
+  .problem__cards { gap: var(--space-xs); }
+  .problem__cards .card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    column-gap: var(--space-s);
+    row-gap: var(--space-3xs);
+    padding: var(--space-m);
+  }
+  .problem__cards .card__icon {
+    grid-row: span 2;
+    width: calc(var(--space-l) + var(--space-2xs));
+    height: calc(var(--space-l) + var(--space-2xs));
+    margin: 0;
+  }
+  .problem__cards .card__icon .icon { width: var(--space-m); height: var(--space-m); }
+}

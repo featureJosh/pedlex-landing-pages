@@ -1,7 +1,7 @@
 # HANDOFF.md: lead session state
 
 > For the project lead (Claude) after a memory reset. Read this → PROJECT.md → the top of TIMELINE.md → `git log --oneline -20`. Then continue from **Next actions**.
-> Last updated: 2026-10-29 16:15
+> Last updated: 2026-10-29 18:30
 
 ## Who / what
 - I am the **lead web dev AI** for Luxy Media on Pedlex's campaign landing pages. Josh (josh@luxymedia.com, GitHub `featureJosh`) is my human. He checks in occasionally; work autonomously and leave everything documented.
@@ -21,24 +21,14 @@
 
 ## In flight
 
-> **⚠ Read this before any design work (Josh, 2026-10-29).** Be **inspired** by pedlex.com, never **guided** by it. **This landing page sets the precedent for Pedlex's NEW website**: the direction we set here is the direction their next site will take. So it has to look forward, not back.
-> The v1 attempt (on `main` up to ee05eb1) was **good**: clean, professional, well built, and the reviewers liked it. But it **failed at modernizing**. It mimicked the existing site's ideas (layout, components, type treatment) instead of proposing a new one. Don't repeat that: take Pedlex's *essence* (identity, values, real work, family story), not pedlex.com's *design*.
+> **⚠ Round 2 (Raffi, client review, 2026-10-29) supersedes the v2 exploration plan.** The client chose the **white v1 on `main` as the base**, to be **elevated, not replaced**: same brand fonts (Scania Sans) and colours (official navy/blue), with a tighter type scale, a BrokerFlo-style dark photo hero with the proof strip built in, a top bar + sticky header, the explore/kimi « Réalisations » mosaic (titles under each photo), a St-Amour-style 1-2-3 process, a Why Pedlex video, testimonials, and FAQ before the form. References: brokerflo.io (hero; also by Luxy), manufacturingusa.st-amour.com (structure), starlit-salmiakki-bc0617.netlify.app. Media (upscaled photos, hero video, company video) come from Raffi/Josh: **builders use placeholders and never generate or upscale images or video.** Details: §5 « Round 2 » below; log: TIMELINE 2026-10-29 18:30.
 
-- Dev server: `.claude/launch.json` → `pedlex-dev` (`npm run dev`, http://localhost:8080/racking/) for Josh to view locally.
-- **v2 redesign.** Josh, 2026-10-29: v1 "looks too much like the current (old) website… create something ENTIRELY new… more photo-heavy"; placeholders are fine. Round-1 polish builders were stopped and pruned. **Step 1 is NOT started yet** (the session hit its limit right after the docs were written). Launch it first: a Workflow with 3 parallel builder agents (`isolation: 'worktree'`), each building a FULL Racking page in one v2 direction on its own branch, with full-page shots at 390 and 1440 in `qa/shots/explore-<name>/`:
-  - `explore/atelier`: light editorial, scania.com-like. White + warm concrete neutral, big mixed-case Scania Sans Bold, full-bleed photo bands, asymmetric grid, square corners, hairlines, bright-blue accent.
-  - `explore/nuit`: dark cinematic. Deep ink-navy page, photos dominate with scrims, white type, full-viewport hero, mosaics.
-  - `explore/plan`: engineered precision. White/ink with a subtle blueprint layer (fine grid lines, numbered annotations, tabular numerals), photo tiles. Never gimmicky, never fake specs.
-
-  Every brief must give the PROJECT.md §5 v2 rules (keep/retire lists, photo-led, placeholders, appetizer length budget, unchanged rules) plus CLAUDE.md. Give unique ports per agent (not 8080), and keep content JSON copy unchanged; adding image keys is OK.
+- **Round 2 is built on `main`** (TIMELINE 2026-10-29 18:30, PROJECT.md §5 « Round 2 »). The three-direction exploration plan below it in older notes is **superseded**; `explore/kimi` stays as a reference branch only (its gallery was ported).
+- Dev servers: Josh runs `explore/kimi` on :8080 and `main` (Pedlex-main worktree) on :8081. Agents use other ports (8091+).
+- Hero variant B (video) is at `/racking/video/` in preview builds.
 
 ## Next actions
-0. Josh is running other (non-Claude) agents on `explore/<agent>` branches. My own attempt goes on `explore/claude` (the three-direction exploration can feed it). Then compare every `qa/explore/*/` (shots + DESIGN-NOTES.md) and **combine the best points** into one page on `main`.
-1. Review the 3 explorations (390 + 1440 full pages, first phone screen, length budget). Pick one, possibly grafting the best ideas from the others; merge to `main`; record why in TIMELINE + PROJECT §10. Keep the losers' screenshots in `qa/explore/` so Josh can see the alternatives.
-2. Finishing builders on the winner: round-1 behaviour/a11y carry-overs (PROJECT §8 note), hero motion options (drift / video placeholder / slideshow) as preview variants, placeholder client logos to 10, compact cookie banner, merci page, EN check.
-3. Review round 2 (QA / User / Client), triage, report to Josh.
-4. Josh connects Cloudflare Pages (PROJECT.md §2 table).
-
-## Design decisions (v2: set by the chosen exploration; v1 below is retired)
-- v1 (retired): split hero, navy stats band, condensed-caps eyebrows, icon-card grids, navy caps buttons. Don't reintroduce.
-- Kept from v1: per-section CTA labels (`c.<section>.cta`), CTA → `#consultation` + focus, Scania Sans (mixed case), tokens/macros/BEM architecture, content JSON model.
+1. Josh / Raffi: drop in real media: upscaled hero photo (`assets-source/racking/racking-2` or a new key in `hero.image`), hero video (`assets-source/video/…`, set `hero.video.src`/`poster`, remove `placeholder`), company video (wire `why.video`), testimonials (replace `reviews.items`, drop `placeholder`), real client logos.
+2. Full review round 2 at high effort (QA / User / Client agents per CLAUDE.md §4): typography consistency, mobile, a11y, form flow. Triage into PROJECT.md §8.
+3. Josh deploys the demo to Netlify when ready (agents never push to Netlify).
+4. Then: Général / Mezzanines / Rousseau pages reuse this system.

@@ -1,15 +1,20 @@
-/* Sticky campaign header. Gains a border + shadow once the page scrolls ([data-scrolled]). */
+/* Sticky campaign header (partials/header.njk). Transparent over the dark hero (white logo, white
+   CTA); white with the navy logo once the page scrolls ([data-scrolled]) or on pages without a dark
+   hero (.site-header--solid). The hero pulls itself up under it (hero.css). */
 .site-header {
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: rgb(255 255 255 / 0.92);
-  backdrop-filter: saturate(1.4) blur(10px);
-  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  height: var(--header-h);
   border-bottom: 1px solid transparent;
-  transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+  transition: background-color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
 }
-.site-header[data-scrolled] {
+.site-header[data-scrolled],
+.site-header--solid {
+  background: var(--header-bg);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  backdrop-filter: saturate(1.4) blur(10px);
   border-bottom-color: var(--line);
   box-shadow: var(--shadow-s);
 }
@@ -18,61 +23,33 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-s);
-  height: var(--header-h);
+  height: 100%;
 }
-.site-header__logo { display: block; flex: none; }
-.site-header__logo-img { width: clamp(7rem, 5.5rem + 4vw, 9.5rem); height: auto; }
-.site-header__actions {
-  display: flex;
-  align-items: center;
-  gap: clamp(0.5rem, 0.2rem + 1vw, 1.25rem);
+.site-header__logo { position: relative; display: block; flex: none; }
+.site-header__logo-img { width: clamp(8rem, 6.5rem + 4vw, 11.5rem); height: auto; }
+.site-header__logo-img--dark {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
 }
-.site-header__phone {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  color: var(--navy-900);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-sm);
-  text-decoration: none;
-  white-space: nowrap;
-}
-.site-header__phone:hover { color: var(--blue-700); }
-.site-header__phone .icon { width: 1.125rem; height: 1.125rem; }
-@media (max-width: 56rem) {
-  .site-header__phone-number { display: none; }
-  .site-header__phone {
-    width: 2.5rem;
-    height: 2.5rem;
-    justify-content: center;
-    border: var(--border);
-    border-radius: var(--radius-s);
-  }
-}
+.site-header__logo-img { transition: opacity var(--dur) var(--ease-out); }
+.site-header[data-scrolled] .site-header__logo-img--light,
+.site-header--solid .site-header__logo-img--light { opacity: 0; }
+.site-header[data-scrolled] .site-header__logo-img--dark,
+.site-header--solid .site-header__logo-img--dark { opacity: 1; }
 
+/* CTA: white pill over the photo, the standard navy pill once solid. */
 .site-header__cta { white-space: nowrap; }
-@media (max-width: 23rem) {
-  .site-header__cta { padding-inline: var(--space-xs); font-size: var(--fs-xs); }
+.site-header:not([data-scrolled]):not(.site-header--solid) .site-header__cta {
+  --btn-bg: var(--white);
+  --btn-fg: var(--navy-900);
+  --btn-border: var(--white);
+  --btn-bg-hover: var(--blue-100);
+  --btn-badge-bg: var(--navy-900);
+  --btn-badge-fg: var(--white);
 }
-
-.lang-switch {
-  display: inline-grid;
-  place-items: center;
-  min-width: 2.5rem;
-  height: 2.5rem;
-  padding-inline: var(--space-2xs);
-  border: var(--border);
-  border-radius: var(--radius-s);
-  color: var(--navy-900);
-  font-family: var(--font-condensed);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-sm);
-  letter-spacing: 0.06em;
-  text-decoration: none;
-}
-.lang-switch:hover { border-color: var(--navy-900); color: var(--navy-900); }
-/* Phones: logo + phone + CTA fill the bar. The toggle moves to the footer's legal links;
-   campaign visitors land on their language straight from the ad anyway. */
-@media (max-width: 29.99rem) {
-  .lang-switch { display: none; }
+/* Narrow phones: the badge goes so logo + short CTA fit down to 360px. */
+@media (max-width: 26rem) {
+  .site-header__cta .btn__badge { display: none; }
+  .site-header__cta { padding-inline: var(--space-s); }
 }

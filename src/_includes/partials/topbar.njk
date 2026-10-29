@@ -1,0 +1,20 @@
+{#- Top announcement bar (Raffi, 2026-10-29): one line of messaging + CTA on the left, phone and the
+    FR/EN switch on the side. Scrolls away; the header below it stays. Styles: components/topbar.css
+    Data: c.ui.topbar.{message, cta}, c.ui.{phoneLabel, langSwitch}, site.company.{phone, phoneHref}. -#}
+<div class="topbar">
+  <div class="container topbar__inner">
+    <p class="topbar__message">
+      <span class="topbar__dot" aria-hidden="true"></span>
+      <span class="topbar__text">{{ c.ui.topbar.message | safe }}</span>
+      {%- if not isThanks %}
+      <a class="topbar__cta" href="#{{ c.form.id }}" data-scroll-to>{{ c.ui.topbar.cta | safe }}{% icon "arrow-right" %}</a>
+      {%- endif %}
+    </p>
+    <div class="topbar__side">
+      <a class="topbar__phone" href="tel:{{ site.company.phoneHref }}">{% icon "phone" %}<span class="visually-hidden">{{ c.ui.phoneLabel }} </span><span class="nowrap">{{ site.company.phone }}</span></a>
+      {%- if entry.alt %}
+      <a class="topbar__lang" href="{{ (entry.alt.thanksUrl if isThanks else entry.alt.url) | url }}" hreflang="{{ entry.alt.lang }}" lang="{{ entry.alt.lang }}" aria-label="{{ c.ui.langSwitch.aria }}">{{ c.ui.langSwitch.label }}</a>
+      {%- endif %}
+    </div>
+  </div>
+</div>

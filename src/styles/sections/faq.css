@@ -1,4 +1,4 @@
-/* Section 9 · FAQ. Hairline-separated native <details> accordion + closing CTA card.
+/* FAQ. Hairline-separated native <details> accordion (the form follows directly).
    Markup: _includes/sections/faq.njk. No JS: the open/close ease uses ::details-content with
    interpolate-size (Chromium); other browsers open instantly, which is the intended fallback. */
 
@@ -76,42 +76,3 @@
 @media (prefers-reduced-motion: reduce) {
   .faq__item::details-content { transition: none; }
 }
-
-/* ---- Closing CTA -------------------------------------------------------------------- */
-.faq__closing {
-  margin-top: var(--space-2xl);
-  padding: var(--space-l) var(--space-m);
-  border: var(--border);
-  border-radius: var(--radius-m);
-  background: var(--color-bg-tint);
-  text-align: center;
-}
-@media (min-width: 48rem) {
-  .faq__closing { padding: var(--space-xl) var(--space-2xl); }
-}
-.faq__closing-title {
-  font-size: var(--fs-h3);
-  line-height: var(--lh-snug);
-}
-.faq__closing-text {
-  margin-top: var(--space-xs);
-  color: var(--text-2);
-  text-wrap: balance;
-}
-.faq__closing .cta-row {
-  flex-direction: column;
-  gap: var(--space-s);
-  margin-top: var(--space-l);
-}
-.faq__closing .cta-row__note { color: var(--text-2); }
-.faq__phone {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  min-height: var(--space-xl);
-  color: var(--navy-900);
-  font-weight: var(--fw-semibold);
-  text-decoration: none;
-}
-.faq__phone:hover { text-decoration: underline; }
-.faq__phone .icon { width: 1.125em; height: 1.125em; color: var(--blue-600); }

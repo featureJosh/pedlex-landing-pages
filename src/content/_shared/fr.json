@@ -20,7 +20,17 @@
     "carouselLabel": "Réalisations Pedlex",
     "slideOf": "sur",
     "rangeSep": "à",
-    "since": "50 ans · 1976–2026"
+    "since": "50 ans · 1976–2026",
+    "topbar": {
+      "message": "<strong>Entreprise familiale québécoise depuis 1976</strong> · Réponse d'un expert en 1 jour ouvrable",
+      "cta": "Consultation gratuite"
+    },
+    "video": {
+      "pause": "Mettre la vidéo en pause",
+      "play": "Lire la vidéo",
+      "placeholder": "Placeholder · vidéo à venir"
+    },
+    "placeholder": "Placeholder"
   },
   "form": {
     "id": "consultation",
