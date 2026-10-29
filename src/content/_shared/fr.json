@@ -6,7 +6,10 @@
   },
   "ui": {
     "skipLink": "Passer au contenu",
-    "langSwitch": { "label": "EN", "aria": "Voir cette page en anglais" },
+    "langSwitch": {
+      "label": "EN",
+      "aria": "Voir cette page en anglais"
+    },
     "logoAlt": "Pedlex — défie l'espace",
     "cta": "Demandez une consultation gratuite",
     "ctaShort": "Consultation gratuite",
@@ -14,7 +17,8 @@
     "carouselPrev": "Image précédente",
     "carouselNext": "Image suivante",
     "carouselLabel": "Réalisations Pedlex",
-    "slideOf": "sur"
+    "slideOf": "sur",
+    "since": "Depuis 1976"
   },
   "form": {
     "id": "consultation",
@@ -24,12 +28,49 @@
     "optional": "facultatif",
     "requiredNote": "Les champs marqués d'un * sont obligatoires.",
     "fields": [
-      { "name": "name", "label": "Prénom et nom", "type": "text", "autocomplete": "name", "required": true },
-      { "name": "company", "label": "Entreprise", "type": "text", "autocomplete": "organization", "required": true },
-      { "name": "email", "label": "Courriel", "type": "email", "autocomplete": "email", "required": true },
-      { "name": "phone", "label": "Téléphone", "type": "tel", "autocomplete": "tel", "inputmode": "tel", "required": true },
-      { "name": "city", "label": "Ville", "type": "text", "autocomplete": "address-level2", "required": true },
-      { "name": "project", "label": "Parlez-nous de votre projet", "type": "textarea", "required": false, "placeholder": "Type d'entreposage, dimensions de l'entrepôt, échéancier…" }
+      {
+        "name": "name",
+        "label": "Prénom et nom",
+        "type": "text",
+        "autocomplete": "name",
+        "required": true
+      },
+      {
+        "name": "company",
+        "label": "Entreprise",
+        "type": "text",
+        "autocomplete": "organization",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "Courriel",
+        "type": "email",
+        "autocomplete": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "Téléphone",
+        "type": "tel",
+        "autocomplete": "tel",
+        "inputmode": "tel",
+        "required": true
+      },
+      {
+        "name": "city",
+        "label": "Ville",
+        "type": "text",
+        "autocomplete": "address-level2",
+        "required": true
+      },
+      {
+        "name": "project",
+        "label": "Parlez-nous de votre projet",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Type d'entreposage, dimensions de l'entrepôt, échéancier…"
+      }
     ],
     "errors": {
       "required": "Veuillez remplir ce champ.",
@@ -39,7 +80,13 @@
       "network": "L'envoi a échoué. Réessayez ou appelez-nous au 514 324-5310."
     },
     "consent": "En soumettant ce formulaire, vous acceptez que Pedlex communique avec vous au sujet de votre demande. Vos renseignements sont traités conformément à notre <a href=\"{privacy}\" target=\"_blank\" rel=\"noopener\">politique de confidentialité</a>.",
-    "reassurance": ["Réponse d'un expert en 1 jour ouvrable", "Sans frais ni engagement", "Vos données restent confidentielles"]
+    "reassurance": [
+      "Réponse d'un expert en 1 jour ouvrable",
+      "Sans frais ni engagement",
+      "Vos données restent confidentielles"
+    ],
+    "callAlt": "Vous préférez nous parler directement?",
+    "honeypotLabel": "Ne pas remplir ce champ"
   },
   "footer": {
     "tagline": "Votre partenaire en optimisation d'espace depuis 1976.",

@@ -6,7 +6,10 @@
   },
   "ui": {
     "skipLink": "Skip to content",
-    "langSwitch": { "label": "FR", "aria": "View this page in French" },
+    "langSwitch": {
+      "label": "FR",
+      "aria": "View this page in French"
+    },
     "logoAlt": "Pedlex — We challenge space",
     "cta": "Request a free consultation",
     "ctaShort": "Free consultation",
@@ -14,7 +17,8 @@
     "carouselPrev": "Previous image",
     "carouselNext": "Next image",
     "carouselLabel": "Pedlex projects",
-    "slideOf": "of"
+    "slideOf": "of",
+    "since": "Since 1976"
   },
   "form": {
     "id": "consultation",
@@ -24,12 +28,49 @@
     "optional": "optional",
     "requiredNote": "Fields marked with * are required.",
     "fields": [
-      { "name": "name", "label": "Full name", "type": "text", "autocomplete": "name", "required": true },
-      { "name": "company", "label": "Company", "type": "text", "autocomplete": "organization", "required": true },
-      { "name": "email", "label": "Email", "type": "email", "autocomplete": "email", "required": true },
-      { "name": "phone", "label": "Phone", "type": "tel", "autocomplete": "tel", "inputmode": "tel", "required": true },
-      { "name": "city", "label": "City", "type": "text", "autocomplete": "address-level2", "required": true },
-      { "name": "project", "label": "Tell us about your project", "type": "textarea", "required": false, "placeholder": "Type of storage, warehouse size, timeline…" }
+      {
+        "name": "name",
+        "label": "Full name",
+        "type": "text",
+        "autocomplete": "name",
+        "required": true
+      },
+      {
+        "name": "company",
+        "label": "Company",
+        "type": "text",
+        "autocomplete": "organization",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "email",
+        "autocomplete": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "Phone",
+        "type": "tel",
+        "autocomplete": "tel",
+        "inputmode": "tel",
+        "required": true
+      },
+      {
+        "name": "city",
+        "label": "City",
+        "type": "text",
+        "autocomplete": "address-level2",
+        "required": true
+      },
+      {
+        "name": "project",
+        "label": "Tell us about your project",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Type of storage, warehouse size, timeline…"
+      }
     ],
     "errors": {
       "required": "Please fill in this field.",
@@ -39,7 +80,13 @@
       "network": "Sending failed. Try again or call us at 514 324-5310."
     },
     "consent": "By submitting this form, you agree that Pedlex may contact you about your request. Your information is handled in accordance with our <a href=\"{privacy}\" target=\"_blank\" rel=\"noopener\">privacy policy</a>.",
-    "reassurance": ["An expert replies within 1 business day", "Free, no commitment", "Your information stays confidential"]
+    "reassurance": [
+      "An expert replies within 1 business day",
+      "Free, no commitment",
+      "Your information stays confidential"
+    ],
+    "callAlt": "Prefer to talk to someone?",
+    "honeypotLabel": "Leave this field empty"
   },
   "footer": {
     "tagline": "Your partner in space optimization since 1976.",

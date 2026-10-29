@@ -27,7 +27,7 @@ npm run build          # images + fonts + Eleventy -> _site/
 npm run dev            # live-reload dev server on http://localhost:8080
 npm run serve          # serve an existing _site/ on :8080
 npm run shoot -- /racking/ --sections            # screenshots 390/768/1440 -> qa/shots/racking/
-npm run shoot -- /racking/ --widths 390 --out qa/shots/mine
+npm run shoot -- /racking/ --widths 390 --out qa/shots/mine --port 8091   # unique port per parallel agent
 ```
 Windows Git Bash: prefix env vars that hold paths with `MSYS_NO_PATHCONV=1` (e.g. `MSYS_NO_PATHCONV=1 PATH_PREFIX=/pedlex-landing-pages/ npm run build`).
 For custom interaction tests, `import { launch, settle } from "./scripts/shoot.mjs"`. It returns a Playwright `page` on the local build using the system Edge/Chrome; no download needed.
@@ -62,7 +62,7 @@ For custom interaction tests, `import { launch, settle } from "./scripts/shoot.m
 
 **Motion** (from PROJECT.md §5): reveal = `data-reveal` (or `data-reveal-stagger` on a list parent). Nothing else animates on scroll without lead approval.
 
-**Accessibility (WCAG 2.2 AA):** labelled controls, visible focus, keyboard support (accordion: buttons with `aria-expanded`/`aria-controls`; carousel: buttons + arrow keys + `aria-roledescription`), AA contrast, touch targets ≥ 44px, no information conveyed by colour alone.
+**Accessibility (WCAG 2.2 AA):** labelled controls, visible focus, keyboard support (accordion: native `<details>/<summary>` or buttons with `aria-expanded`/`aria-controls`; carousel: buttons + arrow keys + `aria-roledescription`), AA contrast, touch targets ≥ 44px, no information conveyed by colour alone.
 
 ---
 

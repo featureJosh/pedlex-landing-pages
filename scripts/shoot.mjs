@@ -3,7 +3,7 @@
 // Edge (or Chrome) through playwright-core, so no browser download is needed.
 //
 //   node scripts/shoot.mjs [path=/racking/] [--out qa/shots/<label>] [--widths 390,768,1440]
-//                          [--sections] [--no-full]
+//                          [--sections] [--no-full] [--port 8090]   (use a unique port per parallel agent)
 //
 // Output: full-page PNG per width, plus one PNG per <section id> with --sections.
 // For interaction scripts, import { launch } from "./shoot.mjs" and use the returned page.
@@ -52,7 +52,7 @@ if (process.argv[1]?.endsWith("shoot.mjs")) {
   const widths = opt("--widths", "390,768,1440").split(",").map(Number);
   fs.mkdirSync(out, { recursive: true });
 
-  const { page, base, errors, close } = await launch();
+  const { page, base, errors, close } = await launch({ port: Number(opt("--port", 8090)) });
   for (const w of widths) {
     await page.setViewportSize({ width: w, height: w < 768 ? 844 : 900 });
     await page.goto(base + target, { waitUntil: "networkidle" });
