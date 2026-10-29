@@ -73,6 +73,9 @@ main:focus { outline: none; }
   stroke-width: 1.75;
 }
 
+/* Keeps a unit together (licence numbers, phone numbers). */
+.nowrap { white-space: nowrap; }
+
 /* Accessibility helpers */
 .visually-hidden {
   position: absolute !important;

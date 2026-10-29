@@ -1,0 +1,292 @@
+{
+  "_source": "LUXY DRAFT translation of racking/fr.json (lead, 2026-10-29), Canadian English. Placeholder until Maïeutyk supplies the official EN copy (brief §10 #3); replace wholesale when it arrives. Keys mirror fr.json one-for-one.",
+  "meta": {
+    "title": "Custom industrial pallet racking — free consultation | Pedlex",
+    "description": "Is your warehouse full… or just poorly organized? Pedlex designs and installs pallet racking systems built around your products, your space and your operations. Free consultation.",
+    "ogImage": "racking/racking-2"
+  },
+  "sections": [
+    "hero",
+    "stats",
+    "trust",
+    "problem",
+    "gallery",
+    "process",
+    "why",
+    "form",
+    "faq"
+  ],
+  "hero": {
+    "eyebrow": "Maximize your storage capacity",
+    "title": "Is your warehouse full… or just poorly organized?",
+    "lead": "Gain space, make your inventory easier to reach and cut unnecessary travel.",
+    "text": [
+      "Pedlex designs industrial pallet racking systems built around your products, your space and your operations."
+    ],
+    "trust": [
+      "Family-owned Québec company since 1976",
+      "Custom solutions",
+      "Make the most of your existing space"
+    ],
+    "image": "racking/racking-2",
+    "imageAlt": "Large blue and orange pallet racking installation in a warehouse, built by Pedlex",
+    "cta": "Request a free consultation"
+  },
+  "stats": {
+    "label": "Pedlex by the numbers",
+    "items": [
+      {
+        "from": 30,
+        "value": 50,
+        "suffix": "%",
+        "label": "more usable space recovered on some projects"
+      },
+      {
+        "value": 50,
+        "suffix": " years",
+        "label": "of storage expertise"
+      },
+      {
+        "value": 10000,
+        "suffix": "+",
+        "label": "companies served in Québec and beyond"
+      }
+    ]
+  },
+  "trust": {
+    "title": "Trusted to optimize their storage.",
+    "logos": [
+      {
+        "image": "clients/airbus",
+        "name": "Airbus"
+      },
+      {
+        "image": "clients/stm",
+        "name": "STM"
+      },
+      {
+        "image": "clients/globocam",
+        "name": "Globocam"
+      },
+      {
+        "image": "clients/nordic",
+        "name": "Nordic"
+      },
+      {
+        "image": "clients/omnifab",
+        "name": "Omnifab"
+      },
+      {
+        "image": "clients/distribution-pro-expert",
+        "name": "Distribution Pro-Expert"
+      }
+    ]
+  },
+  "problem": {
+    "eyebrow": "Optimize your storage",
+    "title": "More capacity, smoother operations.",
+    "text": [
+      "Pedlex helps you get more from your space with pallet racking systems designed to increase storage capacity and make your team's work easier."
+    ],
+    "cards": [
+      {
+        "icon": "warehouse",
+        "title": "More storage capacity",
+        "text": "Make better use of your warehouse's available floor space and height."
+      },
+      {
+        "icon": "scan-search",
+        "title": "Easier access to inventory",
+        "text": "Organize your products so they're easier to find, reach and move."
+      },
+      {
+        "icon": "route",
+        "title": "Smoother operations",
+        "text": "Cut unnecessary travel and simplify how products and people move through the space."
+      },
+      {
+        "icon": "ruler-dimension-line",
+        "title": "Storage for oversized products",
+        "text": "Store long, bulky or irregular products with systems sized for them and for the way you work."
+      }
+    ],
+    "cta": "Request your free consultation"
+  },
+  "gallery": {
+    "eyebrow": "Our projects",
+    "title": "See how a well-designed racking system transforms a warehouse.",
+    "lead": "Installations designed to maximize capacity, make products easier to reach and support more efficient operations.",
+    "items": [
+      {
+        "image": "racking/racking-4",
+        "alt": "Aisle between two rows of pallet racking with yellow end-of-aisle protectors",
+        "caption": "Selective pallet racking"
+      },
+      {
+        "image": "racking/racking-3",
+        "alt": "Cantilever racking loaded with long products on wooden pallets",
+        "caption": "Cantilever for long products"
+      },
+      {
+        "image": "racking/racking-6",
+        "alt": "Multi-level yellow pallet racking in a large warehouse",
+        "caption": "High-density storage"
+      },
+      {
+        "image": "racking/racking-1",
+        "alt": "Rows of blue pallet racking with wire mesh decking",
+        "caption": "Racking with wire decking"
+      },
+      {
+        "image": "racking/racking-9",
+        "alt": "Organized shelving and pallet racking in a cleaning-supplies business",
+        "caption": "Commercial and retail storage"
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "A simple, no-obligation process",
+    "title": "Your optimization project starts with a free consultation.",
+    "image": "racking/racking-5",
+    "imageAlt": "Pedlex installer on a lift assembling pallet racking",
+    "steps": [
+      {
+        "title": "Request your free consultation",
+        "text": "Fill out our short form to tell us about your warehouse and your needs."
+      },
+      {
+        "title": "Talk to a Pedlex expert",
+        "text": "A member of our team will contact you to understand your storage challenges and discuss your options."
+      },
+      {
+        "title": "Discover the right solutions",
+        "text": "Depending on your needs, Pedlex supports you through the design and installation of a racking system suited to your operations."
+      }
+    ],
+    "cta": "Request a free consultation"
+  },
+  "why": {
+    "eyebrow": "Why Pedlex",
+    "title": "A racking system designed for your operations, not just your pallets.",
+    "cards": [
+      {
+        "icon": "drafting-compass",
+        "title": "A custom approach",
+        "text": "Every configuration is adapted to your space, your products and the way you work."
+      },
+      {
+        "icon": "key-round",
+        "title": "Turnkey installation",
+        "text": "One partner to move your project forward, from design to installation."
+      },
+      {
+        "icon": "shield-check",
+        "title": "Safety and compliance",
+        "text": "Installed by certified crews, then inspected and certified by engineers to the CSA A344 standard."
+      },
+      {
+        "icon": "map-pin",
+        "title": "A local partner",
+        "text": "An established Québec company with an accessible team that knows the field."
+      }
+    ],
+    "certifications": {
+      "label": "Health and safety: compliance and prequalification",
+      "items": [
+        {
+          "image": "certifications/cnesst",
+          "name": "CNESST"
+        },
+        {
+          "image": "certifications/safe-contractor",
+          "name": "SafeContractor"
+        },
+        {
+          "image": "certifications/comply-works",
+          "name": "ComplyWorks"
+        }
+      ]
+    }
+  },
+  "form": {
+    "eyebrow": "Free consultation",
+    "title": "What if your warehouse could work harder?",
+    "text": [
+      "Book a free consultation with a Pedlex expert to talk through your storage challenges and explore solutions suited to your space and your operations."
+    ],
+    "fields": [
+      {
+        "name": "name",
+        "label": "Full name",
+        "type": "text",
+        "autocomplete": "name",
+        "required": true
+      },
+      {
+        "name": "company",
+        "label": "Company",
+        "type": "text",
+        "autocomplete": "organization",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "email",
+        "autocomplete": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "Phone",
+        "type": "tel",
+        "autocomplete": "tel",
+        "inputmode": "tel",
+        "required": true
+      },
+      {
+        "name": "city",
+        "label": "City",
+        "type": "text",
+        "autocomplete": "address-level2",
+        "required": true
+      },
+      {
+        "name": "project",
+        "label": "Tell us briefly about your project",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Type of products, warehouse size, timeline…"
+      }
+    ]
+  },
+  "thanks": {
+    "back": "Back to Pallet racking"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Your questions, answered.",
+    "items": [
+      {
+        "q": "What does the free consultation with Pedlex involve?",
+        "a": "The free consultation is a first conversation with our team about your warehouse, your needs and your storage challenges. It helps us understand your situation and explore possible ways to optimize your space and your operations."
+      },
+      {
+        "q": "Can Pedlex optimize an existing racking system?",
+        "a": "Yes. Pedlex can review your current layout to find ways to make better use of your space and adapt it to your operations."
+      },
+      {
+        "q": "Can a new racking system increase my storage capacity?",
+        "a": "Yes. A better-suited layout can help you use more of your available floor space and height while making your inventory easier to reach. Some clients have recovered 30 to 50% more space."
+      },
+      {
+        "q": "I'm not sure which type of racking suits my warehouse. Can you help?",
+        "a": "Yes. Our team looks at your space, your products and the way you work to steer you toward a solution that fits."
+      }
+    ],
+    "closing": {
+      "title": "Have other questions?",
+      "text": "Let's talk about your warehouse. The consultation is free and comes with no obligation."
+    }
+  }
+}

@@ -45,6 +45,13 @@
   display: inline-block;
   text-align: end;
 }
+/* « à » between the two ends of a range: lighter and smaller so the numbers lead. */
+.stats__sep {
+  margin-inline: 0.2em;
+  font-size: 0.55em;
+  font-weight: var(--fw-medium);
+  color: var(--on-dark-2);
+}
 .stats__label {
   margin-top: var(--space-xs);
   max-width: 34ch;

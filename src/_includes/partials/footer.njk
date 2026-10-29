@@ -5,6 +5,8 @@
     <div class="site-footer__brand">
       {% picture "brand/pedlex-logo-white", c.ui.logoAlt | plain, "160px", { class: "site-footer__logo" } %}
       <p class="site-footer__tagline">{{ c.footer.tagline }}</p>
+      {#- The page is the appetizer; the full catalogue lives on pedlex.com (Josh, 2026-10-29). #}
+      <a class="site-footer__site" href="{{ co.website[lang] }}" target="_blank" rel="noopener">{{ c.footer.site }}{% icon "arrow-up-right" %}</a>
     </div>
     <div class="site-footer__col">
       <h2 class="site-footer__heading">{{ c.footer.addressLabel }}</h2>
@@ -25,10 +27,14 @@
   </div>
   <div class="container">
     <div class="site-footer__legal">
-      <p>© {{ build.year }} {{ co.legalName }}. {{ c.footer.rights }} · {{ c.footer.rbq }} {{ co.rbq }}</p>
+      <p>© {{ build.year }} {{ co.legalName }}. {{ c.footer.rights }} · <span class="nowrap">{{ c.footer.rbq }} {{ co.rbq }}</span></p>
       <ul class="site-footer__legal-links" role="list">
         <li><a href="{{ co.privacy[lang] }}" target="_blank" rel="noopener">{{ c.footer.privacy }}</a></li>
         <li><button type="button" class="link-button" data-cookie-open>{{ c.footer.cookies }}</button></li>
+        {%- if entry.alt %}
+        {#- Always here; the header toggle is hidden on narrow phones (header.css). #}
+        <li><a href="{{ (entry.alt.thanksUrl if isThanks else entry.alt.url) | url }}" hreflang="{{ entry.alt.lang }}" lang="{{ entry.alt.lang }}">{{ c.ui.langSwitch.name }}</a></li>
+        {%- endif %}
       </ul>
     </div>
   </div>

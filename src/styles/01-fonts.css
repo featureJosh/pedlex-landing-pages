@@ -1,11 +1,14 @@
-/* Self-hosted stand-in fonts (SIL OFL). No Google Fonts request: keeps pages fast and
-   avoids sending visitor IPs to a third party before consent (Law 25).
-   TODO(client): replace with Scania Sans CY WOFF2 once licence for web is confirmed. */
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/barlow-400.woff2") format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/barlow-400-italic.woff2") format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/barlow-500.woff2") format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/barlow-600.woff2") format("woff2"); }
-@font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/barlow-700.woff2") format("woff2"); }
+/* Self-hosted fonts. No Google Fonts request: keeps pages fast and avoids sending visitor IPs
+   to a third party before consent (Law 25).
+   - Scania Sans CY + Scania Sans CY Headline: Pedlex's brand typeface (licensed for Pedlex; the
+     same WOFF2 files pedlex.com serves). Source files in assets-source/fonts/.
+   - Barlow Condensed (SIL OFL): condensed caps labels only (eyebrows, buttons, captions) until a
+     Scania Sans Condensed WOFF2 is supplied; then swap --font-condensed in 00-tokens.css. */
+@font-face { font-family: "Scania Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/scania-sans-400.woff2") format("woff2"); }
+@font-face { font-family: "Scania Sans"; font-style: italic; font-weight: 400; font-display: swap; src: url("../fonts/scania-sans-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Scania Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/scania-sans-700.woff2") format("woff2"); }
+@font-face { font-family: "Scania Sans Headline"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/scania-sans-headline-400.woff2") format("woff2"); }
+@font-face { font-family: "Scania Sans Headline"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/scania-sans-headline-700.woff2") format("woff2"); }
 @font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/barlow-condensed-500.woff2") format("woff2"); }
 @font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/barlow-condensed-600.woff2") format("woff2"); }
 @font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/barlow-condensed-700.woff2") format("woff2"); }

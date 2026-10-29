@@ -9,8 +9,8 @@ You are working on Pedlex's campaign landing pages for Luxy Media. **Read [PROJE
 ## 0. Ground rules (everyone)
 
 1. **Update the shared docs as you work.** Move your item on the PROJECT.md status board to *In progress* (with your branch) when you start, and to *Done* (with the date) when you finish. Append a TIMELINE.md entry for every change you commit. If your context might reset, write it down.
-2. **Never rewrite client copy.** Page copy comes verbatim from Maïeutyk (`docs/copy/*.md` → `src/content/<slug>/<lang>.json`). Luxy may only write microcopy (form errors, banners, thank-you, labels) and must log any CTA/form copy change in PROJECT.md §9 "Client questions".
-3. **Real Pedlex photos only.** No stock, no AI-generated imagery, no placeholder art in anything merged to `main`.
+2. **Builders never rewrite client copy.** Page copy starts from Maïeutyk's docs (`docs/copy/*.md` → `src/content/<slug>/<lang>.json`). Only the lead edits copy: Josh (2026-10-29) says the copy is a guide, the page is an **appetizer** (only what matters, short), and the lead may trim or adjust. Every lead copy change is logged in PROJECT.md §9 "Client questions".
+3. **Real Pedlex photos only.** No stock, no AI-generated imagery. **Placeholders** are allowed for assets that are still missing (client logos, hero video; Josh, 2026-10-29), but only if they look deliberately neutral (grey, labelled as a placeholder, never a fake brand), sit in `assets-source/placeholders/`, are marked `"placeholder": true` in content, and are listed in PROJECT.md §9.
 4. **Clean, modern, professional, subtle.** If an animation would make someone notice the animation rather than the content, cut it.
 5. **French first.** FR is the master and the hardest to fit. Test with FR copy. FR typography (narrow no-break spaces before `? ! ; :`, « guillemets », ’ apostrophes) is applied **automatically** by `src/_data/landings.js`. Don't hand-insert special spaces, and don't put raw URLs containing `?` inside copy strings.
 6. **No secrets** in the repo, ever. No pricing in docs.
@@ -46,7 +46,7 @@ For custom interaction tests, `import { launch, settle } from "./scripts/shoot.m
 - **Use the shared macros** from `components/ui.njk`: `button`, `sectionHead`, `featureCard`, `ctaRow`. Never hand-roll a button, eyebrow, section heading, CTA row or feature card. If you need a variant, extend the macro (backwards-compatible) and note it in TIMELINE.md.
 - Images: `{% picture "group/name", alt, sizes, { loading, fetchpriority, class } %}` only. Every image needs meaningful FR alt text from the content file (`""` only if purely decorative). Icons: `{% icon "lucide-name" %}` only.
 - Exactly one `<h1>` per page (the hero). Sections use `<h2>` (via `sectionHead`), cards `<h3>`.
-- Every CTA points at `#consultation` (via `button`/`ctaRow`, which add `data-scroll-to`). The label is always `c.ui.cta`.
+- Every CTA points at `#consultation` (via `button`/`ctaRow`, which add `data-scroll-to`). The label is the section's own `c.<section>.cta` when the copy doc gives one, else `c.ui.cta` (Josh, 2026-10-29: labels follow the copy, not one identical string everywhere).
 
 **CSS**
 - One file per section: `src/styles/sections/<name>.css`. It is bundled automatically (no index to edit).

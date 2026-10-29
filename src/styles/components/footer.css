@@ -16,6 +16,14 @@
 }
 .site-footer__logo { width: 9rem; height: auto; }
 .site-footer__tagline { margin-top: var(--space-s); max-width: 28ch; color: var(--on-dark-3); }
+.site-footer__site {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  margin-top: var(--space-s);
+  font-weight: var(--fw-semibold);
+}
+.site-footer__site .icon { width: 1em; height: 1em; }
 .site-footer__heading {
   margin-bottom: var(--space-xs);
   font-family: var(--font-condensed);

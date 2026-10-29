@@ -45,10 +45,12 @@
   --color-focus: var(--blue-600);
 
   /* --- Typography ---
-     Stand-in: Barlow / Barlow Condensed until Scania Sans WOFF2 + web licence arrive
-     (brief §9.1). Swap the family names here and the @font-face in 01-fonts.css. */
-  --font-sans: "Barlow", "Scania Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-condensed: "Barlow Condensed", "Scania Sans Condensed", "Arial Narrow", var(--font-sans);
+     Scania Sans (brand) for body and headings; Barlow Condensed for condensed caps labels until a
+     Scania Sans Condensed WOFF2 exists (01-fonts.css). Scania ships 400 + 700 only: 500 renders
+     as 400, 600 as 700. */
+  --font-sans: "Scania Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Scania Sans Headline", var(--font-sans);  /* caps-only, extended: the H1 only (as on pedlex.com) */
+  --font-condensed: "Scania Sans Condensed", "Barlow Condensed", "Arial Narrow", var(--font-sans);
 
   --fs-xs: 0.8125rem;                                         /* 13px  meta, legal */
   --fs-sm: 0.9375rem;                                         /* 15px  captions, labels */
@@ -57,7 +59,7 @@
   --fs-lg: clamp(1.125rem, 1.04rem + 0.4vw, 1.3125rem);       /* 18-21 lead */
   --fs-h3: clamp(1.1875rem, 1.1rem + 0.45vw, 1.4375rem);      /* 19-23 */
   --fs-h2: clamp(1.75rem, 1.3rem + 1.9vw, 2.75rem);           /* 28-44 */
-  --fs-h1: clamp(2.125rem, 1.45rem + 2.9vw, 3.75rem);         /* 34-60 */
+  --fs-h1: clamp(1.875rem, 1.35rem + 2.3vw, 3.25rem);         /* 30-52: display face is extended caps */
   --fs-stat: clamp(2.75rem, 2rem + 3.2vw, 4.5rem);            /* 44-72 */
   --fs-eyebrow: 0.875rem;                                     /* 14px uppercase condensed */
   --fs-btn: 1rem;

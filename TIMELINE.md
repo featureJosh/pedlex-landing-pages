@@ -11,6 +11,48 @@ Format:
 
 ---
 
+## 2026-10-29 15:45 · lead
+- **Josh's answers, applied:**
+  - Previews on Cloudflare Pages on his account; repo stays private (no Pro).
+  - Client content is a guide. Unreasonable input can be overridden.
+  - CTA labels follow the copy doc per section (`c.<section>.cta`, fallback `c.ui.cta`).
+  - Pedlex replies within a day.
+  - « 30 à 50 % ».
+  - Badges OK.
+  - Scania Sans is licensed for use.
+  - Placeholders are allowed for missing logos and video.
+  - Luxy EN draft for now.
+  - **"This is a landing page, an appetizer, not the whole company. Don't make it lengthy."**
+- **Fonts:** Scania Sans CY (400/400i/700) + CY Headline (400/700) self-hosted from the files pedlex.com serves (`assets-source/fonts/`).
+  - The Headline cut is caps-only and extended, so it's used for the H1 only, tracked at 0, `--fs-h1` lowered to 30–52px. H2/H3 use CY Bold.
+  - Barlow Condensed stays for labels; Barlow sans removed (`@fontsource/barlow` uninstalled).
+  - New tokens: `--font-display`, `--font-sans` changed.
+- **Stats:**
+  - Range support (`from` + `c.ui.rangeSep`): « 30 à 50 % ».
+  - « Clé en main » → « 10 000+ » entreprises servies (2026 catalogue). Locale number formatting via the new `num` filter + `Intl` in `stats-counter.js`.
+  - Suffix spacing driven by a leading space in content.
+  - Counter width measured at count start (it was measured before the webfont loaded, which indented « 10 000+ »).
+- **Round-1 review triage** (QA / User / Client) into PROJECT.md §8, with Josh's direction applied. Proof additions (testimonials, named projects, more figures) declined or deferred: appetizer.
+- **Lead fixes:**
+  - CNESST label made accurate.
+  - Store duplicate racking-8 removed; last caption made truthful.
+  - Hero trust line « Entreprise familiale québécoise depuis 1976 »; chip « 50 ans · 1976–2026 ».
+  - « Sécurité et conformité » card names CSA A344 engineer certification.
+  - Toll-free beside the phone in the form section.
+  - RBQ `.nowrap` (new utility).
+  - Thank-you back label « Retour à la page Palettiers ».
+- **Appetizer trims (FR + EN):**
+  - hero 2nd paragraph; problem 1st paragraph; form 2nd paragraph;
+  - why 6 → 4 cards; FAQ 5 → 4;
+  - footer link « Découvrir pedlex.com ».
+  - Copy alone took the 390px page only from 10,453 to 10,280px. Layout compaction goes to builders with a budget.
+- **EN:** Luxy draft `src/content/racking/en.json` → `/racking/en/` + thank-you. The FR/EN toggle hides in the header below 30rem (it caused 28px overflow) and is always in the footer legal links.
+- **Tooling:**
+  - `.node-version` 22; preview-only `_headers` (`src/headers.11ty.js`, X-Robots-Tag noindex).
+  - `scripts/serve.mjs` honours `SITE_DIR`, used to review a second build (`_site-lead/`, gitignored) while reviewers held `_site/`.
+  - `.claude/launch.json` (`pedlex-dev`, `npm run dev` on :8080).
+- CLAUDE.md rules 2 and 3 updated: the lead may trim copy; placeholders are allowed under rules.
+
 ## 2026-10-29 14:35 · lead
 - **Reviewed and merged all three builder branches** (`feat/hero-stats-trust`, `feat/problem-gallery-process-why`, `feat/form-faq`) on the first attempt, so none were pruned. Audit: no raw hex, no px font sizes, no `!important`; macros, `{% picture %}` and `{% icon %}` used throughout; copy rendered from JSON only. The form JS keeps PII out of the dataLayer, has a honeypot, double-submit protection, accessible errors and UTM capture; checked by reading the code. Doc conflicts (PROJECT.md / TIMELINE.md) resolved as unions.
 - **Approved builder requests, applied by lead:** `--line-strong` (#8A949C, 3.1:1) for input borders; `--dur-drift` / `--dur-marquee` tokens (section vars now point at them); header CTA `nowrap` (+ smaller under 23rem); `shoot.mjs` `settle()` uses instant scroll and waits for images (it never reached the bottom under smooth scroll, so lazy images were blank in screenshots); section shots make the sticky header static; `.claude/worktrees/` gitignored.

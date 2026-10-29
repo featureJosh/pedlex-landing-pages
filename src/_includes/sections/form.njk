@@ -2,7 +2,7 @@
     Data: c.form.{id, eyebrow, title, text[], reassurance[], callAlt, fields[], required, optional,
           requiredNote, consent, submit, sending, errors{required,email,phone,summary,network}, honeypotLabel}
           (page keys from src/content/<slug>/<lang>.json, UI microcopy from src/content/_shared/<lang>.json)
-          site.company.{phone, phoneHref, privacy}, site.form.endpoint, entry.{slug, thanksUrl}.
+          site.company.{phone, phoneHref, tollFree, tollFreeHref, privacy}, site.form.endpoint, entry.{slug, thanksUrl}.
     The section id MUST stay c.form.id: every CTA links to it and scroll-to.js focuses its first input.
     Behaviour: src/scripts/sections/lead-form.js (validation, UTM capture, dataLayer, submit).
     Without JS the browser's native validation runs and the form POSTs to the action; the script sets
@@ -92,6 +92,7 @@
       <p class="consult__call" data-reveal>
         <span class="consult__call-label">{{ f.callAlt | safe }}</span>
         <a class="consult__call-link" href="tel:{{ site.company.phoneHref }}">{% icon "phone" %}<span>{{ site.company.phone }}</span></a>
+        <a class="consult__call-toll" href="tel:{{ site.company.tollFreeHref }}">{{ f.tollFreeLabel }} {{ site.company.tollFree }}</a>
       </p>
     </div>
   </div>

@@ -9,10 +9,13 @@
 
 /* ---- Copy column ---- */
 .hero__title {
-  /* ~3 balanced lines on desktop (text-wrap: balance is set globally on h1). */
+  /* Brand display face (Scania Sans Headline: caps-only, extended), tracked at 0 because the
+     global -0.015em crushes it. ~4 balanced lines on desktop (text-wrap: balance is global). */
   max-width: 21ch;
+  font-family: var(--font-display);
   font-size: var(--fs-h1);
   line-height: var(--lh-tight);
+  letter-spacing: 0;
 }
 .hero__lead {
   margin-top: var(--space-m);

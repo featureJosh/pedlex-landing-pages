@@ -4,7 +4,8 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 
-const ROOT = path.resolve("_site");
+// SITE_DIR lets a second build (e.g. `eleventy --output=_site-lead`) be served while _site is in use.
+const ROOT = path.resolve(process.env.SITE_DIR || "_site");
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8",
   ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg",
@@ -27,5 +28,5 @@ export function serve(port = 8080) {
 if (process.argv[1]?.endsWith("serve.mjs")) {
   const port = Number(process.argv[2] || 8080);
   await serve(port);
-  console.log(`[serve] _site on http://localhost:${port}/`);
+  console.log(`[serve] ${path.basename(ROOT)} on http://localhost:${port}/`);
 }

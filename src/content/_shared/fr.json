@@ -8,6 +8,7 @@
     "skipLink": "Passer au contenu",
     "langSwitch": {
       "label": "EN",
+      "name": "English",
       "aria": "Voir cette page en anglais"
     },
     "logoAlt": "Pedlex — défie l'espace",
@@ -18,7 +19,8 @@
     "carouselNext": "Image suivante",
     "carouselLabel": "Réalisations Pedlex",
     "slideOf": "sur",
-    "since": "Depuis 1976"
+    "rangeSep": "à",
+    "since": "50 ans · 1976–2026"
   },
   "form": {
     "id": "consultation",
@@ -86,6 +88,7 @@
       "Vos données restent confidentielles"
     ],
     "callAlt": "Vous préférez nous parler directement?",
+    "tollFreeLabel": "Sans frais",
     "honeypotLabel": "Ne pas remplir ce champ"
   },
   "footer": {
@@ -96,7 +99,8 @@
     "privacy": "Politique de confidentialité",
     "cookies": "Préférences de témoins",
     "rbq": "Licence RBQ",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "site": "Découvrir pedlex.com"
   },
   "cookies": {
     "title": "Votre vie privée",

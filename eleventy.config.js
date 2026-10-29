@@ -63,6 +63,8 @@ export default function (eleventyConfig) {
   });
 
   // Content strings may hold limited inline HTML (<strong>, <em>, <br>). Strip it for attributes/meta.
+  // 10000 -> "10 000" (fr-CA, narrow no-break space) / "10,000" (en-CA). stats-counter.js formats the same way.
+  eleventyConfig.addFilter("num", (n, lang = "fr") => new Intl.NumberFormat(`${lang}-CA`).format(n));
   eleventyConfig.addFilter("plain", (s = "") => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
 
   return {

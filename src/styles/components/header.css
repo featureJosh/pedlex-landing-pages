@@ -71,3 +71,8 @@
   text-decoration: none;
 }
 .lang-switch:hover { border-color: var(--navy-900); color: var(--navy-900); }
+/* Phones: logo + phone + CTA fill the bar. The toggle moves to the footer's legal links;
+   campaign visitors land on their language straight from the ad anyway. */
+@media (max-width: 29.99rem) {
+  .lang-switch { display: none; }
+}

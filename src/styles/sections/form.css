@@ -77,6 +77,13 @@
 }
 .consult__call-link:hover { color: var(--on-dark); text-decoration: underline; }
 .consult__call-link .icon { width: 1.125em; height: 1.125em; color: var(--on-dark-2); }
+/* Toll-free for callers outside the 514 (campaign covers all of Québec). */
+.consult__call-toll {
+  color: var(--on-dark-2);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.consult__call-toll:hover { color: var(--on-dark); text-decoration: underline; }
 @media (max-width: 63.99rem) {
   .consult__call { justify-content: center; text-align: center; }
 }

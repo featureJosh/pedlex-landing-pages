@@ -1,5 +1,5 @@
 {#- Hero: the page's only <h1>. Message-matches the video ad. Styles: styles/sections/hero.css
-    Data: c.hero.{eyebrow, title, lead, text[], trust[], image, imageAlt}, c.ui.{cta, since, phoneLabel},
+    Data: c.hero.{eyebrow, title, lead, text[], trust[], image, imageAlt, cta?}, c.ui.{cta, since, phoneLabel},
           c.form.id, site.company.{phone, phoneHref}.
     The image is the LCP element: eager + fetchpriority high, and preloaded in layouts/base.njk
     with the SAME sizes string (keep both in sync). Its slow drift is CSS-only (hero.css). -#}
@@ -16,7 +16,7 @@
         {%- endfor %}
       </div>
       <div class="hero__actions">
-        {{ button(c.ui.cta, "#" + c.form.id, { size: "lg", icon: "arrow-right", class: "hero__cta" }) }}
+        {{ button(c.hero.cta or c.ui.cta, "#" + c.form.id, { size: "lg", icon: "arrow-right", class: "hero__cta" }) }}
         <a class="hero__phone" href="tel:{{ site.company.phoneHref }}">
           <span class="hero__phone-icon">{% icon "phone" %}</span>
           <span class="hero__phone-text">

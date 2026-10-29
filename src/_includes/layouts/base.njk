@@ -25,8 +25,8 @@
   {%- endif %}
   {%- endif %}
   <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | url }}">
-  <link rel="preload" href="{{ '/assets/fonts/barlow-400.woff2' | url }}" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{{ '/assets/fonts/barlow-600.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/scania-sans-400.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/scania-sans-headline-700.woff2' | url }}" as="font" type="font/woff2" crossorigin>
   {%- if preloadImage %}{{ preloadImage | safe }}{% endif %}
   {%- if entry and ("hero" in c.sections) and c.hero.image %}
   {#- Hero LCP image. Keep these sizes identical to the picture in sections/hero.njk. #}

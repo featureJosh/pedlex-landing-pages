@@ -12,3 +12,4 @@ qa/shots/
 Thumbs.db
 *.log
 .env
+_site-lead/

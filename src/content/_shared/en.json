@@ -8,6 +8,7 @@
     "skipLink": "Skip to content",
     "langSwitch": {
       "label": "FR",
+      "name": "Français",
       "aria": "View this page in French"
     },
     "logoAlt": "Pedlex — We challenge space",
@@ -18,7 +19,8 @@
     "carouselNext": "Next image",
     "carouselLabel": "Pedlex projects",
     "slideOf": "of",
-    "since": "Since 1976"
+    "rangeSep": "to",
+    "since": "50 years · 1976–2026"
   },
   "form": {
     "id": "consultation",
@@ -86,6 +88,7 @@
       "Your information stays confidential"
     ],
     "callAlt": "Prefer to talk to someone?",
+    "tollFreeLabel": "Toll-free",
     "honeypotLabel": "Leave this field empty"
   },
   "footer": {
@@ -96,7 +99,8 @@
     "privacy": "Privacy policy",
     "cookies": "Cookie preferences",
     "rbq": "RBQ licence",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "site": "Visit pedlex.com"
   },
   "cookies": {
     "title": "Your privacy",
