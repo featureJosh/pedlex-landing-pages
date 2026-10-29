@@ -1,0 +1,29 @@
+# Build check on every push and PR: the site must build in preview, prefixed and
+# single-landing production modes. Works on the free plan (no Pages needed).
+name: CI build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Preview build
+        run: npm run build
+      - name: Prefixed build (GitHub Pages)
+        run: npx eleventy --quiet
+        env:
+          PATH_PREFIX: /pedlex-landing-pages/
+      - name: Single-landing production build
+        run: npx eleventy --quiet --output=_site-prod
+        env:
+          LANDING: racking
+          SITE_ENV: production

@@ -37,7 +37,17 @@ Pedlex's agency **Maïeutyk** is running four paid video campaigns (4–6 weeks 
 
 Each page ships **FR (master) + EN** and has a **thank-you page** (`/merci/`, `/en/thank-you/`). EN copy comes later: French is designed first because it is longer and harder to fit.
 
-**Live preview (team QA):** https://featurejosh.github.io/pedlex-landing-pages/ (GitHub Pages, auto-deploys from `main`). The URL is unlisted and every page is `noindex`, but anyone with the link can open it. Don't share it outside Luxy and Pedlex.
+**Repo:** https://github.com/featureJosh/pedlex-landing-pages (private).
+
+**Live preview (team QA): ⚠️ BLOCKED, needs Josh's decision.** GitHub returned *"Your current plan does not support GitHub Pages for this repository"* (HTTP 422): Pages on a **private** repo requires GitHub Pro/Team. The workflow `.github/workflows/pages.yml` is ready but gated on the repo variable `PAGES_ENABLED`. Options:
+
+| Option | Cost | Effort | Notes |
+|---|---|---|---|
+| **A. Cloudflare Pages or Netlify connected to this private repo** (recommended) | Free tier | Josh connects his account once (build `npm run build`, output `_site`) | Matches the client's likely final setup (GitHub → Netlify/CF). Per-branch preview URLs come free, so each builder branch gets its own link. |
+| B. GitHub Pro on featureJosh | ~US$4/mo | `gh api -X POST repos/featureJosh/pedlex-landing-pages/pages -f build_type=workflow && gh variable set PAGES_ENABLED --body true` | URL would be https://featurejosh.github.io/pedlex-landing-pages/ |
+| C. Make the repo public | Free | One command | ❌ Exposes internal docs (brief, client context). Not recommended. |
+
+With any option, the preview URL is reachable by anyone who has it (unlisted, every page `noindex`). Until then: `npm run dev` locally.
 
 ---
 
@@ -151,6 +161,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - [ ] Racking FR: section builds (hero, stats, trust, problem, gallery, process, why, form, faq). Assigned to builder agents via workflow. See TIMELINE.md.
 
 ### 📋 To-do
+- [ ] **BLOCKED (Josh):** team preview hosting: pick option A/B/C in §2
 - [ ] Racking FR: lead review + merge of section branches
 - [ ] Racking FR: QA agent pass → triage into §8 QA Notes
 - [ ] Racking FR: User agent pass → triage into §8 User Agent Notes
@@ -175,7 +186,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - [x] 2026-10-29: Racking FR copy captured verbatim from Maïeutyk's doc → `docs/copy/racking-fr.md` + `src/content/racking/fr.json`
 - [x] 2026-10-29: Review tooling: `scripts/shoot.mjs` (Playwright + system Edge) screenshots at 390 / 768 / 1440
 - [x] 2026-10-29: PROJECT.md, CLAUDE.md, TIMELINE.md, HANDOFF.md
-- [x] 2026-10-29: Private GitHub repo + GitHub Pages preview (Actions)
+- [x] 2026-10-29: Private GitHub repo `featureJosh/pedlex-landing-pages`; CI build check (`ci.yml`); Pages deploy workflow ready but gated (see §2: plan limitation)
 
 ### 🐞 Bugs
 _None open._ Format: `- [ ] BUG-### (severity) description: where, how to reproduce, owner`

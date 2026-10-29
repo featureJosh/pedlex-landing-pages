@@ -1,5 +1,11 @@
 # Builds the preview (all landings under /<slug>/ + QA hub) and deploys to GitHub Pages.
 # Tracking stays off (SITE_ENV defaults to preview) and every page is noindex.
+#
+# GATED: GitHub Pages on a PRIVATE repo needs GitHub Pro/Team (free plan returns HTTP 422).
+# Once Pages is available, enable it and flip the switch:
+#   gh api -X POST repos/<owner>/pedlex-landing-pages/pages -f build_type=workflow
+#   gh variable set PAGES_ENABLED --body true
+# See PROJECT.md section 2 for the alternatives (Cloudflare Pages / Netlify on the private repo).
 name: Deploy preview to GitHub Pages
 
 on:
@@ -18,6 +24,7 @@ concurrency:
 
 jobs:
   build:
+    if: vars.PAGES_ENABLED == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

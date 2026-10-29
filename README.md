@@ -3,7 +3,7 @@
 Static, CMS-agnostic landing pages for Pedlex's 2026 video campaigns (Racking, Général, Mezzanines, Rousseau). French master, English parity.
 
 - **Start here:** [PROJECT.md](PROJECT.md) (source of truth) · [CLAUDE.md](CLAUDE.md) (contributor/agent rules) · [TIMELINE.md](TIMELINE.md) (change log)
-- **Preview:** https://featurejosh.github.io/pedlex-landing-pages/ (noindex, internal)
+- **Preview:** hosting pending (GitHub Pages needs a paid plan on private repos). See PROJECT.md section 2. Locally: `npm run dev`.
 
 ```bash
 npm install

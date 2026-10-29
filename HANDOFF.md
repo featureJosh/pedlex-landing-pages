@@ -17,7 +17,7 @@
 
 ## State right now
 - Foundation is done and committed: see TIMELINE.md 13:45. Section partials in `src/_includes/sections/*.njk` are **stubs**.
-- Repo: `featureJosh/pedlex-landing-pages` (private). Pages via `.github/workflows/pages.yml`.
+- Repo: https://github.com/featureJosh/pedlex-landing-pages (private, pushed). **GitHub Pages is BLOCKED**: free plan, private repo (HTTP 422). The workflow is gated on the repo var `PAGES_ENABLED`. Options A/B/C are in PROJECT.md §2, and Josh must choose. `ci.yml` builds every push.
 
 ## Next actions
 1. Run the **builder workflow**: three builders in worktrees/branches (A: hero + stats + trust; B: problem + gallery + process + why; C: form + faq + form JS). Review each diff + screenshots, merge or prune.
