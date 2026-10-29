@@ -4,6 +4,13 @@
 /* The FR H2 is long: a wider centred head sets it on two balanced lines on desktop instead of three. */
 .why .section-head { max-width: calc(var(--container-narrow) + var(--space-xl)); }
 
+/* 4 cards in a 2x2 (grid--3 left a 3+1 orphan). Capped so the pair stays card-like
+   instead of stretching full container width. */
+.why__grid {
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
 .why__certs {
   display: flex;
   flex-wrap: wrap;

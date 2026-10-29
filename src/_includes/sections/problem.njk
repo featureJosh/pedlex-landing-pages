@@ -1,12 +1,13 @@
 {#- Problem + solution (tint). Data: c.problem { eyebrow, title, text[], cards[{ icon, title, text }] }.
-    Desktop: 5/7 split, the intro column stays in view (sticky) beside a 2x2 card grid.
-    Mobile: head, then cards (1 col, 2 cols from 40rem), then the CTA row. Styles: styles/sections/problem.css -#}
+    Desktop: 5/7 split, the intro column (pitch + CTA) stays in view (sticky) beside a 2x2 card grid.
+    Mobile: head, CTA, then cards (1 col, 2 cols from 40rem). Styles: styles/sections/problem.css -#}
 {%- from "components/ui.njk" import sectionHead, featureCard, ctaRow -%}
 <section class="section section--tint problem" id="problem" aria-labelledby="problem-title">
   <div class="container">
     <div class="split problem__layout">
       <div class="problem__intro">
         {{ sectionHead(c.problem.eyebrow, c.problem.title, c.problem.text, { id: "problem-title" }) }}
+        {{ ctaRow(c, { label: c.problem.cta }) }}
       </div>
       <div class="grid grid--2 problem__cards" data-reveal-stagger>
         {%- for card in c.problem.cards %}
@@ -14,6 +15,5 @@
         {%- endfor %}
       </div>
     </div>
-    {{ ctaRow(c, { label: c.problem.cta }) }}
   </div>
 </section>

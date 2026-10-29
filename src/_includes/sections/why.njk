@@ -1,13 +1,13 @@
 {#- Why Pedlex (white). Data: c.why { eyebrow, title, cards[{ icon, title, text }],
     certifications { label, items[{ image, name }] } }.
-    Centred head over a 3/2/1-column card grid, then a quiet certification strip that backs up the
+    Centred head over a capped 2x2 card grid (grid--3 left a 3+1 orphan), then a quiet certification strip that backs up the
     « Sécurité et conformité » card. No CTA row: the form section follows immediately.
     Styles: styles/sections/why.css -#}
 {%- from "components/ui.njk" import sectionHead, featureCard -%}
 <section class="section why" id="why" aria-labelledby="why-title">
   <div class="container">
     {{ sectionHead(c.why.eyebrow, c.why.title, null, { id: "why-title", align: "center" }) }}
-    <div class="grid grid--3 section-body" data-reveal-stagger>
+    <div class="grid grid--2 section-body why__grid" data-reveal-stagger>
       {%- for card in c.why.cards %}
       {{ featureCard(card) }}
       {%- endfor %}

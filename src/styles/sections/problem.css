@@ -16,9 +16,12 @@
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     align-items: start;
   }
-  /* Keep the argument in view while the cards scroll past. */
+  /* Keep the argument in view while the cards scroll past. The CTA lives inside the
+     intro (under the pitch) so the left column has no dead void and the button
+     rides along with the sticky text. */
   .problem__intro {
     position: sticky;
     top: calc(var(--header-h) + var(--space-l));
   }
+  .problem__intro .cta-row { margin-top: var(--space-l); }
 }
