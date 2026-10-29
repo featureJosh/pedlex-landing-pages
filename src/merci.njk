@@ -1,0 +1,36 @@
+---
+# Thank-you page per landing. GTM fires the conversion on this URL (brief §6.1);
+# the form also pushes the generate_lead dataLayer event before redirecting here.
+pagination:
+  data: landings
+  size: 1
+  alias: entry
+permalink: "{{ entry.thanksUrl }}"
+layout: layouts/base.njk
+isThanks: true
+eleventyComputed:
+  pageTitle: "{{ entry.c.thanks.metaTitle }}"
+  pageDescription: "{{ entry.c.thanks.text }}"
+  bodyClass: "page-thanks page-{{ entry.slug }}"
+---
+{%- set c = entry.c -%}
+{%- set lang = entry.lang -%}
+{%- from "components/ui.njk" import button -%}
+<section class="section thanks" aria-labelledby="thanks-title">
+  <div class="container thanks__inner">
+    <div class="thanks__icon">{% icon "circle-check" %}</div>
+    <p class="eyebrow">{{ c.thanks.eyebrow }}</p>
+    <h1 class="thanks__title" id="thanks-title">{{ c.thanks.title }}</h1>
+    <p class="thanks__text">{{ c.thanks.text }}</p>
+    <div class="thanks__next">
+      <h2 class="thanks__next-title">{{ c.thanks.nextTitle }}</h2>
+      <ol class="thanks__steps" role="list">
+        {%- for step in c.thanks.steps %}
+        <li class="thanks__step"><span class="thanks__step-num" aria-hidden="true">{{ loop.index }}</span><span>{{ step }}</span></li>
+        {%- endfor %}
+      </ol>
+    </div>
+    <p class="thanks__urgent">{{ c.thanks.urgent }} <a href="tel:{{ site.company.phoneHref }}">{{ site.company.phone }}</a></p>
+    {{ button(c.thanks.back, entry.url | url, { variant: "secondary", icon: "arrow-left" }) }}
+  </div>
+</section>

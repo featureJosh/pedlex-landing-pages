@@ -1,0 +1,19 @@
+---
+# One page per entry in src/_data/landings.js (slug x language).
+# Section order comes from the content file ("sections": [...]) so pages 2-4 can reorder or drop blocks.
+pagination:
+  data: landings
+  size: 1
+  alias: entry
+permalink: "{{ entry.url }}"
+layout: layouts/base.njk
+eleventyComputed:
+  pageTitle: "{{ entry.c.meta.title }}"
+  pageDescription: "{{ entry.c.meta.description }}"
+  bodyClass: "page-landing page-{{ entry.slug }}"
+---
+{%- set c = entry.c -%}
+{%- set lang = entry.lang -%}
+{%- for s in c.sections %}
+{% include "sections/" + s + ".njk" %}
+{%- endfor %}

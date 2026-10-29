@@ -1,0 +1,29 @@
+{
+  "name": "pedlex-landing-pages",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pedlex campaign landing pages (Racking, Général, Mezzanines, Rousseau). FR master, EN parity. Static build, CMS-agnostic.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "images": "node scripts/build-images.mjs",
+    "fonts": "node scripts/copy-fonts.mjs",
+    "prebuild": "npm run images && npm run fonts",
+    "build": "eleventy",
+    "predev": "npm run images && npm run fonts",
+    "dev": "eleventy --serve --port 8080",
+    "clean": "node -e \"import('node:fs').then(fs=>fs.rmSync('_site',{recursive:true,force:true}))\"",
+    "shoot": "node scripts/shoot.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7",
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "lucide-static": "^1.64.0",
+    "playwright-core": "^1.64.1",
+    "sharp": "^0.35.5"
+  }
+}

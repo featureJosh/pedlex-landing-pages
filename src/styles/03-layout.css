@@ -1,0 +1,116 @@
+/* Layout primitives shared by every section. Sections compose these; they do not
+   re-declare container widths, section padding or section backgrounds. */
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container--narrow { max-width: calc(var(--container-narrow) + var(--gutter) * 2); }
+
+/* Every page block is a .section. Tone modifiers set the background + text colours. */
+.section {
+  position: relative;
+  padding-block: var(--section-pad);
+}
+.section--tint { background: var(--color-bg-tint); }
+.section--dark {
+  background: var(--color-bg-dark);
+  color: var(--on-dark-2);
+  --color-heading: var(--on-dark);
+  --color-text: var(--on-dark-2);
+  --color-link: var(--on-dark);
+}
+.section--flush-top { padding-top: 0; }
+.section--compact { padding-block: calc(var(--section-pad) * 0.6); }
+
+/* Gap between a section head and the section's content. */
+.section-body { margin-top: var(--section-gap); }
+
+/* Eyebrow: condensed caps label with a short brand rule. Used above every h2. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-s);
+  font-family: var(--font-condensed);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-caps);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.5rem;
+  height: 2px;
+  background: currentColor;
+  flex: none;
+}
+.section--dark .eyebrow { color: var(--on-dark-2); }
+
+/* Section head (rendered by the sectionHead macro). */
+.section-head { max-width: 46rem; }
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head--center .eyebrow { justify-content: center; }
+.section-title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+}
+.section-lead {
+  margin-top: var(--space-m);
+  max-width: var(--measure-lead);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+}
+.section-lead + .section-lead { margin-top: var(--space-s); }
+.section-head--center .section-lead { margin-inline: auto; }
+
+/* Body copy block (paragraph stacks inside sections). */
+.prose > * + * { margin-top: var(--space-s); }
+.prose p { max-width: var(--measure); }
+
+/* Standard grids. Sections pick one; don't invent new column systems. */
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+@media (min-width: 64rem) {
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--4 { grid-template-columns: repeat(4, 1fr); }
+  .grid--2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Two-column split (text + media). Stacks on mobile; media first via --media-first. */
+.split {
+  display: grid;
+  gap: var(--space-xl) clamp(2rem, 1rem + 4vw, 5rem);
+  align-items: center;
+}
+@media (min-width: 64rem) {
+  .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .split--wide-text { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+  .split--media-first > :first-child { order: 2; }
+}
+
+/* Media frame: consistent radius + aspect for photos. */
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--grey-100);
+}
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.media--4x3 { aspect-ratio: 4 / 3; }
+.media--3x2 { aspect-ratio: 3 / 2; }
+.media--1x1 { aspect-ratio: 1; }

@@ -1,0 +1,26 @@
+---
+# QA hub for the team on the GitHub Pages preview. Ignored in single-landing (LANDING=) builds (see eleventy.config.js).
+permalink: /
+layout: layouts/base.njk
+pageTitle: "Pedlex — Landing pages (preview)"
+pageDescription: "Internal preview of the Pedlex campaign landing pages. Not for public distribution."
+bodyClass: "page-hub"
+---
+<section class="section hub">
+  <div class="container">
+    <p class="eyebrow">Luxy Media · Internal preview</p>
+    <h1 class="hub__title">Pedlex campaign landing pages</h1>
+    <p class="hub__lead">Working build for team QA. FR is the master; EN follows. Every page is <code>noindex</code> and tracking is off in previews.</p>
+    <ul class="hub__list" role="list">
+      {%- for e in landings %}
+      <li class="hub__item">
+        <span class="hub__slug">{{ e.slug }}</span>
+        <span class="hub__lang">{{ e.lang | upper }}</span>
+        <a href="{{ e.url | url }}">Landing</a>
+        <a href="{{ e.thanksUrl | url }}">Thank-you</a>
+      </li>
+      {%- endfor %}
+    </ul>
+    <p class="hub__meta">Build {{ build.commit }} · {{ build.timestamp }}</p>
+  </div>
+</section>

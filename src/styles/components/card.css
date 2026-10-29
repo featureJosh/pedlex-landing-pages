@@ -1,0 +1,45 @@
+/* Feature card: icon chip + title + text. Shared by Problem (4 cards) and Why Pedlex (6 cards).
+   Use the `featureCard` macro in components/ui.njk; never hand-write this markup. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  height: 100%;
+  padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-m);
+  transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.card:hover {
+  border-color: var(--blue-100);
+  box-shadow: var(--shadow-m);
+  transform: translateY(-2px);
+}
+.card__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-2xs);
+  border-radius: var(--radius-m);
+  background: var(--blue-100);
+  color: var(--navy-900);
+}
+.card__icon .icon { width: 1.5rem; height: 1.5rem; }
+.card__title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.card__text {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--text-2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card:hover { transform: none; }
+}

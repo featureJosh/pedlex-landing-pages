@@ -1,0 +1,56 @@
+{#- Base document. Every page (landing, thank-you, QA hub) renders through this.
+    Expects: entry (from landings.js) or pageTitle/pageDescription for non-landing pages. -#}
+{%- set c = entry.c if entry else {} -%}
+{%- set lang = entry.lang if entry else "fr" -%}
+<!doctype html>
+<html lang="{{ c.meta.htmlLang or 'fr-CA' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ pageTitle | plain }}</title>
+  <meta name="description" content="{{ pageDescription | plain }}">
+  <meta name="robots" content="{{ site.robots }}">
+  <meta name="theme-color" content="#0F3A5F">
+  {%- if entry %}
+  <link rel="alternate" hreflang="{{ lang }}-CA" href="{{ entry.url | url }}">
+  {%- if entry.alt %}
+  <link rel="alternate" hreflang="{{ entry.alt.lang }}-CA" href="{{ entry.alt.url | url }}">
+  {%- endif %}
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{ c.meta.locale }}">
+  <meta property="og:title" content="{{ pageTitle | plain }}">
+  <meta property="og:description" content="{{ pageDescription | plain }}">
+  {%- if c.meta.ogImage %}
+  <meta property="og:image" content="{{ ('/assets/img/' + c.meta.ogImage + '-1200.jpg') | url }}">
+  {%- endif %}
+  {%- endif %}
+  <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | url }}">
+  <link rel="preload" href="{{ '/assets/fonts/barlow-400.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/barlow-600.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  {%- if preloadImage %}{{ preloadImage | safe }}{% endif %}
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | url }}?v={{ build.version }}">
+  {% include "partials/tracking-head.njk" %}
+</head>
+<body class="{{ bodyClass }}">
+  {% include "partials/tracking-body.njk" %}
+  <a class="skip-link" href="#main">{{ c.ui.skipLink or "Passer au contenu" }}</a>
+  {%- if entry %}{% include "partials/header.njk" %}{% endif %}
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+  {%- if entry %}
+  {% include "partials/footer.njk" %}
+  {% include "partials/cookie-banner.njk" %}
+  {%- endif %}
+  <script>window.PEDLEX = {{ {
+    lang: lang,
+    thanksUrl: (entry.thanksUrl | url) if entry else "",
+    formEndpoint: site.form.endpoint,
+    leadEvent: site.tracking.leadEvent,
+    slug: entry.slug if entry else "",
+    tracking: site.tracking.enabled
+  } | dump | safe }};</script>
+  <script src="{{ '/assets/js/main.js' | url }}?v={{ build.version }}" defer></script>
+</body>
+</html>

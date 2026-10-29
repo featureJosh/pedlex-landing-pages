@@ -1,0 +1,22 @@
+/* Scroll reveal: add data-reveal to an element; scripts/components/reveal.js adds .is-visible.
+   Subtle by design (short distance, no bounce, no scale). Children of [data-reveal-stagger]
+   get an incremental --reveal-delay. Content is visible without JS (the .js class gates hiding). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

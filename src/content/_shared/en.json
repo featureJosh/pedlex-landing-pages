@@ -1,0 +1,75 @@
+{
+  "_note": "UI strings shared by every landing (EN). Mirrors _shared/fr.json key-for-key. EN page copy is pending Maïeutyk (brief §10 #3).",
+  "meta": {
+    "locale": "en_CA",
+    "htmlLang": "en-CA"
+  },
+  "ui": {
+    "skipLink": "Skip to content",
+    "langSwitch": { "label": "FR", "aria": "View this page in French" },
+    "logoAlt": "Pedlex — We challenge space",
+    "cta": "Request a free consultation",
+    "ctaShort": "Free consultation",
+    "phoneLabel": "Call us",
+    "carouselPrev": "Previous image",
+    "carouselNext": "Next image",
+    "carouselLabel": "Pedlex projects",
+    "slideOf": "of"
+  },
+  "form": {
+    "id": "consultation",
+    "submit": "Request my free consultation",
+    "sending": "Sending…",
+    "required": "Required field",
+    "optional": "optional",
+    "requiredNote": "Fields marked with * are required.",
+    "fields": [
+      { "name": "name", "label": "Full name", "type": "text", "autocomplete": "name", "required": true },
+      { "name": "company", "label": "Company", "type": "text", "autocomplete": "organization", "required": true },
+      { "name": "email", "label": "Email", "type": "email", "autocomplete": "email", "required": true },
+      { "name": "phone", "label": "Phone", "type": "tel", "autocomplete": "tel", "inputmode": "tel", "required": true },
+      { "name": "city", "label": "City", "type": "text", "autocomplete": "address-level2", "required": true },
+      { "name": "project", "label": "Tell us about your project", "type": "textarea", "required": false, "placeholder": "Type of storage, warehouse size, timeline…" }
+    ],
+    "errors": {
+      "required": "Please fill in this field.",
+      "email": "Enter a valid email address (e.g. name@company.com).",
+      "phone": "Enter a valid phone number (10 digits).",
+      "summary": "Please correct the highlighted fields.",
+      "network": "Sending failed. Try again or call us at 514 324-5310."
+    },
+    "consent": "By submitting this form, you agree that Pedlex may contact you about your request. Your information is handled in accordance with our <a href=\"{privacy}\" target=\"_blank\" rel=\"noopener\">privacy policy</a>.",
+    "reassurance": ["An expert replies within 1 business day", "Free, no commitment", "Your information stays confidential"]
+  },
+  "footer": {
+    "tagline": "Your partner in space optimization since 1976.",
+    "addressLabel": "Address",
+    "contactLabel": "Contact us",
+    "tollFreeLabel": "Toll-free",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie preferences",
+    "rbq": "RBQ licence",
+    "rights": "All rights reserved."
+  },
+  "cookies": {
+    "title": "Your privacy",
+    "text": "We use cookies to measure how our campaigns perform. Analytics and marketing cookies are only turned on with your consent.",
+    "accept": "Accept",
+    "reject": "Decline",
+    "learnMore": "Learn more"
+  },
+  "thanks": {
+    "metaTitle": "Thank you — request received | Pedlex",
+    "eyebrow": "Request received",
+    "title": "Thank you! A Pedlex expert will contact you shortly.",
+    "text": "We've received your request for a free consultation. A member of our team will get in touch within one business day to discuss your project.",
+    "nextTitle": "What happens next?",
+    "steps": [
+      "An expert reviews your request.",
+      "We call you to understand your needs.",
+      "We propose a tailored solution."
+    ],
+    "urgent": "Urgent project? Call us directly:",
+    "back": "Back to the page"
+  }
+}

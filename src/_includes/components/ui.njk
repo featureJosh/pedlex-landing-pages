@@ -1,0 +1,47 @@
+{#- Shared UI macros. Every section MUST use these instead of hand-rolling markup,
+    so buttons, headings and CTAs stay identical across sections and pages.
+    Import with: {% from "components/ui.njk" import button, sectionHead, ctaRow %} -#}
+
+{#- Button / CTA link.
+    opts: variant ("primary" | "secondary" | "ghost" | "on-dark"), size ("sm" | "md" | "lg"),
+          class, short (shorter label shown on narrow screens), icon (Lucide name, trailing) -#}
+{% macro button(label, href, opts = {}) -%}
+{%- set variant = opts.variant or "primary" -%}
+<a class="btn btn--{{ variant }} btn--{{ opts.size or 'md' }}{% if opts.class %} {{ opts.class }}{% endif %}" href="{{ href }}"{% if href.startsWith('#') %} data-scroll-to{% endif %}>
+  {%- if opts.short %}<span class="btn__label btn__label--long">{{ label | safe }}</span><span class="btn__label btn__label--short" aria-hidden="true">{{ opts.short | safe }}</span>
+  {%- else %}<span class="btn__label">{{ label | safe }}</span>{% endif -%}
+  {%- if opts.icon %}{% icon opts.icon, "btn__icon" %}{% endif -%}
+</a>
+{%- endmacro %}
+
+{#- Section heading block: eyebrow + h2 + optional lead paragraph(s).
+    opts: align ("start" | "center"), id (for the h2, used by aria-labelledby), tone ("light" | "dark") -#}
+{% macro sectionHead(eyebrow, title, lead, opts = {}) -%}
+<div class="section-head section-head--{{ opts.align or 'start' }}" data-reveal>
+  {%- if eyebrow %}<p class="eyebrow">{{ eyebrow | safe }}</p>{% endif %}
+  <h2 class="section-title"{% if opts.id %} id="{{ opts.id }}"{% endif %}>{{ title | safe }}</h2>
+  {%- if lead %}
+    {%- if lead is string %}<p class="section-lead">{{ lead | safe }}</p>
+    {%- else %}{% for p in lead %}<p class="section-lead">{{ p | safe }}</p>{% endfor %}{% endif %}
+  {%- endif %}
+</div>
+{%- endmacro %}
+
+{#- Feature card (icon + title + text). Used by Problem and Why Pedlex. Styles: styles/components/card.css
+    card: { icon (Lucide name), title, text }  opts: headingLevel (default 3) -#}
+{% macro featureCard(card, opts = {}) -%}
+{%- set h = opts.headingLevel or 3 -%}
+<article class="card">
+  <span class="card__icon">{% icon card.icon %}</span>
+  <h{{ h }} class="card__title">{{ card.title | safe }}</h{{ h }}>
+  <p class="card__text">{{ card.text | safe }}</p>
+</article>
+{%- endmacro %}
+
+{#- Standard CTA row placed at the end of a section. Always the one campaign CTA -> form. -#}
+{% macro ctaRow(c, opts = {}) -%}
+<div class="cta-row cta-row--{{ opts.align or 'start' }}" data-reveal>
+  {{ button(opts.label or c.ui.cta, "#" + c.form.id, { variant: opts.variant or "primary", size: "lg", icon: "arrow-right" }) }}
+  {%- if opts.note %}<p class="cta-row__note">{{ opts.note | safe }}</p>{% endif %}
+</div>
+{%- endmacro %}

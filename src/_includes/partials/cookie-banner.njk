@@ -1,0 +1,14 @@
+{#- Law 25 consent banner. Choice stored in localStorage ("pedlex-consent"), pushed to Consent Mode.
+    Hidden until JS decides it's needed; reopened from the footer "cookie preferences" button. -#}
+<section class="cookie-banner" data-cookie-banner hidden aria-labelledby="cookie-title" role="region">
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__text">
+      <h2 id="cookie-title" class="cookie-banner__title">{{ c.cookies.title }}</h2>
+      <p>{{ c.cookies.text }} <a href="{{ site.company.privacy[lang] }}" target="_blank" rel="noopener">{{ c.cookies.learnMore }}</a></p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--secondary btn--sm" data-cookie-choice="denied">{{ c.cookies.reject }}</button>
+      <button type="button" class="btn btn--primary btn--sm" data-cookie-choice="granted">{{ c.cookies.accept }}</button>
+    </div>
+  </div>
+</section>

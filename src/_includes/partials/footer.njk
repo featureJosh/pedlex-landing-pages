@@ -1,0 +1,35 @@
+{#- Footer: address, phone, privacy, cookie preferences (brief §4.4). No outbound nav. -#}
+{%- set co = site.company -%}
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      {% picture "brand/pedlex-logo-white", c.ui.logoAlt | plain, "160px", { class: "site-footer__logo" } %}
+      <p class="site-footer__tagline">{{ c.footer.tagline }}</p>
+    </div>
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">{{ c.footer.addressLabel }}</h2>
+      <address>
+        {{ co.legalName }}<br>
+        {{ co.street }}<br>
+        {{ co.city }}, {{ co.region }} {{ co.postal }}
+      </address>
+    </div>
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">{{ c.footer.contactLabel }}</h2>
+      <ul class="site-footer__list" role="list">
+        <li><a href="tel:{{ co.phoneHref }}">{% icon "phone" %}{{ co.phone }}</a></li>
+        <li><a href="tel:{{ co.tollFreeHref }}">{% icon "phone-call" %}{{ c.footer.tollFreeLabel }} {{ co.tollFree }}</a></li>
+        <li><a href="mailto:{{ co.email }}">{% icon "mail" %}{{ co.email }}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="site-footer__legal">
+      <p>© {{ build.year }} {{ co.legalName }}. {{ c.footer.rights }} · {{ c.footer.rbq }} {{ co.rbq }}</p>
+      <ul class="site-footer__legal-links" role="list">
+        <li><a href="{{ co.privacy[lang] }}" target="_blank" rel="noopener">{{ c.footer.privacy }}</a></li>
+        <li><button type="button" class="link-button" data-cookie-open>{{ c.footer.cookies }}</button></li>
+      </ul>
+    </div>
+  </div>
+</footer>

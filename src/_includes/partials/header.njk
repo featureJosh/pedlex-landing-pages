@@ -1,0 +1,20 @@
+{#- Minimal campaign header: logo, FR/EN toggle, persistent CTA. No navigation (brief §4.4). -#}
+{%- from "components/ui.njk" import button -%}
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="{{ entry.url | url }}" aria-label="{{ c.ui.logoAlt | plain }}">
+      {% picture "brand/pedlex-logo", c.ui.logoAlt | plain, "160px", { loading: "eager", class: "site-header__logo-img" } %}
+    </a>
+    <div class="site-header__actions">
+      <a class="site-header__phone" href="tel:{{ site.company.phoneHref }}">
+        {% icon "phone" %}<span class="visually-hidden">{{ c.ui.phoneLabel }} </span><span class="site-header__phone-number">{{ site.company.phone }}</span>
+      </a>
+      {%- if entry.alt %}
+      <a class="lang-switch" href="{{ (entry.alt.thanksUrl if isThanks else entry.alt.url) | url }}" hreflang="{{ entry.alt.lang }}" lang="{{ entry.alt.lang }}" aria-label="{{ c.ui.langSwitch.aria }}">{{ c.ui.langSwitch.label }}</a>
+      {%- endif %}
+      {%- if not isThanks %}
+      {{ button(c.ui.cta, "#" + c.form.id, { size: "sm", class: "site-header__cta", short: c.ui.ctaShort }) }}
+      {%- endif %}
+    </div>
+  </div>
+</header>
