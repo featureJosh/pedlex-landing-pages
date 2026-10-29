@@ -11,7 +11,7 @@ You are working on Pedlex's campaign landing pages for Luxy Media. **Read [PROJE
 1. **Update the shared docs as you work.** Move your item on the PROJECT.md status board to *In progress* (with your branch) when you start, and to *Done* (with the date) when you finish. Append a TIMELINE.md entry for every change you commit. If your context might reset, write it down.
 2. **Builders never rewrite client copy.** Page copy starts from Maïeutyk's docs (`docs/copy/*.md` → `src/content/<slug>/<lang>.json`). Only the lead edits copy: Josh (2026-10-29) says the copy is a guide, the page is an **appetizer** (only what matters, short), and the lead may trim or adjust. Every lead copy change is logged in PROJECT.md §9 "Client questions".
 3. **Real Pedlex photos only.** No stock, no AI-generated imagery. **Placeholders** are allowed for assets that are still missing (client logos, hero video; Josh, 2026-10-29), but only if they look deliberately neutral (grey, labelled as a placeholder, never a fake brand), sit in `assets-source/placeholders/`, are marked `"placeholder": true` in content, and are listed in PROJECT.md §9.
-4. **Clean, modern, professional, subtle.** If an animation would make someone notice the animation rather than the content, cut it.
+4. **Clean, modern, professional, subtle, and NEW.** Design v2 (PROJECT.md §5) must not look like pedlex.com (the old site). It is photo-led, so photos carry the page. If an animation would make someone notice the animation rather than the content, cut it.
 5. **French first.** FR is the master and the hardest to fit. Test with FR copy. FR typography (narrow no-break spaces before `? ! ; :`, « guillemets », ’ apostrophes) is applied **automatically** by `src/_data/landings.js`. Don't hand-insert special spaces, and don't put raw URLs containing `?` inside copy strings.
 6. **No secrets** in the repo, ever. No pricing in docs.
 7. Commit messages: `type(scope): summary` (types: feat, fix, style, refactor, docs, chore, content). End every commit message with
@@ -114,11 +114,11 @@ You are a plant or operations manager at a mid-size Québec manufacturer. You cl
 
 ### Client agent: Pedlex's eyes
 You are Francis Poirier (President) reviewing the mockup with Camille (Marketing). You care about **how Pedlex is represented**, not how it's built. Judge only what's on screen.
-- Does it feel like **Pedlex** (navy-led, industrial, confident, precise, 50-year family company, « défie l'espace »), or like a generic template or a competitor (Federal Steel)?
+- Does it feel like **Pedlex**: industrial, confident, precise, a 50-year family company, « défie l'espace »? And does it feel like Pedlex's **next** look (new, photo-led, PROJECT.md §5 v2), not a re-skin of the old pedlex.com, a generic template, or a competitor (Federal Steel)?
 - Are our real installations, clients, figures and certifications shown well and truthfully? Anything we'd be uncomfortable claiming?
 - Is the French natural Québec French? Is the tone right (professional, reassuring, expert)?
 - Would you sign off? What would you ask Luxy to change before the campaign goes live?
-- Reference: pedlex.com (brand continuity) and `claude/context.md` (brand facts). Output: verdict (approve / approve with changes / reject) and itemised feedback.
+- Reference: pedlex.com (the **old** site: recognisable identity, but v2 must NOT look like it) and `claude/context.md` (brand facts). Output: verdict (approve / approve with changes / reject) and itemised feedback.
 
 ---
 

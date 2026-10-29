@@ -2,7 +2,7 @@
 
 > **Source of truth for every human and agent on this project.** If something here is wrong, fix it here first.
 > Agent rules live in [CLAUDE.md](CLAUDE.md). The change log is [TIMELINE.md](TIMELINE.md). Lead session state is [HANDOFF.md](HANDOFF.md).
-> Last updated: 2026-10-29 15:30 by the project lead (Claude).
+> Last updated: 2026-10-29 16:15 by the project lead (Claude).
 
 ---
 
@@ -83,6 +83,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 │   ├── racking/             Racking 1–9 (Drive "2. Images")
 │   ├── clients/             6 client logos (Drive "Logos clients")
 │   ├── certifications/      CNESST, SafeContractor, ComplyWorks (from pedlex.com footer)
+│   ├── web/                 7 real Pedlex photos from pedlex.com (SOURCES.md); low-res, replace with originals
 │   ├── brand/               Pedlex logo (329px PNG from pedlex.com; vector pending)
 │   └── fonts/               Scania Sans CY + CY Headline WOFF2 (from pedlex.com; licensed for Pedlex)
 ├── docs/
@@ -115,37 +116,80 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 
 ---
 
-## 5. Design direction
+## 5. Design direction: v2, "entirely new, photo-led" (Josh, 2026-10-29)
 
-**Clean, modern, professional.** It should feel like a serious industrial company's site, with the details a professional visitor expects. **Subtle motion only: "it's not a theme park."** Restraint and whitespace do the work.
+> **Josh's feedback on v1:** "It looks **too much** like the current website, which is the 'old' version that will get updated, so this just seems like a new polish of an old website. Loosely follow it but create something ENTIRELY new. And be a bit more photo-heavy."
+> v1 (navy bands, condensed-caps eyebrows, icon-card grids, 4px navy caps buttons) is **retired**. It's on `main` until v2 replaces it; see `git log` before ee05eb1.
 
-- **Industrial, confident, precise** (brief §1.1). Built from Pedlex's real installs and 50-year family story. Never stock warehouses or AI renders.
-- **Echo pedlex.com without copying it.** Navy-led palette, condensed caps labels, crisp 4px button radius.
-- **Borrow Federal Steel's structure, not its look.** Their page is the client's inspiration for section order only. It has placeholder copy, mixed CTA labels, duplicated assets and generic photos. We are the opposite.
-- **One action, labels that follow the copy:** every CTA scrolls to the form and focuses the first field, and each label is the copywriter's for that spot (hero/process « Demandez une… », problem « Demandez votre… », form « Demander ma… », header « Consultation gratuite »). Josh, 2026-10-29: forcing one identical string everywhere is bad design. No off-page links except legal, phone and the FR/EN toggle.
-- **No navigation** in the header: logo, phone, FR/EN, CTA.
-- **Skimmable:** every section reads in 3 seconds via eyebrow → headline → visual. Body copy is supporting detail.
-- **An appetizer, not the company (Josh, 2026-10-29):** only what matters for the one action, so the visitor *wants* more. When in doubt, cut. No extra proof blocks or sections. The full story lives on pedlex.com (quiet footer link). Length budget at 390px: page ≤ ~7,000px, first form field ≤ ~4,800px (was 10,280 / 7,376).
+**Clean, modern, professional, subtle motion ("not a theme park").** Restraint and whitespace still do the work. What changes is the *language*: v2 must read as a new brand expression, the way the 2026 catalogue moved on from the old site, not as pedlex.com re-skinned.
 
-**Palette (official, pedlex.com):** navy `#0F3A5F`, button navy `#1C3A5C`, blue `#2F5091`, link blue `#234F96`, ink `#1D1C1E`, text `#333333` / `#3F464C`, greys `#EEEFF2` / `#D4DCE2`. Derived tints live in `src/styles/00-tokens.css`. **Never** `#005DA4` or `#8EA4B0`.
+**Keep (identity):**
+- Pedlex logo.
+- Scania Sans as the type family (licensed), but in **mixed case**. The caps Headline cut is pedlex.com's signature; don't build v2 around it.
+- A navy/blue colour family as the anchor (it may be reinterpreted: deeper ink, a brighter modern blue).
+- Real installs, the 50-year family story, Québec French first.
 
-**Motion budget:** fade-up reveal (14px, 700ms, once), animated stat counters (once), slow hero image drift, auto-scrolling logo marquee (pausable), hover lifts of ≤2px. Everything respects `prefers-reduced-motion`. Nothing loops attention-grabbingly, bounces, parallaxes or spins.
+**Retire (reads as the old site):**
+- condensed-caps eyebrows with a short rule;
+- navy-filled caps buttons with a 4px radius;
+- white icon-chip feature-card grids;
+- the solid navy stats band;
+- caps-only display headlines;
+- the "corporate brochure" section stack where every block is eyebrow → H2 → cards.
 
-### Section rhythm (Racking master)
+**Photo-led:** photography is the structure, not decoration.
+- Full-bleed photo bands, large-format images, photo-backed sections with text on scrims, and image mosaics.
+- On desktop, photos take roughly half the visual area of the page.
+- Every section should have an image reason to exist or be very short.
+- Where a photo is missing, use a **neutral, labelled placeholder** (grey frame + « Photo à venir » + intended subject in small text). Never stock, never AI. Josh is fine with placeholders for now.
 
-| # | Block | Surface | Notes |
+**An appetizer, not the company:**
+- Only what matters for the one action, so the visitor *wants* more (consultation, then pedlex.com).
+- When in doubt, cut. No extra proof blocks.
+- Length budget at 390px: page ≤ ~7,500px, first form field ≤ ~5,000px. Photos may be tall but quick to skim.
+
+**Unchanged rules:**
+- One action: every CTA scrolls to the form and focuses the first field. Labels follow the copy per section.
+- No navigation in the header (logo, phone, FR/EN, CTA).
+- Off-page links: legal, phone, FR/EN, and the quiet pedlex.com link in the footer only.
+- **Borrow Federal Steel's section order, not its look.**
+
+**Palette:** the official pedlex.com colours (navy `#0F3A5F`, blue `#2F5091`, link blue `#234F96`, ink `#1D1C1E`, greys `#EEEFF2` / `#D4DCE2`) are the *source family*. v2 may add derived values (a deeper ink, a warm concrete neutral, a brighter accent blue). Any accent outside the blue family stays under ~5% of the surface and must come from the photos (e.g. safety yellow). **Never** `#005DA4` or `#8EA4B0`. All values live as tokens in `src/styles/00-tokens.css`.
+
+**Motion budget:**
+- Reveal on scroll (fade/clip, ≤ 700ms, once) and counters (once).
+- Hero motion: photo drift / video loop / slow crossfade.
+- A pausable logo marquee.
+- Hover ≤ 2px or a subtle image zoom ≤ 1.03.
+- Everything respects `prefers-reduced-motion`. Any autoplaying motion longer than 5s needs a pause control (WCAG 2.2.2).
+
+### Content order (Racking master; v2 picks the surfaces)
+
+| # | Block | Content | Photo guidance |
 |---|---|---|---|
-| — | Header | white, sticky | logo · phone · FR/EN · CTA |
-| 1 | Hero | white | split: copy left, photo right (racking-2) with slow drift; trust line; CTA; « 50 ans · 1976–2026 » chip |
-| 2 | Stats | navy | 30 à 50 % · 50 ans · 10 000+ entreprises (2026 catalogue); counters animate once |
-| 3 | Trust bar | white | « Ils nous font confiance… » + logo marquee |
-| 4 | Problem + solution | tint | 2 paragraphs + 4 feature cards + CTA |
-| 5 | Gallery « Réalisations » | white | 5 real installs, carousel (swipe / arrows / keys) |
-| 6 | Process | tint | 3 numbered steps + installer photo (racking-5) + CTA |
-| 7 | Why Pedlex | white | 4 feature cards + certification badges |
-| 8 | Form | navy | copy + reassurance left, form card right |
-| 9 | FAQ | white | 4-item accordion + closing CTA |
-| — | Footer | deep navy | address, phones, email, privacy, cookie prefs, RBQ |
+| — | Header | logo · phone · FR/EN · CTA | may sit transparent over the hero photo, solid once scrolled |
+| 1 | Hero | H1 (ad line), lead, 1 paragraph, CTA + phone, trust line, « 50 ans · 1976–2026 » | full-bleed or dominant photo; first phone screen must show a photo |
+| 2 | Stats | 30 à 50 % · 50 ans · 10 000+ entreprises | can live on/under the hero photo |
+| 3 | Trust | « Ils nous font confiance… » + logos (6 real + placeholders to 10) | quiet |
+| 4 | Problem | H2, 1 paragraph, 4 benefits, CTA | photo-led (not icon cards) |
+| 5 | Gallery « Réalisations » | 5+ installs with captions | the photo moment: large format / mosaic |
+| 6 | Process | 3 steps, CTA | installer photo (racking-5 / web/installer-*) |
+| 7 | Why Pedlex | 4 points + certifications | short; photo optional (web/hq-fleet = « partenaire d'ici ») |
+| 8 | Form | H2, 1 paragraph, reassurance, form, phone + toll-free | photo beside or behind |
+| 9 | FAQ | 4 items + closing CTA | text, short |
+| — | Footer | address, phones, email, privacy, cookies, RBQ, pedlex.com | — |
+
+**Photo inventory:**
+- `assets-source/racking/`: 1–6 strong; 7–9 are one small store, so use at most one.
+- `assets-source/web/` (from pedlex.com, see its SOURCES.md):
+  - `ricochet-double-depth` (1958 wide)
+  - `aisle-empty-wide` (1920×500 banner)
+  - `installer-harness`
+  - `installer-lift`
+  - `aisle-stocked`
+  - `aisle-empty`
+  - `hq-fleet`
+- The `web/` files are 600–800px except the two wide ones, so don't use them full-bleed on desktop.
 
 ---
 
@@ -166,7 +210,8 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 > Agents: move items as you work: **To-do → In progress (with your branch name) → Done (with date)**. Never delete history; Done items stay.
 
 ### 🔄 In progress
-- [ ] Racking FR: approved round-1 notes → builders. Phase 1: `feat/r1-system` (tokens, macros, phone, buttons, eyebrow, merci) ∥ `feat/r1-behaviour` (scroll-to, cookie banner, marquee pause, carousel, form). Phase 2: `feat/r1-hero` (mobile photo, motion variants + placeholder loop) ∥ `feat/r1-sections` (compact cards, trust + placeholder logos, problem, stats)
+- [ ] **v2 redesign (Josh, 2026-10-29: "entirely new, photo-heavy").** Step 1 (**not started yet**; briefs in HANDOFF.md): three direction explorations in parallel (`explore/atelier`, `explore/nuit`, `explore/plan`), each a full Racking page. Lead picks one (or grafts) → `main`. Step 2: finishing builders (round-1 behaviour fixes, hero motion options, placeholders, cookie banner, merci, EN). Step 3: review round 2
+- [x] ~~Round-1 polish builders (`feat/r1-system`, `feat/r1-behaviour`)~~ stopped and pruned 2026-10-29: they polished v1, which Josh retired. Their design-neutral items carry into v2 step 2
 
 ### 📋 To-do
 - [ ] **Josh:** connect Cloudflare Pages to the repo (§2: settings table). Everything on the repo side is ready
@@ -184,6 +229,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - [ ] Rousseau page (copy to come)
 
 ### ✅ Done
+- [x] 2026-10-29: Photo intake for v2: 7 real Pedlex photos from pedlex.com → `assets-source/web/` (sources logged)
 - [x] 2026-10-29: Review round 1 run (QA / User / Client agents) and triaged into §8
 - [x] 2026-10-29: Josh's answers applied: CTA labels follow the copy doc per section; stat « 30 à 50 % » (stats + FAQ); « 1 jour ouvrable » kept; certification badges kept (label made accurate); Cloudflare Pages on Josh's account for previews
 - [x] 2026-10-29: Scania Sans CY + CY Headline self-hosted (H1 in Headline, everything else in CY); Barlow sans removed
@@ -209,6 +255,8 @@ _None open._ Format: `- [ ] BUG-### (severity) description: where, how to reprod
 
 > Review agents write raw findings to `qa/`. **Only the lead copies findings here, after approving them.** Approved notes are mandatory work. Rejected notes go under "Declined" with a one-line reason.
 > Format: `- [ ] QA-### [section] finding → expected fix` (tick when fixed, with the date).
+
+> **Round-1 notes vs v2:** these were written against v1. When v2 lands, layout/visual notes tied to v1 components (eyebrow, cards, stats band, button styling, thank-you layout) are **superseded** and get re-checked in round 2. Behaviour/a11y notes still apply and carry over: QA-1 (CTA landing), QA-2 (banner covering the CTA), QA-4 (marquee pause), QA-8 (counter), QA-9 (focus return), QA-10 (phone extension), QA-11 (44px targets), QA-12/14 (shared phone/button/heading components), QA-13 (tokens), QA-19 (focus order), USER-6.
 
 ### QA Notes
 Round 1 report: [qa/qa-2026-10-29-r1.md](qa/qa-2026-10-29-r1.md). Passed: no overflow, no console errors, one h1, clean heading order, alt text, noindex, every CTA → `#consultation` + focus, accessible validation, `generate_lead` without PII, no-JS POST, FAQ + carousel keyboard, reduced motion, CLS 0.004, contrast ≥ 5.28:1, section padding consistent.
@@ -335,6 +383,8 @@ Josh, 2026-10-29: the content is followed loosely. The lead does what is right n
 | 2026-10-29 | Placeholders are allowed for missing assets (client logos, hero video) until real files arrive; they must look intentionally neutral and be listed in §9 | Josh |
 | 2026-10-29 | EN: Luxy draft translation now, replaced by Maïeutyk's copy later | Josh |
 | 2026-10-29 | **Landing = appetizer:** short, only what matters; lead may trim client copy; reviewers' "add more proof" requests default to declined | Josh |
+| 2026-10-29 | **v1 look retired: v2 must be "entirely new" (not a polish of pedlex.com) and photo-heavy**; placeholders OK for missing photos | Josh |
+| 2026-10-29 | v2 process: 3 parallel direction explorations as full pages → lead picks/grafts → finishing builders → review round 2 | Lead |
 | 2026-10-29 | On phones (<30rem) the FR/EN toggle lives in the footer, not the header (room for phone + CTA) | Lead |
 
 ---

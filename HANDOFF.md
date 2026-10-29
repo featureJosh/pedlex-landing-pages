@@ -1,7 +1,7 @@
 # HANDOFF.md: lead session state
 
 > For the project lead (Claude) after a memory reset. Read this → PROJECT.md → the top of TIMELINE.md → `git log --oneline -20`. Then continue from **Next actions**.
-> Last updated: 2026-10-29 15:45
+> Last updated: 2026-10-29 16:15
 
 ## Who / what
 - I am the **lead web dev AI** for Luxy Media on Pedlex's campaign landing pages. Josh (josh@luxymedia.com, GitHub `featureJosh`) is my human. He checks in occasionally; work autonomously and leave everything documented.
@@ -21,17 +21,19 @@
 
 ## In flight
 - Dev server: `.claude/launch.json` → `pedlex-dev` (`npm run dev`, http://localhost:8080/racking/) for Josh to view locally.
-- Round-1 fixes go to builders in two phases (PROJECT.md §7 "In progress" lists the branches). Check `git branch -a` / `git worktree list` after a reset.
+- **v2 redesign.** Josh, 2026-10-29: v1 "looks too much like the current (old) website… create something ENTIRELY new… more photo-heavy"; placeholders are fine. Round-1 polish builders were stopped and pruned. **Step 1 is NOT started yet** (the session hit its limit right after the docs were written). Launch it first: a Workflow with 3 parallel builder agents (`isolation: 'worktree'`), each building a FULL Racking page in one v2 direction on its own branch, with full-page shots at 390 and 1440 in `qa/shots/explore-<name>/`:
+  - `explore/atelier`: light editorial, scania.com-like. White + warm concrete neutral, big mixed-case Scania Sans Bold, full-bleed photo bands, asymmetric grid, square corners, hairlines, bright-blue accent.
+  - `explore/nuit`: dark cinematic. Deep ink-navy page, photos dominate with scrims, white type, full-viewport hero, mosaics.
+  - `explore/plan`: engineered precision. White/ink with a subtle blueprint layer (fine grid lines, numbered annotations, tabular numerals), photo tiles. Never gimmicky, never fake specs.
+
+  Every brief must give the PROJECT.md §5 v2 rules (keep/retire lists, photo-led, placeholders, appetizer length budget, unchanged rules) plus CLAUDE.md. Give unique ports per agent (not 8080), and keep content JSON copy unchanged; adding image keys is OK.
 
 ## Next actions
-1. Phase 1 builders: `feat/r1-system` ∥ `feat/r1-behaviour`. Review, merge.
-2. Phase 2 builders: `feat/r1-hero` ∥ `feat/r1-sections`, against the length budget in PROJECT.md §5. Review, merge.
-3. Round-2 review (QA / User / Client), triage, then the final report to Josh.
+1. Review the 3 explorations (390 + 1440 full pages, first phone screen, length budget). Pick one, possibly grafting the best ideas from the others; merge to `main`; record why in TIMELINE + PROJECT §10. Keep the losers' screenshots in `qa/explore/` so Josh can see the alternatives.
+2. Finishing builders on the winner: round-1 behaviour/a11y carry-overs (PROJECT §8 note), hero motion options (drift / video placeholder / slideshow) as preview variants, placeholder client logos to 10, compact cookie banner, merci page, EN check.
+3. Review round 2 (QA / User / Client), triage, report to Josh.
 4. Josh connects Cloudflare Pages (PROJECT.md §2 table).
 
-## Design decisions I've made (keep consistent)
-- Hero: split layout. Copy left on white, racking-2 photo right with slow CSS drift (the "motion loop" stand-in). LCP image eager + `fetchpriority=high`.
-- Section surfaces: hero white · stats navy · trust white · problem tint · gallery white · process tint · why white · form navy · faq white · footer deep navy.
-- CTA label per section (`c.<section>.cta`, fallback `c.ui.cta`); every CTA scrolls to `#consultation` and focuses the first field.
-- Type: Scania Sans CY (body, H2/H3), CY Headline caps for the H1 only, Barlow Condensed for labels/buttons.
-- Buttons: condensed caps, 4px radius, navy. Cards: white, 1px border, 8px radius, icon chip in blue-100.
+## Design decisions (v2: set by the chosen exploration; v1 below is retired)
+- v1 (retired): split hero, navy stats band, condensed-caps eyebrows, icon-card grids, navy caps buttons. Don't reintroduce.
+- Kept from v1: per-section CTA labels (`c.<section>.cta`), CTA → `#consultation` + focus, Scania Sans (mixed case), tokens/macros/BEM architecture, content JSON model.

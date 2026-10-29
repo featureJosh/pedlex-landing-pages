@@ -11,6 +11,17 @@ Format:
 
 ---
 
+## 2026-10-29 16:15 · lead
+- **Josh retired the v1 look:** "It looks too much like the current website, which is the 'old' version… just a new polish of an old website. Loosely follow it but create something ENTIRELY new. And be a bit more photo-heavy." Placeholders are fine for missing photos. "This is a landing page, an appetizer… we don't want this insanely lengthy."
+- Stopped the round-1 polish workflow (`feat/r1-system`, `feat/r1-behaviour`; both barely started) and pruned its branches and worktrees. Their design-neutral items carry into v2 (PROJECT.md §8 note).
+- **Photo intake:** 7 real Pedlex photos from pedlex.com → `assets-source/web/` (SOURCES.md lists URLs and sizes). The image pipeline picks them up as the `web` group.
+- **Docs rewritten for v2:**
+  - PROJECT.md §5: new direction, keep/retire lists, photo-led rules, placeholder rule, length budget, content order + photo inventory. §7 plan, §8 carry-over note, §10 decisions.
+  - CLAUDE.md: rule 4 + Client agent references pedlex.com as the OLD site.
+  - HANDOFF.md: exact next steps + exploration briefs.
+  - README.
+- **Not started:** the v2 explorations (session limit). HANDOFF.md "In flight" has the briefs; launch them first.
+
 ## 2026-10-29 15:45 · lead
 - **Josh's answers, applied:**
   - Previews on Cloudflare Pages on his account; repo stays private (no Pro).
