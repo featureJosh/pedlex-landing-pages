@@ -1,0 +1,117 @@
+/* Section 9 · FAQ. Hairline-separated native <details> accordion + closing CTA card.
+   Markup: _includes/sections/faq.njk. No JS: the open/close ease uses ::details-content with
+   interpolate-size (Chromium); other browsers open instantly, which is the intended fallback. */
+
+.faq { interpolate-size: allow-keywords; }
+
+.faq__list { border-top: var(--border); }
+
+.faq__item { border-bottom: var(--border); }
+
+/* ---- Question row ------------------------------------------------------------------- */
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-block: var(--space-m);
+  list-style: none;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.faq__question::-webkit-details-marker { display: none; }
+.faq__question::marker { content: ""; }
+.faq__question:hover { color: var(--navy-900); }
+.faq__question:focus-visible { outline-offset: var(--space-3xs); }
+.faq__question-text { text-wrap: balance; }
+
+.faq__toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--space-l);
+  height: var(--space-l);
+  border: var(--border);
+  border-radius: 50%;
+  color: var(--navy-900);
+  transition: background-color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+.faq__toggle .icon {
+  width: 1em;
+  height: 1em;
+  stroke-width: 2;
+  transition: transform var(--dur) var(--ease-out);
+}
+.faq__question:hover .faq__toggle { border-color: var(--navy-900); }
+.faq__item[open] .faq__toggle {
+  border-color: var(--navy-900);
+  background: var(--navy-900);
+  color: var(--white);
+}
+.faq__item[open] .faq__toggle .icon { transform: rotate(45deg); }
+
+/* ---- Answer ------------------------------------------------------------------------- */
+.faq__answer {
+  padding-bottom: var(--space-m);
+  padding-right: var(--space-2xl);
+  color: var(--text-2);
+}
+.faq__answer p { max-width: var(--measure); }
+@media (max-width: 40rem) {
+  .faq__answer { padding-right: 0; }
+}
+
+/* Smooth height on open/close (progressive enhancement). */
+.faq__item::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition: block-size var(--dur) var(--ease-out), content-visibility var(--dur) allow-discrete;
+}
+.faq__item[open]::details-content { block-size: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .faq__item::details-content { transition: none; }
+}
+
+/* ---- Closing CTA -------------------------------------------------------------------- */
+.faq__closing {
+  margin-top: var(--space-2xl);
+  padding: var(--space-l) var(--space-m);
+  border: var(--border);
+  border-radius: var(--radius-m);
+  background: var(--color-bg-tint);
+  text-align: center;
+}
+@media (min-width: 48rem) {
+  .faq__closing { padding: var(--space-xl) var(--space-2xl); }
+}
+.faq__closing-title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+}
+.faq__closing-text {
+  margin-top: var(--space-xs);
+  color: var(--text-2);
+  text-wrap: balance;
+}
+.faq__closing .cta-row {
+  flex-direction: column;
+  gap: var(--space-s);
+  margin-top: var(--space-l);
+}
+.faq__closing .cta-row__note { color: var(--text-2); }
+.faq__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: var(--space-xl);
+  color: var(--navy-900);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+}
+.faq__phone:hover { text-decoration: underline; }
+.faq__phone .icon { width: 1.125em; height: 1.125em; color: var(--blue-600); }
