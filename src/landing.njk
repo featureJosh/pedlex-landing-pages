@@ -17,7 +17,7 @@ eleventyComputed:
 {#- Sections listed here get a running number in their eyebrow (« 02 · Réalisations »), counted in
     page order so reordering the content file renumbers them. An array, because a plain counter
     reassigned inside a Nunjucks loop does not survive the iteration. -#}
-{%- set numbered = ["problem", "gallery", "process", "why", "reviews", "faq"] -%}
+{%- set numbered = ["problem", "gallery", "process", "why", "reviews", "faq", "form"] -%}
 {%- set counter = [] -%}
 {%- for s in c.sections %}
 {%- set sectionIndex = null -%}

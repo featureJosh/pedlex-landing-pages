@@ -2,13 +2,17 @@
    The list is cloned so the rail holds two identical halves (CSS slides it by -50%); clones are
    aria-hidden with empty alts so assistive tech reads each company once. If one set is narrower
    than the viewport, each half repeats it so the loop never shows a gap, and the duration grows to
-   keep the same speed. Reduced motion (or no JS): nothing runs and the static centred row stays.
+   keep the same speed. The loop length comes from the --dur-marquee token (00-tokens.css).
+   The section's [data-marquee-pause] button stops and restarts it (WCAG 2.2.2).
+   Reduced motion (or no JS): nothing runs, the static centred row stays and the button stays hidden.
    Markup: sections/trust.njk. Styles: styles/sections/trust.css. */
 (function () {
-  const SECONDS_PER_SET = 40;
+  const seconds = (v) => (v.trim().endsWith("ms") ? parseFloat(v) / 1000 : parseFloat(v)) || 40;
 
   Pedlex.ready(() => {
     if (Pedlex.reducedMotion()) return;
+    const perSet = seconds(getComputedStyle(document.documentElement).getPropertyValue("--dur-marquee"));
+
     Pedlex.$$("[data-marquee]").forEach((root) => {
       const rail = root.querySelector("[data-marquee-rail]");
       const list = rail && rail.querySelector("[data-marquee-list]");
@@ -27,7 +31,17 @@
         clone.querySelectorAll("img").forEach((img) => { img.alt = ""; });
         rail.appendChild(clone);
       }
-      root.style.setProperty("--trust-loop", `${SECONDS_PER_SET * perHalf}s`);
+      root.style.setProperty("--trust-loop", `${perSet * perHalf}s`);
+
+      const btn = root.parentElement.querySelector("[data-marquee-pause]");
+      if (!btn) return;
+      btn.hidden = false;
+      btn.addEventListener("click", () => {
+        const paused = !root.hasAttribute("data-marquee-paused");
+        root.toggleAttribute("data-marquee-paused", paused);
+        btn.toggleAttribute("data-paused", paused);
+        btn.setAttribute("aria-label", paused ? btn.dataset.labelPlay : btn.dataset.labelPause);
+      });
     });
   });
 })();

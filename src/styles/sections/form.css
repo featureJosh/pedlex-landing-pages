@@ -16,22 +16,23 @@
 @media (min-width: 64rem) {
   .consult__layout {
     grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    /* Empty flexible rows above and below centre the intro + call stack against the card. */
-    grid-template-rows: 1fr auto auto 1fr;
-    grid-template-areas: ". card" "intro card" "call card" ". card";
+    /* Intro top-aligned with the card (its eyebrow on the card's top line, like every other
+       section head); the call alternative follows it, the last row absorbs the card's extra height. */
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: "intro card" "call card" ". card";
     row-gap: var(--space-l);
   }
 }
 
 /* The second paragraph is supporting detail: one step down from the lead. */
-.consult .section-lead + .section-lead { font-size: var(--fs-base); }
+.consult .section-lead + .section-lead { font-size: var(--fs-body); }
 
 /* ---- Reassurance list --------------------------------------------------------------- */
 .consult__intro .consult__reassure { /* beats the ul[role="list"] reset */
   display: grid;
   gap: var(--space-xs);
-  margin-top: var(--space-l);
-  padding-top: var(--space-l);
+  margin-top: var(--section-gap);
+  padding-top: var(--section-gap);
   border-top: 1px solid var(--line-dark);
 }
 .consult__reassure-item {
@@ -39,7 +40,7 @@
   align-items: flex-start;
   gap: var(--space-xs);
   color: var(--on-dark);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-snug);
 }
 .consult__check {
@@ -53,7 +54,7 @@
   background: var(--navy-700);
   color: var(--on-dark);
 }
-.consult__check .icon { width: var(--space-s); height: var(--space-s); stroke-width: 2.5; }
+.consult__check .icon { width: var(--space-s); height: var(--space-s); stroke-width: var(--stroke-bold); }
 
 /* ---- Call alternative --------------------------------------------------------------- */
 .consult__call {
@@ -61,24 +62,28 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3xs) var(--space-xs);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-body);
   color: var(--on-dark-3);
 }
 .consult__call-link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
-  min-height: var(--space-xl);
-  font-family: var(--font-condensed);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-semibold);
+  min-height: var(--target);
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
   color: var(--on-dark);
   text-decoration: none;
 }
 .consult__call-link:hover { color: var(--on-dark); text-decoration: underline; }
-.consult__call-link .icon { width: 1.125em; height: 1.125em; color: var(--on-dark-2); }
+.consult__call-link .icon { width: var(--icon-s); height: var(--icon-s); color: var(--on-dark-2); }
 /* Toll-free for callers outside the 514 (campaign covers all of Québec). */
 .consult__call-toll {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
   color: var(--on-dark-2);
   white-space: nowrap;
   text-decoration: none;
@@ -94,7 +99,7 @@
   --color-heading: var(--ink);
   --color-text: var(--text);
   --color-link: var(--blue-700);
-  padding: var(--space-m);
+  padding: var(--space-s);
   border-radius: var(--radius-m);
   background: var(--white);
   color: var(--text);
@@ -112,7 +117,7 @@
 .lead-form { container-type: inline-size; }
 
 .lead-form__note {
-  font-size: var(--fs-xs);
+  font-size: var(--fs-label);
   color: var(--text-3);
 }
 
@@ -126,20 +131,27 @@
   border-radius: var(--radius-s);
   background: var(--error-bg);
   color: var(--error);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-snug);
 }
-.lead-form__alert-box .icon { width: 1.125em; height: 1.125em; margin-top: calc((1lh - 1.125em) / 2); }
+.lead-form__alert-box .icon { width: var(--icon-s); height: var(--icon-s); margin-top: calc((1lh - var(--icon-s)) / 2); }
 
 .lead-form__grid {
   display: grid;
-  gap: var(--space-m) var(--space-s);
+  gap: var(--space-s);
   margin-top: var(--space-m);
 }
 @container (min-width: 24rem) {
   .lead-form__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .lead-form__field--full { grid-column: 1 / -1; }
+}
+/* Phones: one field per row, except phone + city, which are short enough to share one. */
+@container (max-width: 23.99rem) {
+  .lead-form__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .lead-form__field { grid-column: 1 / -1; }
+  .lead-form__field:has([data-validate="tel"]),
+  .lead-form__field:has([autocomplete="address-level2"]) { grid-column: auto; }
 }
 
 .lead-form__field {
@@ -150,8 +162,8 @@
 }
 
 .lead-form__label {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
   color: var(--ink);
 }
@@ -173,7 +185,7 @@
   border-radius: var(--radius-s);
   background: var(--white);
   color: var(--ink);
-  font-size: var(--fs-base);
+  font-size: var(--fs-body);
   line-height: var(--lh-snug);
   transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
 }
@@ -186,7 +198,7 @@
   outline-offset: 0;
 }
 .lead-form__input--textarea {
-  min-height: calc(var(--space-xl) * 2.5);
+  min-height: calc(var(--space-xl) * 2);
   resize: vertical;
   line-height: var(--lh-body);
 }
@@ -199,23 +211,25 @@
   display: flex;
   align-items: flex-start;
   gap: var(--space-2xs);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-snug);
   color: var(--error);
 }
 .lead-form__error[hidden] { display: none; }
-.lead-form__error .icon { width: 1.0625em; height: 1.0625em; margin-top: calc((1lh - 1.0625em) / 2); }
+.lead-form__error .icon { width: var(--icon-s); height: var(--icon-s); margin-top: calc((1lh - var(--icon-s)) / 2); }
 
 .lead-form__submit {
   width: 100%;
   margin-top: var(--space-l);
+  padding-inline-start: var(--space-m);   /* a little more room so the label holds one line */
 }
-.lead-form__submit .btn__label { text-wrap: balance; }
+/* text-wrap-style, not the text-wrap shorthand: the shorthand would undo the phones' nowrap. */
+.lead-form__submit .btn__label { text-wrap-style: balance; }
 
 .lead-form__consent {
   margin-top: var(--space-s);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-label);
   line-height: var(--lh-body);
   color: var(--text-3);
 }

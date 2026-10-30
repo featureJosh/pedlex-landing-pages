@@ -1,31 +1,33 @@
 {#- Testimonials (tint). Raffi (2026-10-29): « the most important piece », placed before the FAQ and form.
-    Data: c.reviews { eyebrow, title, placeholderNote?, items[{ quote, name, role, placeholder? }] }, c.ui.placeholder.
-    NO invented quotes: until Pedlex supplies approved testimonials every item is `placeholder: true`
-    and renders as a visibly neutral card (dashed tag, grey bars) with the note underneath.
-    Phones: a horizontal scroll-snap row (keeps the page short); from 48rem: three columns.
+    Data: c.reviews { eyebrow, title, items[{ quote, name, role, sample? }] }, c.ui.sample.
+    Until Pedlex supplies approved testimonials the items are SAMPLES (Josh, 2026-10-30): realistic,
+    fictional people at generic companies (no real names, no figures or claims), each card tagged
+    « Exemple ». Real quotes replace them one for one; drop `sample` then.
+    Phones: a horizontal scroll-snap row (keeps the page short); from 48rem: three columns. The row is
+    only a tab stop while it actually scrolls (scripts/sections/reviews.js).
     Styles: styles/sections/reviews.css -#}
 {%- from "components/ui.njk" import sectionHead -%}
 <section class="section section--tint reviews" id="reviews" aria-labelledby="reviews-title">
   <div class="container">
     {{ sectionHead(c.reviews.eyebrow, c.reviews.title, null, { id: "reviews-title", align: "center", index: sectionIndex }) }}
-    <ul class="reviews__list section-body" role="list" tabindex="0" aria-label="{{ c.reviews.eyebrow | plain }}" data-reveal-stagger>
+    <ul class="reviews__list section-body" role="list" aria-label="{{ c.reviews.eyebrow | plain }}" data-reviews-row data-reveal-stagger>
       {%- for item in c.reviews.items %}
-      <li class="reviews__item{% if item.placeholder %} reviews__item--placeholder{% endif %}">
+      {%- set initials = [] %}
+      {%- for word in (item.name | plain).split(" ") %}{% if word %}{% set _ = initials.push(word | first | upper) %}{% endif %}{% endfor %}
+      <li class="reviews__item">
         <figure class="reviews__card">
-          {% icon "quote", "reviews__mark" %}
-          {%- if item.placeholder %}<span class="reviews__tag">{{ c.ui.placeholder }}</span>{% endif %}
+          <span class="reviews__mark" aria-hidden="true">«</span>
+          {%- if item.sample %}<span class="reviews__tag">{{ c.ui.sample }}</span>{% endif %}
           <blockquote class="reviews__quote">
             <p>{{ item.quote | safe }}</p>
-            {%- if item.placeholder %}<span class="reviews__lines" aria-hidden="true"><span></span><span></span><span></span></span>{% endif %}
           </blockquote>
           <figcaption class="reviews__author">
-            <span class="reviews__avatar" aria-hidden="true">{% icon "user-round" %}</span>
+            <span class="reviews__avatar" aria-hidden="true">{{ initials | join("") | truncate(2, true, "") }}</span>
             <span class="reviews__who"><span class="reviews__name">{{ item.name | safe }}</span><span class="reviews__role">{{ item.role | safe }}</span></span>
           </figcaption>
         </figure>
       </li>
       {%- endfor %}
     </ul>
-    {%- if c.reviews.placeholderNote %}<p class="reviews__note">{{ c.reviews.placeholderNote | safe }}</p>{% endif %}
   </div>
 </section>

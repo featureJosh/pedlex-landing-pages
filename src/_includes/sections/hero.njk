@@ -39,7 +39,7 @@
   {%- if variant == "video" %}
   <div class="hero__video-ui">
     {%- if c.hero.video.placeholder %}<p class="hero__placeholder">{{ c.ui.video.placeholder | safe }}</p>{% endif %}
-    <button class="hero__pause" type="button" aria-pressed="false" data-hero-pause data-label-pause="{{ c.ui.video.pause | plain }}" data-label-play="{{ c.ui.video.play | plain }}" aria-label="{{ c.ui.video.pause | plain }}" hidden>
+    <button class="hero__pause" type="button" data-hero-pause data-label-pause="{{ c.ui.video.pause | plain }}" data-label-play="{{ c.ui.video.play | plain }}" aria-label="{{ c.ui.video.pause | plain }}" hidden>
       {% icon "pause", "hero__pause-icon hero__pause-icon--pause" %}{% icon "play", "hero__pause-icon hero__pause-icon--play" %}
     </button>
   </div>

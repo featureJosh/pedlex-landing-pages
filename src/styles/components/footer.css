@@ -1,52 +1,70 @@
+/* Footer (partials/footer.njk). Navy. Brand block, then address + contact (side by side from small
+   phones up), then the legal row. Every link is a 44px-tall target. */
 .site-footer {
   background: var(--navy-950);
   color: var(--on-dark-2);
-  font-size: var(--fs-sm);
-  padding-top: var(--space-2xl);
+  font-size: var(--fs-body);
+  padding-top: var(--space-xl);
 }
 .site-footer a { color: var(--on-dark); text-decoration: none; }
 .site-footer a:hover { color: var(--on-dark); text-decoration: underline; }
 .site-footer__grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-l) var(--space-xl);
-  padding-bottom: var(--space-xl);
+  padding-bottom: var(--space-l);
+}
+@media (min-width: 30rem) {
+  .site-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-footer__brand { grid-column: 1 / -1; }
 }
 @media (min-width: 48rem) {
-  .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .site-footer { padding-top: var(--space-2xl); }
+  .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; padding-bottom: var(--space-xl); }
+  .site-footer__brand { grid-column: auto; }
 }
-.site-footer__logo { width: 9rem; height: auto; }
-.site-footer__tagline { margin-top: var(--space-s); max-width: 28ch; color: var(--on-dark-3); }
+.site-footer__logo { width: var(--logo-w-footer); height: auto; }
+.site-footer__tagline { margin-top: var(--space-s); max-width: var(--measure-narrow); color: var(--on-dark-3); }
 .site-footer__site {
   display: inline-flex;
   align-items: center;
   gap: var(--space-3xs);
-  margin-top: var(--space-s);
-  font-weight: var(--fw-semibold);
+  min-height: var(--target);
+  font-weight: var(--fw-bold);
 }
-.site-footer__site .icon { width: 1em; height: 1em; }
+.site-footer__site .icon { width: var(--icon-s); height: var(--icon-s); }
 .site-footer__heading {
-  margin-bottom: var(--space-xs);
-  font-family: var(--font-condensed);
-  font-size: var(--fs-eyebrow);
-  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-2xs);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-regular);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
   color: var(--on-dark-3);
 }
 .site-footer address { font-style: normal; line-height: var(--lh-body); }
-.site-footer__list { display: grid; gap: var(--space-2xs); }
-.site-footer__list a { display: inline-flex; align-items: center; gap: var(--space-2xs); }
-.site-footer__list .icon { width: 1rem; height: 1rem; color: var(--on-dark-3); }
+.site-footer__list { display: grid; }
+.site-footer__list a { display: inline-flex; align-items: center; gap: var(--space-2xs); min-height: var(--target); }
+.site-footer__list .icon { width: var(--icon-s); height: var(--icon-s); color: var(--on-dark-3); }
 .site-footer__legal {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--space-xs) var(--space-l);
-  padding-block: var(--space-m);
+  gap: 0 var(--space-l);
+  padding-block: var(--space-s);
   border-top: 1px solid var(--line-dark);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-label);
   color: var(--on-dark-3);
 }
-.site-footer__legal-links { display: flex; flex-wrap: wrap; gap: var(--space-m); }
-.site-footer__legal .link-button { color: var(--on-dark); text-decoration: none; font-size: inherit; }
+.site-footer__legal-links { display: flex; flex-wrap: wrap; column-gap: var(--space-m); }
+.site-footer__legal-links a,
+.site-footer__legal .link-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+  color: var(--on-dark);
+  text-decoration: none;
+  font-size: inherit;
+}
 .site-footer__legal .link-button:hover { text-decoration: underline; }

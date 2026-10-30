@@ -1,5 +1,5 @@
 {
-  "_source": "docs/copy/racking-fr.md (Maïeutyk, verbatim). Do not rewrite copy here; only CTA/form microcopy may be adjusted (brief §9.2) and every adjustment is logged in PROJECT.md. Per-section `cta` keys follow the copy doc's button labels (Josh, 2026-10-29); sections without one use ui.cta.",
+  "_source": "docs/copy/racking-fr.md (Maïeutyk, verbatim). The copy doc is a guide: the lead may trim for the appetizer format (Josh, 2026-10-29); every change is logged in PROJECT.md §9. Per-section `cta` keys follow the copy doc's button labels (Josh, 2026-10-29); sections without one use ui.cta.",
   "meta": {
     "title": "Palettiers industriels sur mesure — consultation gratuite | Pedlex",
     "description": "Votre entrepôt est plein… ou simplement mal optimisé? Pedlex conçoit et installe des systèmes de palettiers adaptés à vos produits, à votre espace et à vos opérations. Consultation gratuite.",
@@ -19,7 +19,7 @@
   "hero": {
     "eyebrow": "Maximisez votre capacité d'entreposage",
     "title": "Votre entrepôt est plein… ou simplement mal optimisé?",
-    "lead": "Gagnez de l'espace, facilitez l'accès à votre inventaire et réduisez les déplacements inutiles.",
+    "lead": "Pedlex conçoit et installe des palettiers sur mesure : plus d'espace, un inventaire accessible, moins de déplacements.",
     "cta": "Demandez une consultation gratuite",
     "variant": "image",
     "image": "racking/racking-2",
@@ -63,7 +63,7 @@
     "eyebrow": "Optimisez votre entreposage",
     "title": "Plus de capacité et des opérations plus fluides.",
     "text": [
-      "Pedlex vous aide à mieux exploiter votre espace avec des systèmes de palettiers conçus pour augmenter votre capacité d'entreposage et faciliter le travail de vos équipes."
+      "Des systèmes de palettiers conçus pour augmenter votre capacité et faciliter le travail de vos équipes."
     ],
     "cards": [
       {
@@ -83,16 +83,16 @@
       },
       {
         "icon": "ruler-dimension-line",
-        "title": "Un entreposage adapté aux produits hors format",
-        "text": "Entreposez vos produits longs, volumineux ou atypiques grâce à des systèmes adaptés à leurs dimensions et à vos opérations."
+        "title": "Produits hors format",
+        "text": "Des systèmes adaptés aux produits longs, volumineux ou atypiques."
       }
     ],
     "cta": "Demandez votre consultation gratuite"
   },
   "gallery": {
     "eyebrow": "Réalisations",
-    "title": "Voyez comment un système de palettiers bien pensé transforme un entrepôt.",
-    "lead": "Des installations conçues pour maximiser la capacité, faciliter l'accès aux produits et soutenir des opérations plus efficaces.",
+    "title": "Des entrepôts transformés par des palettiers bien pensés.",
+    "lead": "Plus de capacité, un accès facile aux produits, des opérations plus efficaces.",
     "items": [
       {
         "image": "racking/racking-4",
@@ -107,7 +107,7 @@
       {
         "image": "racking/racking-6",
         "alt": "Palettiers jaunes à plusieurs niveaux dans un grand entrepôt",
-        "caption": "Entreposage à haute densité"
+        "caption": "Palettiers sur plusieurs niveaux"
       },
       {
         "image": "racking/racking-1",
@@ -122,29 +122,29 @@
     ]
   },
   "process": {
-    "eyebrow": "Une démarche simple et sans engagement",
-    "title": "Votre projet d'optimisation commence par une consultation gratuite.",
+    "eyebrow": "Simple et sans engagement",
+    "title": "Tout commence par une consultation gratuite.",
     "image": "racking/racking-5",
     "imageAlt": "Installateur Pedlex sur une nacelle assemblant un palettier",
     "steps": [
       {
         "title": "Demandez votre consultation gratuite",
-        "text": "Remplissez notre court formulaire pour nous parler de votre entrepôt et de vos besoins."
+        "text": "Remplissez notre court formulaire pour nous parler de votre entrepôt."
       },
       {
         "title": "Échangez avec un expert Pedlex",
-        "text": "Un membre de notre équipe communiquera avec vous pour mieux comprendre vos défis d'entreposage et discuter des possibilités d'optimisation."
+        "text": "Un expert vous appelle pour comprendre vos défis et discuter des possibilités."
       },
       {
         "title": "Découvrez les solutions adaptées",
-        "text": "Selon vos besoins, Pedlex vous accompagne dans la conception et la réalisation d'un système de palettiers adapté à vos opérations."
+        "text": "Pedlex conçoit et installe un système de palettiers adapté à vos opérations."
       }
     ],
     "cta": "Demandez une consultation gratuite"
   },
   "why": {
     "eyebrow": "Pourquoi Pedlex",
-    "title": "Un système de palettiers pensé pour vos opérations, pas seulement pour vos palettes.",
+    "title": "Pensé pour vos opérations, pas seulement pour vos palettes.",
     "cards": [
       {
         "icon": "drafting-compass",
@@ -159,7 +159,7 @@
       {
         "icon": "shield-check",
         "title": "Sécurité et conformité",
-        "text": "Installation par des équipes certifiées, puis inspection et certification par des ingénieurs selon la norme CSA A344."
+        "text": "Installation par des équipes certifiées et, sur demande, inspection et certification par des ingénieurs selon la norme CSA A344."
       },
       {
         "icon": "map-pin",
@@ -195,25 +195,24 @@
   "reviews": {
     "eyebrow": "Témoignages",
     "title": "Ce que nos clients disent de Pedlex.",
-    "placeholderNote": "Placeholder : témoignages réels à fournir par Pedlex (nom, poste, entreprise, citation approuvée).",
     "items": [
       {
-        "placeholder": true,
-        "quote": "Témoignage client à venir.",
-        "name": "Nom du client",
-        "role": "Poste, entreprise"
+        "sample": true,
+        "quote": "On pensait devoir déménager. Pedlex a revu notre aménagement et on a trouvé l'espace qu'il nous fallait sans quitter l'immeuble.",
+        "name": "Marc-André T.",
+        "role": "Directeur des opérations, fabricant, Drummondville"
       },
       {
-        "placeholder": true,
-        "quote": "Témoignage client à venir.",
-        "name": "Nom du client",
-        "role": "Poste, entreprise"
+        "sample": true,
+        "quote": "Nos produits longs étaient entreposés au sol et ça ralentissait tout. L'équipe est venue voir notre façon de travailler avant de proposer quoi que ce soit. Le cantilever a libéré une allée complète et nos caristes gagnent du temps tous les jours.",
+        "name": "Stéphane L.",
+        "role": "Contremaître, centre de distribution de matériaux, Saint-Hyacinthe"
       },
       {
-        "placeholder": true,
-        "quote": "Témoignage client à venir.",
-        "name": "Nom du client",
-        "role": "Poste, entreprise"
+        "sample": true,
+        "quote": "Équipe à l'écoute, plans clairs, installation faite en dehors de nos heures de pointe. Rien à redire.",
+        "name": "Julie B.",
+        "role": "Directrice d'entrepôt, distributeur alimentaire, Laval"
       }
     ]
   },
@@ -243,7 +242,7 @@
     "eyebrow": "Consultation gratuite",
     "title": "Et si votre entrepôt pouvait être plus efficace?",
     "text": [
-      "Profitez d'une consultation gratuite avec un expert Pedlex pour discuter de vos défis d'entreposage et explorer les solutions adaptées à votre espace et à vos opérations."
+      "Un expert Pedlex discute avec vous de vos défis d'entreposage et des solutions adaptées à votre espace."
     ],
     "fields": [
       {
@@ -308,7 +307,7 @@
       {
         "value": 10000,
         "suffix": "+",
-        "label": "entreprises servies au Québec et ailleurs"
+        "label": "entreprises servies"
       }
     ]
   },

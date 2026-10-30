@@ -18,8 +18,8 @@
   list-style: none;
   cursor: pointer;
   color: var(--ink);
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
   transition: color var(--dur-fast) var(--ease-out);
 }
@@ -42,9 +42,9 @@
     color var(--dur) var(--ease-out);
 }
 .faq__toggle .icon {
-  width: 1em;
-  height: 1em;
-  stroke-width: 2;
+  width: var(--icon-s);
+  height: var(--icon-s);
+  stroke-width: var(--stroke-bold);
   transition: transform var(--dur) var(--ease-out);
 }
 .faq__question:hover .faq__toggle { border-color: var(--navy-900); }

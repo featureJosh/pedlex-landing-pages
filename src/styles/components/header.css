@@ -1,6 +1,7 @@
-/* Sticky campaign header (partials/header.njk). Transparent over the dark hero (white logo, white
-   CTA); white with the navy logo once the page scrolls ([data-scrolled]) or on pages without a dark
-   hero (.site-header--solid). The hero pulls itself up under it (hero.css). */
+/* Sticky campaign header (partials/header.njk). Transparent over the dark hero (white logo, no
+   actions); white with the navy logo, the call button and the CTA as soon as it sticks (top bar
+   scrolled away, [data-scrolled]) or on pages without a dark hero (.site-header--solid). The hero pulls itself
+   up under it (hero.css). */
 .site-header {
   position: sticky;
   top: 0;
@@ -13,8 +14,8 @@
 .site-header[data-scrolled],
 .site-header--solid {
   background: var(--header-bg);
-  -webkit-backdrop-filter: saturate(1.4) blur(10px);
-  backdrop-filter: saturate(1.4) blur(10px);
+  -webkit-backdrop-filter: var(--blur-header);
+  backdrop-filter: var(--blur-header);
   border-bottom-color: var(--line);
   box-shadow: var(--shadow-s);
 }
@@ -26,30 +27,46 @@
   height: 100%;
 }
 .site-header__logo { position: relative; display: block; flex: none; }
-.site-header__logo-img { width: clamp(8rem, 6.5rem + 4vw, 11.5rem); height: auto; }
+.site-header__logo-img { width: var(--logo-w); height: auto; transition: opacity var(--dur) var(--ease-out); }
 .site-header__logo-img--dark {
   position: absolute;
   inset: 0;
   opacity: 0;
 }
-.site-header__logo-img { transition: opacity var(--dur) var(--ease-out); }
 .site-header[data-scrolled] .site-header__logo-img--light,
 .site-header--solid .site-header__logo-img--light { opacity: 0; }
 .site-header[data-scrolled] .site-header__logo-img--dark,
 .site-header--solid .site-header__logo-img--dark { opacity: 1; }
 
-/* CTA: white button over the photo, the standard navy button once solid. */
-.site-header__cta { white-space: nowrap; }
-.site-header:not([data-scrolled]):not(.site-header--solid) .site-header__cta {
-  --btn-bg: var(--white);
-  --btn-fg: var(--navy-900);
-  --btn-border: var(--white);
-  --btn-bg-hover: var(--blue-100);
-  --btn-badge-bg: var(--navy-900);
-  --btn-badge-fg: var(--white);
+/* ---- Actions: hidden (and out of the tab order) until the header turns solid ---- */
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  transition: opacity var(--dur) var(--ease-out), visibility var(--dur) var(--ease-out);
 }
-/* Narrow phones: the badge goes so logo + short CTA fit down to 360px. */
+.site-header:not([data-scrolled]):not(.site-header--solid) .site-header__actions {
+  visibility: hidden;
+  opacity: 0;
+}
+.site-header__cta { white-space: nowrap; }
+.site-header__phone { font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* The number shows from tablets up; phones get a square call button. */
+@media (max-width: 47.99rem) {
+  .site-header__phone { width: var(--btn-h-sm); padding: 0; }
+  .site-header__phone .btn__label { display: none; }
+  .site-header__phone .btn__badge { width: auto; height: auto; background: none; }
+}
+@media (min-width: 48rem) {
+  .site-header__phone .btn__badge { order: -1; background: none; width: auto; }
+  .site-header__phone:has(.btn__badge) { padding-inline: var(--space-s); }
+}
+/* Phones: the CTA badge goes so logo + call + short CTA fit at 390px; below 24rem the call button
+   goes too (the top bar and the hero keep the number). */
 @media (max-width: 26rem) {
   .site-header__cta .btn__badge { display: none; }
   .site-header__cta { padding-inline: var(--space-s); }
+}
+@media (max-width: 23.99rem) {
+  .site-header__phone { display: none; }
 }

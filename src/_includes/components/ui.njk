@@ -5,13 +5,15 @@
 {#- Button / CTA link.
     opts: variant ("primary" | "secondary" | "on-dark" | "glass"), size ("sm" | "md" | "lg"),
           class, short (shorter label shown on narrow screens), icon (Lucide name, trailing, drawn in
-          a square badge), attrs (extra raw attributes, e.g. aria-label) -#}
+          a square badge), iconStart (true: the badge leads the label, for « back » links),
+          attrs (extra raw attributes, e.g. aria-label) -#}
 {% macro button(label, href, opts = {}) -%}
 {%- set variant = opts.variant or "primary" -%}
 <a class="btn btn--{{ variant }} btn--{{ opts.size or 'md' }}{% if opts.class %} {{ opts.class }}{% endif %}" href="{{ href }}"{% if href.startsWith('#') %} data-scroll-to{% endif %}{% if opts.attrs %} {{ opts.attrs | safe }}{% endif %}>
+  {%- if opts.icon and opts.iconStart %}<span class="btn__badge" aria-hidden="true">{% icon opts.icon, "btn__icon" %}</span>{% endif -%}
   {%- if opts.short %}<span class="btn__label btn__label--long">{{ label | safe }}</span><span class="btn__label btn__label--short" aria-hidden="true">{{ opts.short | safe }}</span>
   {%- else %}<span class="btn__label">{{ label | safe }}</span>{% endif -%}
-  {%- if opts.icon %}<span class="btn__badge" aria-hidden="true">{% icon opts.icon, "btn__icon" %}</span>{% endif -%}
+  {%- if opts.icon and not opts.iconStart %}<span class="btn__badge" aria-hidden="true">{% icon opts.icon, "btn__icon" %}</span>{% endif -%}
 </a>
 {%- endmacro %}
 
@@ -40,10 +42,11 @@
 </article>
 {%- endmacro %}
 
-{#- Standard CTA row placed at the end of a section. Always the one campaign CTA -> form. -#}
+{#- Standard CTA row placed at the end of a section. Always the one campaign CTA -> form.
+    opts: label, align, variant, note, short (label for phones, defaults to c.ui.ctaShort) -#}
 {% macro ctaRow(c, opts = {}) -%}
 <div class="cta-row cta-row--{{ opts.align or 'start' }}" data-reveal>
-  {{ button(opts.label or c.ui.cta, "#" + c.form.id, { variant: opts.variant or "primary", size: "lg", icon: "arrow-right" }) }}
+  {{ button(opts.label or c.ui.cta, "#" + c.form.id, { variant: opts.variant or "primary", size: "lg", icon: "arrow-right", short: opts.short or c.ui.ctaShort }) }}
   {%- if opts.note %}<p class="cta-row__note">{{ opts.note | safe }}</p>{% endif %}
 </div>
 {%- endmacro %}

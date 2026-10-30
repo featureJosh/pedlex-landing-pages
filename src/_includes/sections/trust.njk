@@ -1,8 +1,9 @@
-{#- Trust bar: client logos under a calm caption. Styles: styles/sections/trust.css
-    Data: c.trust.title, c.trust.logos[]: { image, name } (alt = company name).
+{#- Trust bar: client logos under a one-line caption. Styles: styles/sections/trust.css
+    Data: c.trust.title, c.trust.logos[]: { image, name } (alt = company name), c.ui.marquee.{pause, play}.
     Without JS (or with reduced motion) the logos sit in a static, centred, wrapping row.
     scripts/sections/trust-marquee.js turns [data-marquee] into a slow seamless loop by cloning the
-    list (clones are aria-hidden, alt=""), then sets [data-marquee-ready] to start the CSS animation. -#}
+    list (clones are aria-hidden, alt=""), then sets [data-marquee-ready] to start the CSS animation
+    and reveals the pause button (WCAG 2.2.2: moving content must be pausable). -#}
 <section class="section section--compact trust" id="trust" aria-labelledby="trust-title">
   <div class="container">
     <h2 class="trust__title" id="trust-title" data-reveal>{{ c.trust.title | safe }}</h2>
@@ -15,5 +16,8 @@
         </ul>
       </div>
     </div>
+    <button class="trust__pause" type="button" data-marquee-pause data-label-pause="{{ c.ui.marquee.pause | plain }}" data-label-play="{{ c.ui.marquee.play | plain }}" aria-label="{{ c.ui.marquee.pause | plain }}" hidden>
+      {% icon "pause", "trust__pause-icon trust__pause-icon--pause" %}{% icon "play", "trust__pause-icon trust__pause-icon--play" %}
+    </button>
   </div>
 </section>

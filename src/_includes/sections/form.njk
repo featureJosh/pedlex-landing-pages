@@ -4,6 +4,8 @@
           (page keys from src/content/<slug>/<lang>.json, UI microcopy from src/content/_shared/<lang>.json)
           site.company.{phone, phoneHref, tollFree, tollFreeHref, privacy}, site.form.endpoint, entry.{slug, thanksUrl}.
     The section id MUST stay c.form.id: every CTA links to it and scroll-to.js focuses its first input.
+    Below 64rem scroll-to.js lands on the card ([data-scroll-anchor]) instead of the section top, so the
+    focused first field is on screen even on short phones.
     Behaviour: src/scripts/sections/lead-form.js (validation, UTM capture, dataLayer, submit).
     Without JS the browser's native validation runs and the form POSTs to the action; the script sets
     novalidate itself so its accessible inline errors replace the native bubbles. Never method="get":
@@ -19,7 +21,7 @@
   <div class="container">
     <div class="split consult__layout">
       <div class="consult__intro">
-        {{ sectionHead(f.eyebrow, f.title, f.text, { id: fid + "-title" }) }}
+        {{ sectionHead(f.eyebrow, f.title, f.text, { id: fid + "-title", index: sectionIndex }) }}
         <ul class="consult__reassure" role="list" data-reveal-stagger>
           {%- for item in f.reassurance %}
           <li class="consult__reassure-item"><span class="consult__check">{% icon "check" %}</span><span>{{ item | safe }}</span></li>
@@ -27,7 +29,7 @@
         </ul>
       </div>
 
-      <div class="consult__card" data-reveal>
+      <div class="consult__card" data-scroll-anchor data-reveal>
         <form class="lead-form" method="post" action="{{ site.form.endpoint or (entry.thanksUrl | url) }}" data-lead-form
           data-error-required="{{ f.errors.required | plain }}"
           data-error-email="{{ f.errors.email | plain }}"

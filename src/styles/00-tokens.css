@@ -37,7 +37,9 @@
   --glass: rgb(255 255 255 / 0.1);        /* secondary action on photos */
   --glass-hover: rgb(255 255 255 / 0.18);
   --blur-glass: blur(8px);
+  --blur-header: saturate(1.4) blur(10px);
   --header-bg: rgb(255 255 255 / 0.94);   /* scrolled header (with blur) */
+  --chip-dark: rgb(10 42 69 / 0.72);      /* small text chips on photos (>= 4.5:1 anywhere) */
   --error: #B42318;
   --error-bg: #FEF3F2;
   --success: #067647;
@@ -60,38 +62,35 @@
   --font-sans: "Scania Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-display: var(--font-sans);
   --font-label: "Scania Sans Headline", var(--font-sans);
-  --font-condensed: var(--font-label);  /* legacy alias: older rules used the condensed caps face */
 
-  /* One scale, used site-wide. Comments give the 360 -> 1440 range. */
-  --fs-2xs: 0.6875rem;                                        /* 11  label caps (extended face) */
-  --fs-xs: 0.8125rem;                                         /* 13  meta, legal */
-  --fs-sm: 0.9375rem;                                         /* 15  card text, captions */
-  --fs-base: 1.0625rem;                                       /* 17  body (16 on phones) */
-  --fs-md: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);            /* 16-18 card titles, FAQ */
-  --fs-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);           /* 17-20 leads */
-  --fs-h3: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);       /* 18-22 */
-  --fs-h2: clamp(1.75rem, 1.35rem + 1.6vw, 2.625rem);         /* 28-42 */
-  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);           /* 36-68 */
-  --fs-stat: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);        /* 20-26 hero proof strip */
-  --fs-eyebrow: 0.75rem;                                      /* 12  extended caps */
-  --fs-btn: 1rem;
+  /* Four sizes for the whole site, plus the hero H1 (Josh, 2026-10-30: « a standardized set of
+     3-4 font sizes… the less is better », no exceptions). Every font-size in the CSS is one of these.
+     Comments give the 360 -> 1440 range. */
+  --fs-label: 0.8125rem;                                      /* 13  labels, eyebrows, meta, legal */
+  --fs-body: 1.0625rem;                                       /* 17  body, card text, buttons (16 on phones) */
+  --fs-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);     /* 18-22 leads, h3, proof labels */
+  --fs-display: clamp(1.75rem, 1.35rem + 1.6vw, 2.625rem);    /* 28-42 h2, proof figures */
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);           /* 36-68 the hero's h1 only */
 
+  /* Scania Sans ships 400 and 700 only. */
   --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-semibold: 600;
   --fw-bold: 700;
   --fw-display: 400;   /* h1 / h2 */
 
   --lh-tight: 1.08;
   --lh-snug: 1.25;
+  --lh-control: 1.2;     /* buttons */
   --lh-body: 1.6;
   --ls-tight: -0.02em;
   --ls-display: -0.03em;
   --ls-caps: 0.08em;
   --ls-label-tight: 0.03em;  /* long caps labels on phones */
 
-  --measure: 62ch;       /* max line length for body copy */
-  --measure-lead: 52ch;
+  --measure: 66ch;         /* max line length for body copy */
+  --measure-lead: 60ch;    /* leads: wide enough for two lines instead of three */
+  --measure-narrow: 40ch;  /* short captions, footer tagline */
+  --measure-title: 18ch;   /* hero h1 */
+  --head-width: 52rem;     /* section heads (eyebrow + h2 + lead) */
 
   /* --- Spacing (8px grid) --- */
   --space-3xs: 0.25rem;  /* 4  */
@@ -104,23 +103,47 @@
   --space-2xl: 4rem;     /* 64 */
   --space-3xl: 6rem;     /* 96 */
 
-  --section-pad: clamp(3rem, 1.9rem + 4.6vw, 6.5rem);    /* vertical padding of every section: 48-104 */
+  --section-pad: clamp(2.5rem, 1.5rem + 4.6vw, 6.5rem);  /* vertical padding of every section: 40-104 */
   --section-gap: clamp(1.75rem, 1.35rem + 1.9vw, 3.25rem); /* section head -> content: 28-52 */
   --grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);         /* card grids */
+  --card-pad: clamp(1.25rem, 1rem + 1vw, 2rem);
+  --col-min-2: 22rem;    /* auto-fit grid tracks (.grid--2/3/4) */
+  --col-min-3: 18rem;
+  --col-min-4: 15rem;
 
   /* --- Layout --- */
   --container: 76rem;          /* 1216px */
   --container-narrow: 50rem;   /* 800px: FAQ, thank-you */
   --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
   --header-h: 5rem;
-  --topbar-h: 2.5rem;
-  --hero-measure: 46rem;                                 /* hero copy column */
+  --topbar-h: 2.75rem;         /* 44px: phone / FR-EN links are full-height targets */
+  --hero-measure: 50rem;                                 /* hero copy column */
+  --hero-max: 60rem;                                     /* hero height cap on tall desktops */
   --split-gap: clamp(2rem, 1rem + 4vw, 5rem);            /* text <-> media columns */
   --gallery-row: clamp(11rem, 2rem + 13vw, 15rem);       /* mosaic row height (>= 64rem) */
+  --peek-col: 84%;                                       /* phone scroll rows: next card peeks in */
+
+  /* --- Controls --- */
+  --target: 2.75rem;       /* 44px minimum touch target */
+  --btn-h: 3rem;
+  --btn-h-sm: var(--target);
+  --btn-h-lg: 3.5rem;
+  --icon-s: 1rem;
+  --icon-m: 1.5rem;
+  --icon-tile: 3rem;
+  --logo-w: clamp(6rem, 1rem + 10vw, 11.5rem);           /* header logo: 96 on phones, 160 at 1440 */
+  --logo-w-footer: 9rem;
+  --client-logo-w: clamp(7rem, 6.3rem + 1.5vw, 9rem);    /* trust marquee tile */
+  --client-logo-h: clamp(2.25rem, 2rem + 0.5vw, 3rem);
+  --focus-ring: 3px;
+  --stroke-bold: 2.25;     /* small icons that need weight (checks, FAQ toggle) */
+  --opacity-muted: 0.7;    /* greyscale logos, badges */
+  --opacity-disabled: 0.6;
+  --nudge: 2px;            /* hover lift / arrow nudge */
 
   /* --- Shape: square-based, like Pedlex's own design (Josh, 2026-10-29). Corners are only
      softened enough to stay crisp; true rounds are kept for the few places that need them
-     (video play/pause controls). The rounded variant lives on branch `rounded-branch`. --- */
+     (video play/pause controls). --- */
   --radius-s: 2px;      /* buttons, inputs, chips, icon tiles */
   --radius-m: 2px;      /* cards */
   --radius-l: 2px;      /* media frames */
@@ -145,7 +168,7 @@
   --dur: 250ms;
   --dur-slow: 700ms;
   --reveal-distance: 14px;
-  --dur-drift: 24s;      /* hero photo drift, one direction (alternates) */
+  --dur-drift: 24s;      /* hero photo drift, plays once */
   --dur-marquee: 40s;    /* one loop of the client-logo set */
 
   --z-header: 50;
@@ -155,7 +178,6 @@
 @media (max-width: 47.99rem) {
   :root {
     --header-h: 4rem;
-    --topbar-h: 2.75rem;   /* 44px touch targets for the phone / FR-EN links */
-    --fs-base: 1rem;
+    --fs-body: 1rem;
   }
 }

@@ -1,6 +1,8 @@
 /* Law 25 consent: shows the banner until the visitor chooses, stores the choice, and updates
    Google Consent Mode (defaults to denied in partials/tracking-head.njk). The footer
-   "cookie preferences" button reopens it. */
+   "cookie preferences" button reopens it and gets the focus back when it closes.
+   Escape dismisses it for this page view without storing anything (consent stays denied, so the
+   banner comes back on the next page). */
 (function () {
   const KEY = "pedlex-consent";
   const read = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
@@ -9,8 +11,16 @@
   Pedlex.ready(() => {
     const banner = document.querySelector("[data-cookie-banner]");
     if (!banner) return;
+    let opener = null;
+
     const show = () => { banner.hidden = false; };
-    const hide = () => { banner.hidden = true; };
+    const hide = () => {
+      // Only move focus if it was inside the banner (a keyboard user just chose or pressed Escape).
+      const hadFocus = banner.contains(document.activeElement);
+      banner.hidden = true;
+      if (hadFocus && opener) opener.focus();
+      opener = null;
+    };
 
     if (!read()) show();
 
@@ -27,7 +37,12 @@
       hide();
     });
 
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !banner.hidden) hide();
+    });
+
     Pedlex.$$("[data-cookie-open]").forEach((b) => b.addEventListener("click", () => {
+      opener = b;
       show();
       banner.querySelector("[data-cookie-choice]")?.focus();
     }));

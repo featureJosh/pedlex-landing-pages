@@ -1,11 +1,11 @@
-/* Testimonials (#reviews, tint). White quote cards; placeholder cards look deliberately neutral
-   (dashed tag, grey bars instead of text). Phones: horizontal scroll-snap row that bleeds to the
-   screen edges; from 48rem: three equal columns. */
+/* Testimonials (#reviews, tint). White quote cards: a French « mark, the quote, then the author
+   (initials tile, name, role). Sample cards carry a dashed « Exemple » tag.
+   Phones: horizontal scroll-snap row that bleeds to the screen edges; from 48rem: three columns. */
 /* Two classes so the padding beats the base `ul[role="list"] { padding: 0 }` reset. */
 .reviews .reviews__list {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 84%;
+  grid-auto-columns: var(--peek-col);
   gap: var(--space-s);
   margin-inline: calc(var(--gutter) * -1);
   padding-inline: var(--gutter);
@@ -24,14 +24,19 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: var(--space-s);
   height: 100%;
   padding: var(--space-l) var(--space-m) var(--space-m);
   border-radius: var(--radius-m);
   background: var(--white);
   box-shadow: var(--shadow-s);
 }
-.reviews__mark { width: var(--space-l); height: var(--space-l); color: var(--blue-600); }
+.reviews__mark {
+  color: var(--blue-600);
+  font-size: var(--fs-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+}
 .reviews__tag {
   position: absolute;
   top: var(--space-m);
@@ -41,23 +46,16 @@
   border-radius: var(--radius-s);
   color: var(--text-3);
   font-family: var(--font-label);
-  font-size: var(--fs-2xs);
+  font-size: var(--fs-label);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
 }
 .reviews__quote {
   flex: 1;
   color: var(--ink);
-  font-size: var(--fs-md);
+  font-size: var(--fs-body);
   line-height: var(--lh-body);
 }
-.reviews__item--placeholder .reviews__quote p { color: var(--text-3); font-style: italic; }
-.reviews__lines { display: grid; gap: var(--space-2xs); margin-top: var(--space-s); }
-.reviews__lines span {
-  height: var(--space-2xs);
-  background: var(--grey-100);
-}
-.reviews__lines span:last-child { width: 60%; }
 
 .reviews__author {
   display: flex;
@@ -73,20 +71,15 @@
   width: var(--space-xl);
   height: var(--space-xl);
   border-radius: var(--radius-s);
-  background: var(--grey-100);
-  color: var(--text-3);
+  background: var(--blue-100);
+  color: var(--navy-900);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
+  letter-spacing: var(--ls-caps);
 }
 .reviews__who { display: grid; line-height: var(--lh-snug); }
-.reviews__name { color: var(--ink); font-size: var(--fs-sm); font-weight: var(--fw-bold); }
-.reviews__role { color: var(--text-3); font-size: var(--fs-xs); }
-
-.reviews__note {
-  max-width: var(--measure);
-  margin: var(--space-m) auto 0;
-  color: var(--text-3);
-  font-size: var(--fs-xs);
-  text-align: center;
-}
+.reviews__name { color: var(--ink); font-size: var(--fs-body); font-weight: var(--fw-bold); }
+.reviews__role { color: var(--text-3); font-size: var(--fs-label); }
 
 @media (min-width: 48rem) {
   .reviews .reviews__list {

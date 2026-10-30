@@ -1,7 +1,7 @@
 # HANDOFF.md: lead session state
 
 > For the project lead (Claude) after a memory reset. Read this → PROJECT.md → the top of TIMELINE.md → `git log --oneline -20`. Then continue from **Next actions**.
-> Last updated: 2026-10-29 18:30
+> Last updated: 2026-10-30 17:45
 
 ## Who / what
 - I am the **lead web dev AI** for Luxy Media on Pedlex's campaign landing pages. Josh (josh@luxymedia.com, GitHub `featureJosh`) is my human. He checks in occasionally; work autonomously and leave everything documented.
@@ -17,18 +17,19 @@
 
 ## State right now
 - Foundation is done and committed: see TIMELINE.md 13:45. **All 9 Racking FR sections are built and merged** (TIMELINE 14:35, commit 6498260). Feature branches and worktrees are deleted.
-- Repo: https://github.com/featureJosh/pedlex-landing-pages (private, pushed). Previews: **Cloudflare Pages on Josh's account** (he connects it; settings in PROJECT.md §2). No GitHub Pro; GitHub Pages only if the repo goes public. `ci.yml` builds every push.
+- Repo: https://github.com/featureJosh/pedlex-landing-pages — **public since 2026-10-30** (Josh). **GitHub Pages is enabled** (https://featurejosh.github.io/pedlex-landing-pages/): every push to `main` deploys, so **only Josh pushes**. `ci.yml` builds every push. `main` is the **only branch**; it lives in the `Pedlex Landing Page` folder (the Pedlex-main worktree is gone).
 
 ## In flight
 
 > **⚠ Round 2 (Raffi, client review, 2026-10-29) supersedes the v2 exploration plan.** The client chose the **white v1 on `main` as the base**, to be **elevated, not replaced**: same brand fonts (Scania Sans) and colours (official navy/blue), with a tighter type scale, a BrokerFlo-style dark photo hero with the proof strip built in, a top bar + sticky header, the explore/kimi « Réalisations » mosaic (titles under each photo), a St-Amour-style 1-2-3 process, a Why Pedlex video, testimonials, and FAQ before the form. References: brokerflo.io (hero; also by Luxy), manufacturingusa.st-amour.com (structure), starlit-salmiakki-bc0617.netlify.app. Media (upscaled photos, hero video, company video) come from Raffi/Josh: **builders use placeholders and never generate or upscale images or video.** Details: §5 « Round 2 » below; log: TIMELINE 2026-10-29 18:30.
 
-- **Round 2 is built on `main`** (TIMELINE 2026-10-29 18:30, PROJECT.md §5 « Round 2 »). The three-direction exploration plan below it in older notes is **superseded**; `explore/kimi` stays as a reference branch only (its gallery was ported).
-- Dev servers: Josh runs `explore/kimi` on :8080 and `main` (Pedlex-main worktree) on :8081. Agents use other ports (8091+).
+- **Round 2 is built on `main`** and the round-2 review is fixed (TIMELINE 2026-10-30 17:45, PROJECT.md §8 « Round 2 »). Exploration branches are deleted.
+- Dev server: `main` on :8081 (`npx eleventy --serve --port 8081` in the repo folder). Agents use other ports (8091+).
 - Hero variant B (video) is at `/racking/video/` in preview builds.
 
 ## Next actions
-1. Josh / Raffi: drop in real media: upscaled hero photo (`assets-source/racking/racking-2` or a new key in `hero.image`), hero video (`assets-source/video/…`, set `hero.video.src`/`poster`, remove `placeholder`), company video (wire `why.video`), testimonials (replace `reviews.items`, drop `placeholder`), real client logos.
-2. Full review round 2 at high effort (QA / User / Client agents per CLAUDE.md §4): typography consistency, mobile, a11y, form flow. Triage into PROJECT.md §8.
-3. Josh deploys the demo to Netlify when ready (agents never push to Netlify).
+0. **Mobile length decision** (QA-2 r2): 8 628px at 390 vs the 7 500 budget. Options: hide the Why video placeholder on phones until the film exists (≈ −280px); 2-column icon+title problem cards on phones without the body text (≈ −300px); drop the certification strip on phones (≈ −150px); show 3 gallery photos on phones (≈ −200px). Ask Josh.
+1. Josh / Raffi: drop in real media: upscaled hero photo (`assets-source/racking/racking-2` or a new key in `hero.image`), hero video (`assets-source/video/…`, set `hero.video.src`/`poster`, remove `placeholder`), company video (wire `why.video`), testimonials (replace the sample `reviews.items`, drop `sample`), real client logos.
+2. Pedlex answers in PROJECT.md §9 (testimonials, 30–50 % source, logos, CSA wording, CNESST permission, vector logo).
+3. Josh pushes `main` when the demo is ready (that deploys GitHub Pages; agents never push).
 4. Then: Général / Mezzanines / Rousseau pages reuse this system.

@@ -1,7 +1,8 @@
-{#- Campaign header: bigger logo + the one CTA. No navigation (brief §4.4); phone and FR/EN live in
-    the top bar (partials/topbar.njk). Sticky. Over the dark hero it is transparent with the white
-    logo; once the page scrolls ([data-scrolled], scripts/components/header.js) it turns white with
-    the navy logo. Pages without the dark hero (thank-you) use the solid state from the start. -#}
+{#- Campaign header: bigger logo, then the phone and the one CTA. No navigation (brief §4.4). Sticky.
+    Over the dark hero it is transparent with the white logo and NO actions: the hero's own CTA is the
+    only one on the first screen (Josh, 2026-10-30). Once the hero CTA has scrolled away
+    ([data-scrolled], scripts/components/header.js) the header turns white with the navy logo, and the
+    call button + CTA appear. Pages without the dark hero (thank-you) use the solid state from the start. -#}
 {%- from "components/ui.njk" import button -%}
 <header class="site-header{% if isThanks %} site-header--solid{% endif %}" data-header>
   <div class="container site-header__inner">
@@ -10,7 +11,10 @@
       {% picture "brand/pedlex-logo", "", "184px", { loading: "eager", class: "site-header__logo-img site-header__logo-img--dark" } %}
     </a>
     {%- if not isThanks %}
-    {{ button(c.ui.cta, "#" + c.form.id, { size: "sm", class: "site-header__cta", short: c.ui.ctaShort, icon: "arrow-right" }) }}
+    <div class="site-header__actions">
+      {{ button(site.company.phone, "tel:" + site.company.phoneHref, { size: "sm", variant: "secondary", icon: "phone", class: "site-header__phone", attrs: 'aria-label="' + (c.ui.phoneLabel | plain) + ' ' + site.company.phone + '"' }) }}
+      {{ button(c.ui.cta, "#" + c.form.id, { size: "sm", class: "site-header__cta", short: c.ui.ctaShort, icon: "arrow-right" }) }}
+    </div>
     {%- endif %}
   </div>
 </header>

@@ -22,8 +22,10 @@
     return fromUrl;
   }
 
+  // 10 digits (or 1 + 10). A trailing extension (« poste 22 », « ext. 22 », « x22 », « #22 ») is
+  // allowed and ignored for the count.
   function phoneOk(v) {
-    const d = v.replace(/\D/g, "");
+    const d = v.replace(/\s*(?:poste|post\.?|p\.|ext\.?|extension|x|#)\s*\d{1,6}\s*$/i, "").replace(/\D/g, "");
     return d.length === 10 || (d.length === 11 && d[0] === "1");
   }
 

@@ -125,16 +125,16 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 **Page order (Raffi):** top bar → sticky header → hero (+ proof strip) → client logos → problem (01) → réalisations (02) → process (03) → why Pedlex (04) → testimonials (05) → FAQ (06) → form (always last) → footer. Eyebrows are numbered automatically from the page order (`src/landing.njk`).
 
 **System:**
-- **One type scale** (`00-tokens.css`): h1 36–68, h2 28–42, h3 18–22, lead 17–20, body 17 (16 on phones), card text 15, meta 13, labels 11–12. H1/H2 are Scania Sans **regular** mixed case (`--fw-display`), h3 and card titles bold. **Scania Sans Headline** (caps, extended) is the label voice only: eyebrows, chips, captions, top-bar FR/EN. Barlow Condensed is no longer used by any rule (`--font-condensed` aliases the label face).
-- **Shape: square-based** (Josh, 2026-10-29: Pedlex likes its square design). Every corner is 2px (`--radius-s/m/l`); markers, chips, badges, number tiles and avatars are square. Rounds only where they are needed: the video play/pause controls (`--radius-round`). The rounded variant is kept on branch **`rounded-branch`** (39f9468) for comparison.
+- **Four type sizes for the whole site + the hero H1** (Josh, 2026-10-30: « 3-4 font sizes… the less is better », no exceptions). `--fs-label` 13 (eyebrows, chips, captions, meta, legal) · `--fs-body` 16–17 (body, card text, buttons, FAQ questions, quotes) · `--fs-lead` 18–22 (leads, every h3, proof-strip labels) · `--fs-display` 28–42 (every h2, proof-strip figures) · `--fs-h1` 36–68 (hero only). Every `font-size` in the CSS is one of these. Weights: 400 and 700 only (all Scania Sans ships). H1/H2 regular mixed case, h3 bold. **Scania Sans Headline** (caps, extended) is the label voice only. Barlow is gone (faces, package and copy step).
+- **Shape: square-based** (Josh, 2026-10-29: Pedlex likes its square design). Every corner is 2px (`--radius-s/m/l`); markers, chips, badges, number tiles and avatars are square. Rounds only where they are needed: the video play/pause controls (`--radius-round`).
 - **Buttons:** square-cornered, Scania Sans bold mixed case, trailing icon in a square badge (BrokerFlo, squared). Variants: primary (navy), secondary, on-dark (white), glass (on photos). Full-width CTA rows on phones drop the badge so the label stays on one line.
-- **Header:** top bar (navy-950: family-company message + « Consultation gratuite » link, phone and FR/EN at the side; scrolls away) + sticky header (bigger logo + CTA), transparent with the white logo over the hero, white with the navy logo once scrolled.
-- **Hero:** full-bleed photo (A) or background video (B) under a navy scrim; tag chip, H1, **one** subheadline, CTA + phone; the three stats sit on its bottom edge as one line with hairline dividers. Phones: copy low on the photo, CTA (short label) + round call button side by side. **Variant B** is previewable at `/racking/video/` (`src/_data/landingPages.js`, preview builds only): muted loop started by JS (never under reduced motion), pause button (WCAG 2.2.2), neutral placeholder loop in `assets-source/placeholders/`.
+- **Header:** top bar (navy-950: « 50 ans · 1976–2026 » + family-company message, phone and FR/EN at the side; phones get a short message and a square call button; no CTA; scrolls away) + sticky header. Over the hero it is transparent with the white logo and **no actions**: the hero CTA is the only CTA on the first screen at rest (Josh, 2026-10-30). As soon as the header sticks (top bar scrolled away, ~44px) it turns white with the navy logo and shows the call button + CTA; a brief overlap with the hero CTA is accepted (Josh).
+- **Hero:** full-bleed photo (A) or background video (B) under a navy scrim; tag chip, H1, **one** subheadline, CTA + phone; the three stats sit on its bottom edge (figures at the display size, labels at the lead size) as three columns with hairline dividers; phones: one row per figure. The photo pushes in once on load (no loop). Phones: copy low on the photo, CTA (short label) + square call button side by side, same height. **Variant B** is previewable at `/racking/video/` (`src/_data/landingPages.js`, preview builds only): muted loop started by JS (never under reduced motion), pause button (WCAG 2.2.2), neutral placeholder loop in `assets-source/placeholders/`.
 - **Réalisations:** all photos visible at once. Phones: one wide + 2-column grid; desktop: 12-column mosaic (1 large + 2 stacked, then 2 wide), numbered title under each photo.
 - **Process:** dark band over the installer photo (strong scrim), centred head, numbered white squares joined by a hairline, one centred CTA.
-- **Why Pedlex:** company-video frame (placeholder: real hq-fleet photo as poster, decorative play badge, dashed « vidéo à venir » tag) beside the head and the four reasons as a flat icon list; certification strip below.
-- **Testimonials:** three cards; **placeholders only** (dashed tag, grey bars, note) until Pedlex supplies approved quotes. Never invent quotes. Phones: horizontal snap row.
-- Lengths after the pass: ~8 870px at 390, ~7 400px at 1440 (two new sections were added: video + testimonials).
+- **Why Pedlex:** company-video frame (placeholder: real hq-fleet photo as poster, a quiet play mark with the dashed « vidéo à venir » tag right under it) beside the head and the four reasons as a flat icon list; from 64rem the frame stretches to the column height; certification strip below.
+- **Testimonials:** three cards with a French « mark and an initials tile. Until Pedlex supplies approved quotes they are **samples** (Josh, 2026-10-30): realistic fictional people at generic companies, no figures or claims, each tagged « Exemple ». Real quotes replace them one for one. Phones: horizontal snap row.
+- Lengths: ~8 630px at 390 after the 2026-10-30 batch (was ~8 870), first form field at ~6 990px; budget is ≤ 7 500 / ≤ 5 000 (see §8 QA-2 r2).
 
 > **⚠ Read this before any design work (Josh, 2026-10-29).** Be **inspired** by pedlex.com, never **guided** by it. **This landing page sets the precedent for Pedlex's NEW website**: the direction we set here is the direction their next site will take. So it has to look forward, not back.
 > The v1 attempt (on `main` up to ee05eb1) was **good**: clean, professional, well built, and the reviewers liked it. But it **failed at modernizing**. It mimicked the existing site's ideas (layout, components, type treatment) instead of proposing a new one. Don't repeat that: take Pedlex's *essence* (identity, values, real work, family story), not pedlex.com's *design*.
@@ -232,8 +232,8 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 > Agents: move items as you work: **To-do → In progress (with your branch name) → Done (with date)**. Never delete history; Done items stay.
 
 ### 🔄 In progress
-- [ ] **Round 2 (Raffi's review) on `main`:** built 2026-10-29 (TIMELINE 18:30). Next: Josh/Raffi drop in real media (upscaled hero photo, hero video, company video, testimonials), then a full QA / User / Client review round before the Netlify demo (Josh deploys)
-- [ ] **v2 redesign (Josh, 2026-10-29: "entirely new, photo-heavy").** Step 1 (**not started yet**; briefs in HANDOFF.md): three direction explorations in parallel (`explore/atelier`, `explore/nuit`, `explore/plan`), each a full Racking page. Lead picks one (or grafts) → `main`. Step 2: finishing builders (round-1 behaviour fixes, hero motion options, placeholders, cookie banner, merci, EN). Step 3: review round 2
+- [ ] **Round 2 (Raffi's review) on `main`:** built 2026-10-29, reviewed and fixed 2026-10-30 (TIMELINE). Next: mobile length decision (§8 QA-2 r2), real media from Josh/Raffi, Pedlex answers (§9). `main` is the only branch; Josh deploys
+- [x] ~~v2 redesign via three direction explorations~~ superseded by Round 2 (client chose the elevated v1). All exploration branches deleted 2026-10-30 (Josh)
 - [x] ~~Round-1 polish builders (`feat/r1-system`, `feat/r1-behaviour`)~~ stopped and pruned 2026-10-29: they polished v1, which Josh retired. Their design-neutral items carry into v2 step 2
 
 ### 📋 To-do
@@ -244,7 +244,6 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - [ ] Racking EN: swap the Luxy draft for Maïeutyk's EN copy when it arrives (brief §10 #3)
 - [ ] Form endpoint for the chosen platform (Netlify Forms / CF Pages Function / WordPress) + Google Sheet logging
 - [ ] Lighthouse / Core Web Vitals pass on mobile (target LCP < 2.5s)
-- [ ] Scania Sans **Condensed** WOFF2 (Drive `CATALOGUE/FONTS`) to replace Barlow Condensed on labels/buttons
 - [ ] Swap logo for the vector file from Drive
 - [ ] Add 2–4 client logos to reach 8–10 (Bombardier, Air Canada, CAE, Hydro-Québec candidates)
 - [ ] Général page (copy in Drive, pending validation)
@@ -252,6 +251,9 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - [ ] Rousseau page (copy to come)
 
 ### ✅ Done
+- [x] 2026-10-30: **Round-2 review fixes in one batch** (Josh + QA/User/Client r2): counter blocker, header CTA only after the hero, top bar without CTA + 50 ans, 4-size type system, proof strip sizes, sample testimonials, copy trims, cookie strip, marquee pause, 44px targets, focus ring on dark, CTA lands on the form card, phone extensions, tokens. See §8 « Round 2 »
+- [x] 2026-10-30: `main` is the only branch (explore/kimi, rounded-branch and the Pedlex-main worktree deleted); repo **public**, GitHub Pages enabled (deploys on push to `main`, Josh pushes)
+- [x] 2026-10-30: Review round 2 run (QA / User / Client agents): `qa/*-2026-10-30-r2.md`
 - [x] 2026-10-29: **Round 2 (Raffi):** top bar + sticky header, BrokerFlo-style hero with proof strip + video variant B, Kimi mosaic gallery with titles, St-Amour process, Why Pedlex video placeholder, testimonials placeholders, FAQ before form, one type scale, pill buttons, mobile length pass
 - [x] 2026-10-29: Photo intake for v2: 7 real Pedlex photos from pedlex.com → `assets-source/web/` (sources logged)
 - [x] 2026-10-29: Review round 1 run (QA / User / Client agents) and triaged into §8
@@ -284,40 +286,40 @@ _None open._ Format: `- [ ] BUG-### (severity) description: where, how to reprod
 
 ### QA Notes
 Round 1 report: [qa/qa-2026-10-29-r1.md](qa/qa-2026-10-29-r1.md). Passed: no overflow, no console errors, one h1, clean heading order, alt text, noindex, every CTA → `#consultation` + focus, accessible validation, `generate_lead` without PII, no-JS POST, FAQ + carousel keyboard, reduced motion, CLS 0.004, contrast ≥ 5.28:1, section padding consistent.
-- [ ] QA-1 [consultation, phones] CTA lands on the section intro; focused field off-screen at 390×664 → scroll to the form card below 64rem (= USER-6)
-- [ ] QA-2 [cookie banner, phones] 226px sheet hides the hero CTA; no Escape → compact bar ≤140px below 30rem, visually-hidden title, side-by-side buttons; Escape = Refuser (= USER-5)
-- [ ] QA-3 [merci] icon + eyebrow on one line → `display:grid; margin-inline:auto` + eyebrow fix (= USER-7)
-- [ ] QA-4 [trust] marquee can't be paused by touch/keyboard (WCAG 2.2.2) → pause/play button (`data-marquee-toggle`, aria-pressed, 44px)
+- [x] QA-1 [consultation, phones] CTA lands on the section intro; focused field off-screen at 390×664 → scroll to the form card below 64rem (= USER-6) (2026-10-30)
+- [x] QA-2 [cookie banner, phones] 226px sheet hides the hero CTA; no Escape → compact bar ≤140px below 30rem, visually-hidden title, side-by-side buttons; Escape = Refuser (= USER-5) (2026-10-30)
+- [x] QA-3 [merci] icon + eyebrow on one line → `display:grid; margin-inline:auto` + eyebrow fix (= USER-7) (2026-10-30)
+- [x] QA-4 [trust] marquee can't be paused by touch/keyboard (WCAG 2.2.2) → pause/play button (`data-marquee-toggle`, aria-pressed, 44px) (2026-10-30)
 - [ ] QA-5 [global] `.eyebrow` inline-flex sits 10–11px low in every section → `display:flex; width:fit-content` (+ centred variants)
-- [ ] QA-6 [CTAs, phones] ctaRow + submit wrap to 73px vs hero 56px → move the tight mobile padding into `button.css` for every `.btn--lg` (= USER-10)
-- [ ] QA-7 [problem] head→cards gap uses the split gap, not `--section-gap`; ≥80rem the CTA floats 231px under the intro → `row-gap: var(--section-gap)`; CTA inside the sticky intro
-- [ ] QA-8 [gallery] counter skips « 05 » (clamped end) → report the left-most fully visible slide, keep the last-slide override
-- [ ] QA-9 [cookie banner] reopened banner drops focus to body on choice → return focus to the opener
-- [ ] QA-10 [form] « (514) 324-5310 poste 22 » rejected → strip extension suffix (poste/ext/x) before counting digits
-- [ ] QA-11 [header, footer] header CTA 40px, phone 40×40 → 44px (`--target-min: 2.75rem`) for header controls + footer links
+- [x] QA-6 [CTAs, phones] ctaRow + submit wrap to 73px vs hero 56px → move the tight mobile padding into `button.css` for every `.btn--lg` (= USER-10) (2026-10-30)
+- [x] QA-7 [problem] head→cards gap uses the split gap, not `--section-gap`; ≥80rem the CTA floats 231px under the intro → `row-gap: var(--section-gap)`; CTA inside the sticky intro (2026-10-30)
+- [x] ~~QA-8 [gallery] counter skips « 05 » (clamped end) → report the left-most fully visible slide, keep the last-slide override~~ obsolete: the carousel / trust line no longer exist (round 2)
+- [x] QA-9 [cookie banner] reopened banner drops focus to body on choice → return focus to the opener (2026-10-30)
+- [x] QA-10 [form] « (514) 324-5310 poste 22 » rejected → strip extension suffix (poste/ext/x) before counting digits (2026-10-30)
+- [x] QA-11 [header, footer] header CTA 40px, phone 40×40 → 44px (`--target-min: 2.75rem`) for header controls + footer links (2026-10-30)
 - [ ] QA-12 [global] phone link built 6 ways → `phoneLink` macro + `components/phone.css`, replace all copies
-- [ ] QA-13 [global] raw values outside tokens (icons, controls, tracking, opacity, header bg, measures, nudges) → tokens, list in TIMELINE
+- [x] QA-13 [global] raw values outside tokens (icons, controls, tracking, opacity, header bg, measures, nudges) → tokens, list in TIMELINE (2026-10-30)
 - [ ] QA-14 [global] hand-rolled buttons (submit, cookie), eyebrows (hero, merci), heads (faq closing, trust) → `button` gets `type`/`attrs`/`iconStart`, `sectionHead` gets `level`/`class`
 - [ ] QA-15 [global] caps-label declaration repeated 6× → `.label-caps` utility
-- [ ] QA-16 [trust] JS hard-codes 40s, token dead → read `--trust-loop`
+- [x] QA-16 [trust] JS hard-codes 40s, token dead → read `--trust-loop` (2026-10-30)
 - [ ] QA-17 [hero, consultation] lead vs body measures misalign (54ch at two sizes) → font-independent measure
 - [ ] QA-18 [hero, stats] FR line breaks: lone « simplement » at 1024 (recheck with Scania); stats labels capped at 26ch → recheck H1; drop the cap
-- [ ] QA-19 [gallery, <64rem] controls before the track in tab order → move controls after the list
-- [ ] QA-20 [merci] back arrow after the label → `iconStart`
+- [x] ~~QA-19 [gallery, <64rem] controls before the track in tab order → move controls after the list~~ obsolete: the carousel / trust line no longer exist (round 2)
+- [x] QA-20 [merci] back arrow after the label → `iconStart` (2026-10-30)
 - [ ] QA-21 [merci, 360] steps box cramped → `--space-m` padding below 30rem
 - [ ] QA-22 [trust] uneven logo optical size; Pro-Expert barely legible → per-logo `scale` in content (`--logo-scale`)
 
 ### User Agent Notes
 Round 1 report: [qa/user-2026-10-29-r1.md](qa/user-2026-10-29-r1.md). Verdict: "I'd have converted, but on mobile it was closer than it should be."
-- [ ] USER-1 [hero, <48rem] first phone screen is all text, the photo starts at y≈804 → show the hero photo in the first screen (between H1 and lead, ~16:9), copy unchanged (same as CLIENT-7)
-- [ ] USER-2 [problem, why, <48rem] 10 full-width cards ≈ 3,200px → compact `featureCard` variant on mobile (icon inline with h3, tighter padding tokens)
+- [x] USER-1 [hero, <48rem] first phone screen is all text, the photo starts at y≈804 → show the hero photo in the first screen (between H1 and lead, ~16:9), copy unchanged (same as CLIENT-7) (2026-10-30)
+- [x] USER-2 [problem, why, <48rem] 10 full-width cards ≈ 3,200px → compact `featureCard` variant on mobile (icon inline with h3, tighter padding tokens) (2026-10-30)
 - [x] USER-4 [why] « Accréditations » + CNESST logo reads as borrowed authority → label « Santé et sécurité : conformité et préqualification » (lead, 2026-10-29)
-- [ ] USER-5 [cookie banner, <48rem] 226px sheet covers the hero CTA → compact sheet ≤150px, buttons equal weight (same as CLIENT-18)
-- [ ] USER-6 [consultation, <48rem] CTA lands on the section pitch, first field at the bottom edge → scroll to the form card on mobile
-- [ ] USER-7 [merci] check icon and eyebrow side by side, off-centre → stack them (same as CLIENT-16)
+- [x] USER-5 [cookie banner, <48rem] 226px sheet covers the hero CTA → compact sheet ≤150px, buttons equal weight (same as CLIENT-18) (2026-10-30)
+- [x] USER-6 [consultation, <48rem] CTA lands on the section pitch, first field at the bottom edge → scroll to the form card on mobile (2026-10-30)
+- [x] USER-7 [merci] check icon and eyebrow side by side, off-centre → stack them (same as CLIENT-16) (2026-10-30)
 - [x] USER-8 [gallery] store photos look like a back room → duplicate store shot (racking-8) removed, last slide captioned truthfully (lead, 2026-10-29); more industrial photos requested (§9)
-- [ ] USER-9 [hero] trust-line icons touch the divider → padding-top token
-- [ ] USER-10 [problem, process, consultation, <48rem] CTAs wrap to 2 lines with the arrow adrift → one-line or tidy wrap at 360–400px, consistent across all CTAs (same as CLIENT-14)
+- [x] ~~USER-9 [hero] trust-line icons touch the divider → padding-top token~~ obsolete: the carousel / trust line no longer exist (round 2)
+- [x] USER-10 [problem, process, consultation, <48rem] CTAs wrap to 2 lines with the arrow adrift → one-line or tidy wrap at 360–400px, consistent across all CTAs (same as CLIENT-14) (2026-10-30)
 - [x] USER-11 [footer] RBQ number breaks mid-number → `.nowrap` (lead, 2026-10-29)
 - [ ] USER-12 [trust, <48rem] only ~2 logos visible → smaller logo size on mobile so 3–4 show
 
@@ -327,16 +329,63 @@ Round 1 report: [qa/client-2026-10-29-r1.md](qa/client-2026-10-29-r1.md). Verdic
 - [x] CLIENT-2 [stats, faq] 40 % unbacked and inconsistent with Général → « 30 à 50 % » everywhere (Josh, 2026-10-29)
 - [x] CLIENT-4 [why] CNESST is a regulator, not an accreditor → accurate label (lead, 2026-10-29)
 - [x] CLIENT-6 [gallery] « Centre de distribution » caption on a store photo; two angles of one store → racking-8 removed, racking-9 « Entreposage commercial et de détail » (lead, 2026-10-29)
-- [ ] CLIENT-7 [hero, mobile] no photo in the first screen → see USER-1
+- [x] CLIENT-7 [hero, mobile] no photo in the first screen → see USER-1 (2026-10-30)
 - [x] CLIENT-9 [hero, why] no family story / 50th moment → hero trust line « Entreprise familiale québécoise depuis 1976 », chip « 50 ans · 1976–2026 » (lead, 2026-10-29). Footer slogan logo waits for the vector file
 - [x] CLIENT-10 [global] typography softer than the brand → Scania Sans (Headline for the H1) (lead, 2026-10-29)
 - [ ] CLIENT-11 [trust] 6 mid-tier logos → placeholders to 10 now (Josh); real logos from the approved list requested (§9)
 - [x] CLIENT-12 [consultation] toll-free only in the footer → « Sans frais 1 888 733-5399 » beside the phone in the form section (lead, 2026-10-29)
 - [x] CLIENT-13 [why] « Sécurité et conformité » card is vague → certified installers + engineer inspection/certification to CSA A344 (from Pedlex's services list; flagged for client validation, §9) (lead, 2026-10-29)
-- [ ] CLIENT-14 [CTAs, mobile] see USER-10
-- [ ] CLIENT-16 [merci] icon/eyebrow off-balance → see USER-7. « Retour à la page Palettiers » done (lead, 2026-10-29)
+- [x] CLIENT-14 [CTAs, mobile] see USER-10 (2026-10-30)
+- [x] CLIENT-16 [merci] icon/eyebrow off-balance → see USER-7. « Retour à la page Palettiers » done (lead, 2026-10-29) (2026-10-30)
 - [x] CLIENT-17 [footer] RBQ split → see USER-11
-- [ ] CLIENT-18 [cookie banner, mobile] → see USER-5
+- [x] CLIENT-18 [cookie banner, mobile] → see USER-5 (2026-10-30)
+
+### Round 2 (2026-10-30) · all three agents + Josh's notes, fixed in one batch
+Reports: [qa/qa-2026-10-30-r2.md](qa/qa-2026-10-30-r2.md), [qa/user-2026-10-30-r2.md](qa/user-2026-10-30-r2.md), [qa/client-2026-10-30-r2.md](qa/client-2026-10-30-r2.md). Verdicts: Client « approve with changes »; User « would convert once the zeros and placeholders are gone ».
+- [x] **Josh:** one CTA on the first screen; the header CTA (+ call button) appears as soon as the header sticks (top bar gone); first version waited for the hero CTA and came too late (Josh) (2026-10-30)
+- [x] **Josh:** trust caption smaller, one line from tablets up (body size, bold) (2026-10-30)
+- [x] **Josh:** testimonials as realistic samples of varied length, tagged « Exemple »; placeholder note removed (2026-10-30)
+- [x] **Josh:** 4-size type system site-wide + hero H1; wider measures (lead 60ch, heads 52rem); copy trims logged in §9 (2026-10-30)
+- [x] **Josh:** proof figures up to the display size, labels at the hero lead size (2026-10-30)
+- [x] QA-1 / USER-1 / CLIENT-20 [hero] counter showed zeros until scroll → numbers stay real, count-up starts when visible, no inset margin (2026-10-30)
+- [ ] QA-2 [page, phones] length 8 874 → **8 628px** at 390 (first field 7 084 → 6 985). Budget ≤ 7 500 / ≤ 5 000 still missed: the bigger body/label sizes ate most of the savings. **Needs a lead/Josh decision** on what to drop on phones (options in HANDOFF)
+- [x] QA-3 / USER-9 [consultation] CTA lands on the form card below 64rem; first field on screen at 390×664 (2026-10-30)
+- [x] QA-4 [global] white focus ring on the top bar and the transparent header (2026-10-30)
+- [x] QA-5 [trust] marquee pause/play button (44px, label swaps) (2026-10-30)
+- [x] QA-6 / USER-3 / CLIENT-25 [cookie] phone strip 154px, clear of the hero CTA; Escape dismisses; focus returns to the opener (2026-10-30)
+- [x] QA-7 [global] 44px targets: header buttons, cookie buttons, top-bar links, footer links (2026-10-30)
+- [x] QA-8 [global] one h3 treatment (lead size, bold) for cards, steps and reasons (2026-10-30)
+- [x] QA-9 [why, consultation, problem] head → content gap = `--section-gap`; consultation intro top-aligned with the card (2026-10-30)
+- [x] QA-10 [global] raw values → tokens (controls, icons, logo, measures, opacity, nudge, focus ring, blur); marquee JS reads `--dur-marquee` (2026-10-30). Left as is: element defaults in `02-base.css` (icon 1.25em, underline offset) and media-query breakpoints
+- [x] QA-11 / USER-8 [CTAs, phones] CTA rows + submit stay on one line (short label, no badge on phones) (2026-10-30)
+- [x] QA-12 [why] video frame stretches to the column height from 64rem (2026-10-30)
+- [x] QA-13 [reviews, hero B] French placeholder labels (« Exemple », « Vidéo à venir ») (2026-10-30)
+- [x] QA-14 / USER-12 / CLIENT-28 [hero B] placeholder loop regenerated with no text (2026-10-30)
+- [x] QA-15 [hero] tag chip on a dark chip token (contrast); still 2 lines at ≤ 390 (client copy) (2026-10-30)
+- [x] QA-16 / CLIENT-33 [hero, phones] CTA and call button same height; proof strip one row per figure (2026-10-30)
+- [x] QA-17 [hero B] pause button: label swaps, no `aria-pressed` (2026-10-30)
+- [x] QA-18 [hero A] photo drift plays once (2026-10-30)
+- [x] QA-19 [global] long H2s shortened (why, gallery, process) (2026-10-30)
+- [x] QA-20 [consultation] phone number in Scania Sans bold (2026-10-30)
+- [x] QA-21 / USER-10 [form] phone extensions (poste/ext/x/#) accepted (2026-10-30)
+- [x] QA-22 [reviews] tab stop only while the row scrolls (2026-10-30)
+- [x] QA-23 / CLIENT-37 [merci] `iconStart`: back arrow before the label (2026-10-30)
+- [x] QA-24 / USER-5 / CLIENT-30 [why] quiet play mark with « à venir » under it (2026-10-30)
+- [x] QA-25 [global] one label size (13px) (2026-10-30)
+- [x] QA-26 [process, why] eyebrow / certs label balanced, process eyebrow shortened (2026-10-30)
+- [x] QA-27 [footer] « · » kept with the RBQ number (2026-10-30)
+- [x] QA-28 [fonts] Barlow removed; `--font-condensed` gone; weights 400/700 only (2026-10-30)
+- [x] USER-6 [header] phone in the sticky header (2026-10-30)
+- [x] USER-7 / CLIENT-32 [phones] one CTA on the first screen: top bar shows the family message, header actions wait for scroll (2026-10-30)
+- [x] USER-13 [form] FR error strings keep their no-break spaces (`plain` filter no longer collapses U+00A0/U+202F) (2026-10-30)
+- [x] CLIENT-21 [top bar] « 50 ans · 1976–2026 » back (2026-10-30)
+- [x] CLIENT-26 [why] CSA wording « …et, sur demande, inspection et certification… » (also §9) (2026-10-30)
+- [x] CLIENT-27 [gallery] caption 03 « Palettiers sur plusieurs niveaux » (2026-10-30)
+- [x] CLIENT-29 [hero] subheadline now says what Pedlex does (palettiers sur mesure) (2026-10-30)
+- [x] CLIENT-34 [reviews] French « mark (2026-10-30)
+- [x] CLIENT-36 [consultation] form numbered « 07 » (Josh) (2026-10-30)
+- **Held for Pedlex (§9):** USER-4 named project/result · CLIENT-23 « 30 à 50 % » vs « jusqu'à 40 % » · USER-14 / CLIENT-24 logos · CLIENT-31 slogan (vector logo) · CLIENT-35 CNESST permission
+- **Declined (Josh, 2026-10-30):** USER-15 remove « Découvrir pedlex.com » (the client's call, stays) · USER-11 expand the FAQ (kept as is until the client confirms) · QA-29 desktop tab order (keep the current order; the client likes it)
 
 ### Declined (with reason)
 - QA-23 [header] short CTA « Consultation gratuite » not logged as a client question: settled by Josh's decision that labels follow context (§9 Q1).
@@ -356,12 +405,13 @@ Round 1 report: [qa/client-2026-10-29-r1.md](qa/client-2026-10-29-r1.md). Verdic
 | Item | From | Blocks | Status |
 |---|---|---|---|
 | English copy (all pages) | Maïeutyk (Erin) | Official EN (Luxy draft live meanwhile) | Waiting |
-| Scania Sans **Condensed** WOFF2 | Drive `CATALOGUE/FONTS` | Brand condensed labels (Barlow Condensed meanwhile) | Not in repo |
 | Vector logo (« défie l'espace », sans slogan, white) | Drive (Luxy) | Crisp logo (329px PNG meanwhile) | Not in repo |
 | 4+ client logos from the approved list (Bombardier, Air Canada, CAE, Hydro-Québec…), vector/hi-res | Pedlex / Luxy Drive | Trust bar (placeholders meanwhile) | Waiting |
 | Campaign videos (4) | Erin | Hero video-loop option (placeholder loop meanwhile) | WeTransfer expired; re-send via Drive |
 | 1–2 named projects with a figure (e.g. Groupe Ricochet, Airbus) + matching photos, or a short client quote | Pedlex | Gallery captions / proof (CLIENT-5, USER-3) | Requested |
 | 2 more large industrial racking photos | Pedlex | Gallery (5 slides now) | Requested |
+| CSA A344: is engineer inspection/certification standard or on request? (wording now « sur demande ») | Pedlex | Why card | Ask |
+| Permission to show the CNESST logo | Pedlex | Certification strip | Ask |
 | Privacy-policy URL + Law 25 consent tool | Pedlex | Footer / consent links (placeholder URLs now) | Waiting |
 | DNS access for subdomains | Pedlex | Go-live | Waiting |
 | Shared Google Sheet for leads | TBD | Form routing | Waiting |
@@ -370,7 +420,7 @@ Round 1 report: [qa/client-2026-10-29-r1.md](qa/client-2026-10-29-r1.md). Verdic
 | Hero treatment: photo (A) vs background video (B), both previewable (`/racking/` vs `/racking/video/`) | Raffi / Francis | Hero | Open: B uses a neutral placeholder loop; real 2–3 shots of 2–3 s (installer) from Raffi/Josh |
 | Upscaled hero photo (variant A) | Raffi (Higgsfield) | Hero sharpness | Waiting; racking-2 meanwhile |
 | Pedlex company / team video | Pedlex / Raffi | Why Pedlex video frame (placeholder poster now) | Waiting |
-| **Client testimonials** (name, title, company, approved quote; 3 ideal) | Pedlex | Testimonials section (placeholders now) | Waiting: Raffi calls this the most important piece |
+| **Client testimonials** (name, title, company, approved quote; 3 ideal). First ask: Pedlex's own published quotes (Benoît Boulerice, Groupe Ricochet; André Lapointe, Globocam) | Pedlex | Testimonials section (fictional samples tagged « Exemple » now) | Waiting: Raffi calls this the most important piece |
 | Original full-res racking-2 (hero) + higher-res Racking photos (max 1662px now) | Pedlex | Hero looks over-processed at 2× (CLIENT-19) | **Before go-live** |
 
 ### Client questions (raise at next review)
@@ -394,6 +444,18 @@ Josh, 2026-10-29: the content is followed loosely. The lead does what is right n
    - testimonials head « Témoignages » / « Ce que nos clients disent de Pedlex. » (Luxy microcopy) + placeholder cards;
    - FAQ closing block (« Vous avez d'autres questions ? ») removed: the form now follows the FAQ directly;
    - hero CTA shows « Consultation gratuite » on phones (`ui.ctaShort`).
+9. **Round 2 review copy changes (2026-10-30, Josh + review agents), FR (EN mirrors them):**
+   - hero lead: « Gagnez de l'espace, facilitez l'accès… » → « Pedlex conçoit et installe des palettiers sur mesure : plus d'espace, un inventaire accessible, moins de déplacements. » (CLIENT-29);
+   - top bar: « <b>50 ans · 1976–2026</b> · Entreprise familiale québécoise · Réponse d'un expert en 1 jour ouvrable »; phones « 50 ans · Entreprise familiale »; the « Consultation gratuite » link removed;
+   - proof label « entreprises servies au Québec et ailleurs » → « entreprises servies »;
+   - problem paragraph → « Des systèmes de palettiers conçus pour augmenter votre capacité et faciliter le travail de vos équipes. »; card 4 « Un entreposage adapté aux produits hors format » → « Produits hors format », text → « Des systèmes adaptés aux produits longs, volumineux ou atypiques. »;
+   - gallery H2 → « Des entrepôts transformés par des palettiers bien pensés. »; lead → « Plus de capacité, un accès facile aux produits, des opérations plus efficaces. »; caption 03 « Entreposage à haute densité » → « Palettiers sur plusieurs niveaux » (CLIENT-27);
+   - process eyebrow → « Simple et sans engagement »; H2 → « Tout commence par une consultation gratuite. »; steps shortened (« Remplissez notre court formulaire pour nous parler de votre entrepôt. » · « Un expert vous appelle pour comprendre vos défis et discuter des possibilités. » · « Pedlex conçoit et installe un système de palettiers adapté à vos opérations. »);
+   - why H2 → « Pensé pour vos opérations, pas seulement pour vos palettes. »; CSA card « puis inspection » → « et, sur demande, inspection » (CLIENT-26, to confirm);
+   - form paragraph → « Un expert Pedlex discute avec vous de vos défis d'entreposage et des solutions adaptées à votre espace. »;
+   - testimonials: three **fictional samples** tagged « Exemple » (Marc-André T., Stéphane L., Julie B.); replace with approved quotes;
+   - CTA rows show the short label « Consultation gratuite » on phones (one line at 360px);
+   - FAQ unchanged (Josh: the client confirms first).
 
 ---
 
@@ -424,7 +486,12 @@ Josh, 2026-10-29: the content is followed loosely. The lead does what is right n
 | 2026-10-29 | FR/EN toggle moves to the top bar's side (visible at every width); footer link stays | Lead (per Raffi) |
 | 2026-10-29 | Hero variants A (photo) / B (video) both built; B previewed at `/<slug>/video/` in preview builds only | Lead |
 | 2026-10-29 | No AI-generated or upscaled media from agents: Raffi/Josh supply them; placeholders meanwhile | Josh |
-| 2026-10-29 | **Square-based shapes** (2px corners); rounded only where needed (video controls). Rounded round-2 variant kept on `rounded-branch` | Josh |
+| 2026-10-29 | **Square-based shapes** (2px corners); rounded only where needed (video controls) | Josh |
+| 2026-10-30 | **Four font sizes site-wide** (label, body, lead, display) + the hero H1; no exceptions | Josh |
+| 2026-10-30 | One CTA on the first screen: header actions appear once the header sticks (a short scroll; brief overlap with the hero CTA is fine); top bar has no CTA | Josh |
+| 2026-10-30 | Testimonials: realistic fictional samples tagged « Exemple » until Pedlex approves real quotes | Josh |
+| 2026-10-30 | `main` is the only branch (all others deleted). Repo made **public** (Josh, aware it exposes the brief, `claude/` notes and contact emails in history); GitHub Pages enabled, deploys on push to `main` | Josh |
+| 2026-10-30 | Footer « Découvrir pedlex.com », FAQ content and section order stay as they are until the client weighs in | Josh |
 
 ---
 

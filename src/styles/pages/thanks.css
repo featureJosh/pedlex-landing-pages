@@ -3,21 +3,21 @@
   display: grid;
   align-items: center;
 }
-.thanks__inner { max-width: calc(40rem + var(--gutter) * 2); text-align: center; }
+.thanks__inner { max-width: calc(var(--container-narrow) + var(--gutter) * 2); text-align: center; }
 .thanks__inner .eyebrow { display: flex; justify-content: center; }
 .thanks__icon {
   display: inline-grid;
   place-items: center;
-  width: 4rem;
-  height: 4rem;
+  width: var(--space-2xl);
+  height: var(--space-2xl);
   margin-bottom: var(--space-m);
   border-radius: var(--radius-s);
   background: var(--blue-100);
   color: var(--navy-900);
 }
-.thanks__icon .icon { width: 2rem; height: 2rem; }
-.thanks__title { font-size: var(--fs-h2); line-height: var(--lh-tight); }
-.thanks__text { margin: var(--space-m) auto 0; max-width: var(--measure-lead); font-size: var(--fs-lg); }
+.thanks__icon .icon { width: var(--space-l); height: var(--space-l); }
+.thanks__title { font-size: var(--fs-display); line-height: var(--lh-tight); }
+.thanks__text { margin: var(--space-m) auto 0; max-width: var(--measure-lead); font-size: var(--fs-lead); }
 .thanks__next {
   margin-top: var(--space-xl);
   padding: var(--space-l);
@@ -26,20 +26,20 @@
   background: var(--blue-50);
   text-align: start;
 }
-.thanks__next-title { font-size: var(--fs-h3); margin-bottom: var(--space-s); }
+.thanks__next-title { font-size: var(--fs-lead); margin-bottom: var(--space-s); }
 .thanks__steps { display: grid; gap: var(--space-s); }
 .thanks__step { display: flex; align-items: flex-start; gap: var(--space-s); }
 .thanks__step-num {
   display: inline-grid;
   place-items: center;
   flex: none;
-  width: 2rem;
-  height: 2rem;
+  width: var(--space-l);
+  height: var(--space-l);
   border-radius: var(--radius-s);
   background: var(--navy-900);
   color: var(--white);
-  font-family: var(--font-condensed);
-  font-weight: var(--fw-semibold);
+  font-family: var(--font-label);
+  font-weight: var(--fw-bold);
 }
 .thanks__urgent { margin-block: var(--space-l); color: var(--text-2); }
-.thanks__urgent a { font-weight: var(--fw-semibold); white-space: nowrap; }
+.thanks__urgent a { font-weight: var(--fw-bold); white-space: nowrap; }

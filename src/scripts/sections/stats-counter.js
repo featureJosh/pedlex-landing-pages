@@ -1,6 +1,8 @@
-/* Stats counters: when a [data-stats] group enters the viewport, every [data-count-to] inside it
-   counts up from 0 to its target over ~1.4s (ease-out), once. The HTML already holds the final
-   value (no-JS and screen readers read it; the animated span is aria-hidden in the markup).
+/* Stats counters: when a [data-stats] group is on screen, every [data-count-to] inside it counts up
+   from 0 to its target over ~1.4s (ease-out), once. The HTML already holds the final value and
+   nothing is zeroed in advance: until the group is visible it shows the real figures (no-JS, slow
+   scripts and screen readers read them; the animated span is aria-hidden in the markup). A group that
+   is already visible on load (the hero strip) counts immediately.
    Skipped entirely under reduced motion. Markup: partials/proof-strip.njk (in the hero). */
 (function () {
   const DURATION = 1400;
@@ -10,7 +12,9 @@
   const fmt = new Intl.NumberFormat(`${document.documentElement.lang.slice(0, 2) || "fr"}-CA`);
 
   function run(group) {
-    const items = Pedlex.$$("[data-count-to]", group).map((el) => ({ el, to: Number(el.dataset.countTo) }));
+    const items = Pedlex.$$("[data-count-to]", group)
+      .map((el) => ({ el, to: Number(el.dataset.countTo) }))
+      .filter(({ to }) => Number.isFinite(to));
     // Reserve each final width so the suffix doesn't shift while counting. Measured here, not at
     // ready: by now the webfont has loaded (and the group separator is narrower than a digit).
     items.forEach(({ el, to }) => {
@@ -29,25 +33,15 @@
     const groups = Pedlex.$$("[data-stats]");
     if (!groups.length || Pedlex.reducedMotion() || !("IntersectionObserver" in window)) return;
 
-    groups.forEach((group) => {
-      Pedlex.$$("[data-count-to]", group).forEach((el) => {
-        const to = Number(el.dataset.countTo);
-        if (!Number.isFinite(to)) return el.removeAttribute("data-count-to");
-        el.textContent = "0";
+    // Fires as soon as any part of the group is in the viewport (no inset margin: a strip at the
+    // bottom edge of the first screen must count too). The first callback reports the initial state.
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        run(entry.target);
       });
     });
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          io.unobserve(entry.target);
-          run(entry.target);
-        });
-      },
-      // Starts once the row is clearly on screen; a margin (not a ratio) so tall rows still fire.
-      { rootMargin: "0px 0px -15% 0px", threshold: 0 }
-    );
     groups.forEach((g) => io.observe(g));
   });
 })();

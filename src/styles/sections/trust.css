@@ -1,26 +1,24 @@
-/* Trust bar (sections/trust.njk). White, compact: a calm caption over client logos.
+/* Trust bar (sections/trust.njk). White, compact: a one-line caption over client logos.
    Default (no JS / reduced motion): static, centred, wrapping row.
    [data-marquee-ready] (set by scripts/sections/trust-marquee.js): one slow seamless loop with soft
-   edge fades; pauses on hover and keyboard focus. */
+   edge fades; pauses on hover, keyboard focus and the pause button ([data-marquee-paused]). */
 .trust {
   /* One loop of the logo set; trust-marquee.js multiplies it if the set is cloned for width. */
   --trust-loop: var(--dur-marquee);
   --trust-gap: var(--space-xl);
-  --trust-logo-w: 7rem;
-  --trust-logo-h: 2.25rem;
 }
 
+/* A caption, not a headline: body size, bold, one line from tablets up (Josh, 2026-10-30). */
 .trust__title {
-  max-width: 34ch;
-  margin-inline: auto;
   color: var(--ink);
-  font-size: var(--fs-h3);
-  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0;
   line-height: var(--lh-snug);
   text-align: center;
 }
 
-.trust__marquee { margin-top: var(--space-l); }
+.trust__marquee { margin-top: var(--space-m); }
 .trust__list {
   display: flex;
   flex-wrap: wrap;
@@ -32,8 +30,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--trust-logo-w);
-  height: var(--trust-logo-h);
+  width: var(--client-logo-w);
+  height: var(--client-logo-h);
   flex: none;
 }
 /* Uniform optical size: every logo fits the same box, so wide wordmarks don't dominate. */
@@ -44,7 +42,7 @@
   max-height: 100%;
   object-fit: contain;
   filter: grayscale(1);
-  opacity: 0.7;
+  opacity: var(--opacity-muted);
   mix-blend-mode: multiply;
   transition: filter var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
 }
@@ -68,20 +66,38 @@
   padding-inline-end: var(--trust-gap);
 }
 .trust__marquee[data-marquee-ready]:hover .trust__rail,
-.trust__marquee[data-marquee-ready]:focus-within .trust__rail {
+.trust__marquee[data-marquee-ready]:focus-within .trust__rail,
+.trust__marquee[data-marquee-paused] .trust__rail {
   animation-play-state: paused;
 }
 @keyframes trust-marquee {
   to { transform: translateX(-50%); }
 }
 
+/* Pause / play: a quiet square control centred under the logos. */
+.trust__pause {
+  display: grid;
+  place-items: center;
+  width: var(--target);
+  height: var(--target);
+  margin: var(--space-2xs) auto 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  background: none;
+  color: var(--text-3);
+  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+.trust__pause[hidden] { display: none; }
+.trust__pause:hover { border-color: var(--line); color: var(--navy-900); }
+.trust__pause-icon { width: var(--icon-s); height: var(--icon-s); }
+.trust__pause-icon--play,
+.trust__pause[data-paused] .trust__pause-icon--pause { display: none; }
+.trust__pause[data-paused] .trust__pause-icon--play { display: block; }
+
 @media (min-width: 48rem) {
-  .trust {
-    --trust-gap: var(--space-2xl);
-    --trust-logo-w: 9rem;
-    --trust-logo-h: 3rem;
-  }
-  .trust__marquee { margin-top: var(--space-xl); }
+  .trust { --trust-gap: var(--space-2xl); }
+  .trust__marquee { margin-top: var(--space-l); }
 }
 
 @media (prefers-reduced-motion: reduce) {

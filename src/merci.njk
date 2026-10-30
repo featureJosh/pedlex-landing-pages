@@ -31,6 +31,6 @@ eleventyComputed:
       </ol>
     </div>
     <p class="thanks__urgent">{{ c.thanks.urgent }} <a href="tel:{{ site.company.phoneHref }}">{{ site.company.phone }}</a></p>
-    {{ button(c.thanks.back, entry.url | url, { variant: "secondary", icon: "arrow-left" }) }}
+    {{ button(c.thanks.back, entry.url | url, { variant: "secondary", icon: "arrow-left", iconStart: true }) }}
   </div>
 </section>

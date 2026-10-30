@@ -1,12 +1,13 @@
-/* Feature card: icon chip + title + text. Shared by Problem (4 cards) and Why Pedlex (6 cards).
-   Use the `featureCard` macro in components/ui.njk; never hand-write this markup. */
+/* Feature card: icon chip + title + text. Shared by Problem (4 cards) and Why Pedlex (4 reasons).
+   Use the `featureCard` macro in components/ui.njk; never hand-write this markup.
+   The title is the site's one h3 treatment (lead size, bold, as in 02-base.css). */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
   height: 100%;
-  padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  padding: var(--card-pad);
   background: var(--white);
   border: var(--border);
   border-radius: var(--radius-m);
@@ -15,28 +16,25 @@
 .card:hover {
   border-color: var(--blue-100);
   box-shadow: var(--shadow-m);
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--nudge) * -1));
 }
 .card__icon {
   display: inline-grid;
   place-items: center;
-  width: 3rem;
-  height: 3rem;
+  width: var(--icon-tile);
+  height: var(--icon-tile);
   margin-bottom: var(--space-2xs);
   border-radius: var(--radius-m);
   background: var(--blue-100);
   color: var(--navy-900);
 }
-.card__icon .icon { width: 1.5rem; height: 1.5rem; }
+.card__icon .icon { width: var(--icon-m); height: var(--icon-m); }
 .card__title {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-snug);
-  letter-spacing: 0;
+  font-size: var(--fs-lead);
   color: var(--ink);
 }
 .card__text {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-body);
   line-height: var(--lh-body);
   color: var(--text-2);
 }

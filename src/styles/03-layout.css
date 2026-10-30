@@ -36,11 +36,12 @@
   gap: var(--space-2xs);
   margin-bottom: var(--space-s);
   font-family: var(--font-label);
-  font-size: var(--fs-eyebrow);
+  font-size: var(--fs-label);
   font-weight: var(--fw-regular);
   letter-spacing: var(--ls-caps);
   line-height: var(--lh-snug);
   text-transform: uppercase;
+  text-wrap: balance;
   color: var(--color-accent);
 }
 .eyebrow::before {
@@ -55,20 +56,20 @@
 .section--dark .eyebrow__index { color: var(--on-dark-3); }
 
 /* Section head (rendered by the sectionHead macro). */
-.section-head { max-width: 44rem; }
+.section-head { max-width: var(--head-width); }
 /* Centred heads stay left-aligned on phones: long FR eyebrows and titles wrap more cleanly. */
 @media (min-width: 48rem) {
   .section-head--center { margin-inline: auto; text-align: center; }
   .section-head--center .eyebrow { justify-content: center; }
 }
 .section-title {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-display);
   line-height: var(--lh-tight);
 }
 .section-lead {
   margin-top: var(--space-s);
   max-width: var(--measure-lead);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-lead);
   line-height: var(--lh-body);
   color: var(--text-2);
 }
@@ -85,9 +86,9 @@
   display: grid;
   gap: var(--grid-gap);
 }
-.grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
-.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
-.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min-2)), 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min-3)), 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--col-min-4)), 1fr)); }
 @media (min-width: 64rem) {
   .grid--3 { grid-template-columns: repeat(3, 1fr); }
   .grid--4 { grid-template-columns: repeat(4, 1fr); }

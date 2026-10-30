@@ -49,22 +49,22 @@
   border-radius: var(--radius-s);
   background: var(--white);
   color: var(--navy-900);
-  font-size: var(--fs-md);
+  font-size: var(--fs-body);
   font-weight: var(--fw-bold);
-  line-height: 1;
+  line-height: var(--lh-tight);
   font-variant-numeric: tabular-nums;
 }
 .process__body { padding-top: var(--space-2xs); }
 .process__title {
   color: var(--on-dark);
-  font-size: var(--fs-md);
+  font-size: var(--fs-lead);
   line-height: var(--lh-snug);
 }
 .process__text {
   margin-top: var(--space-2xs);
-  max-width: 36ch;
+  max-width: var(--measure-narrow);
   color: var(--on-dark-2);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-body);
   line-height: var(--lh-body);
 }
 

@@ -1,17 +1,20 @@
 /* Why Pedlex (#why, white). Video frame + head and four compact reasons, then the certification
    strip (hairline, small caps label, grayscale badges). The reasons reuse the featureCard macro in
-   a flat list form: icon chip beside title + text, no card box. */
+   a flat list form: icon chip beside title + text, no card box.
+   From 64rem the video column stretches to the full height of head + reasons (no empty block under
+   it); the photo crops to fit. */
 .why__layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas: "head" "video" "list";
-  gap: var(--space-l);
+  gap: var(--section-gap);
 }
 .why__head { grid-area: head; }
 .why__video { grid-area: video; }
 .why__list { grid-area: list; }
 
 /* ---- Video (placeholder poster) ---- */
+.why__video { display: flex; flex-direction: column; }
 .why__video-frame { aspect-ratio: 16 / 10; }
 .why__video-frame::after {
   content: "";
@@ -19,33 +22,38 @@
   inset: 0;
   background: var(--scrim-media);
 }
+/* Quiet, centred play mark with the « à venir » tag under it: reads as « coming », not « click ». */
 .why__play {
   position: absolute;
   z-index: 1;
-  top: 50%;
-  left: 50%;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+.why__play-icon {
   display: grid;
   place-items: center;
-  width: calc(var(--space-2xl) + var(--space-2xs));
-  height: calc(var(--space-2xl) + var(--space-2xs));
+  width: var(--space-xl);
+  height: var(--space-xl);
+  border: 1px solid var(--line-dark);
   border-radius: var(--radius-round);
-  background: var(--white);
-  color: var(--navy-900);
-  box-shadow: var(--shadow-l);
-  transform: translate(-50%, -50%);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  color: var(--on-dark);
 }
-.why__play .icon { width: var(--space-m); height: var(--space-m); margin-left: var(--space-3xs); fill: currentColor; }
+.why__play-icon .icon { width: var(--icon-s); height: var(--icon-s); margin-left: var(--space-3xs); fill: currentColor; }
 .why__video-tag {
-  position: absolute;
-  z-index: 1;
-  left: var(--space-s);
-  bottom: var(--space-s);
   padding: var(--space-3xs) var(--space-xs);
   border: 1px dashed var(--on-dark-3);
   border-radius: var(--radius-s);
+  background: var(--chip-dark);
   color: var(--on-dark);
   font-family: var(--font-label);
-  font-size: var(--fs-2xs);
+  font-size: var(--fs-label);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
 }
@@ -53,7 +61,7 @@
   margin-top: var(--space-s);
   text-wrap: balance;
   color: var(--ink);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-body);
   font-weight: var(--fw-bold);
 }
 
@@ -97,10 +105,11 @@
 .why__certs-label {
   flex-basis: 100%;
   font-family: var(--font-label);
-  font-size: var(--fs-2xs);
+  font-size: var(--fs-label);
   letter-spacing: var(--ls-caps);
   line-height: var(--lh-snug);
   text-transform: uppercase;
+  text-wrap: balance;
   color: var(--text-3);
 }
 /* One row at every width: on phones the badges shrink a little rather than orphan the third. */
@@ -118,9 +127,15 @@
   max-height: var(--space-xl);
   mix-blend-mode: multiply;   /* badges are flattened on white */
   filter: grayscale(1);
-  opacity: 0.7;
+  opacity: var(--opacity-muted);
 }
 
+/* Phones: icon beside the title, the text full width under both (same as the problem cards). */
+@media (max-width: 39.99rem) {
+  .why__list .card { align-items: center; row-gap: var(--space-2xs); }
+  .why__list .card__icon { grid-row: auto; width: calc(var(--space-l) + var(--space-2xs)); height: calc(var(--space-l) + var(--space-2xs)); }
+  .why__list .card__text { grid-column: 1 / -1; }
+}
 @media (min-width: 40rem) {
   .why__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -133,10 +148,10 @@
     grid-template-rows: auto 1fr;
     grid-template-areas: "video head" "video list";
     column-gap: var(--split-gap);
-    align-items: start;
   }
+  .why__video-frame { flex: 1; aspect-ratio: auto; min-height: 0; }
   .why__certs { flex-wrap: nowrap; justify-content: space-between; gap: var(--space-2xl); text-align: start; }
-  .why__certs-label { flex-basis: auto; max-width: 34ch; }
+  .why__certs-label { flex-basis: auto; }
 }
 
 /* 64-80rem: the text column is too narrow for two reasons side by side; stack them. */

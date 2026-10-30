@@ -1,17 +1,17 @@
-{#- Top announcement bar (Raffi, 2026-10-29): one line of messaging + CTA on the left, phone and the
-    FR/EN switch on the side. Scrolls away; the header below it stays. Styles: components/topbar.css
-    Data: c.ui.topbar.{message, cta}, c.ui.{phoneLabel, langSwitch}, site.company.{phone, phoneHref}. -#}
-<div class="topbar">
+{#- Top announcement bar (Raffi, 2026-10-29): one line of messaging on the left (the 50th anniversary
+    and the family story), phone and the FR/EN switch on the side. No CTA here: the hero carries the
+    only one on the first screen (Josh, 2026-10-30). Phones show the short message and a square call
+    button. Scrolls away; the header below it stays. Styles: components/topbar.css
+    Data: c.ui.topbar.{message, short}, c.ui.{phoneLabel, langSwitch}, site.company.{phone, phoneHref}. -#}
+<div class="topbar" data-topbar>
   <div class="container topbar__inner">
     <p class="topbar__message">
       <span class="topbar__dot" aria-hidden="true"></span>
-      <span class="topbar__text">{{ c.ui.topbar.message | safe }}</span>
-      {%- if not isThanks %}
-      <a class="topbar__cta" href="#{{ c.form.id }}" data-scroll-to>{{ c.ui.topbar.cta | safe }}{% icon "arrow-right" %}</a>
-      {%- endif %}
+      <span class="topbar__text topbar__text--long">{{ c.ui.topbar.message | safe }}</span>
+      <span class="topbar__text topbar__text--short">{{ c.ui.topbar.short | safe }}</span>
     </p>
     <div class="topbar__side">
-      <a class="topbar__phone" href="tel:{{ site.company.phoneHref }}">{% icon "phone" %}<span class="visually-hidden">{{ c.ui.phoneLabel }} </span><span class="nowrap">{{ site.company.phone }}</span></a>
+      <a class="topbar__phone" href="tel:{{ site.company.phoneHref }}">{% icon "phone" %}<span class="visually-hidden">{{ c.ui.phoneLabel }} </span><span class="topbar__phone-number nowrap">{{ site.company.phone }}</span></a>
       {%- if entry.alt %}
       <a class="topbar__lang" href="{{ (entry.alt.thanksUrl if isThanks else entry.alt.url) | url }}" hreflang="{{ entry.alt.lang }}" lang="{{ entry.alt.lang }}" aria-label="{{ c.ui.langSwitch.aria }}">{{ c.ui.langSwitch.label }}</a>
       {%- endif %}

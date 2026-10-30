@@ -1,10 +1,10 @@
 /* Hero (sections/hero.njk). BrokerFlo-style: full-bleed photo (A) or video (B) under a navy scrim,
    copy on the left, the proof strip on the bottom edge. The section slides up under the transparent
    sticky header (negative margin = header height) so the photo starts at the top bar.
-   Phones: copy sits on the lower part of the photo (vertical scrim). From 64rem: copy left on a
-   horizontal scrim, vertically centred, proof strip pinned to the bottom. */
+   Phones: copy sits on the lower part of the photo (vertical scrim), the proof strip is three rows.
+   From 48rem: three proof columns. From 64rem: copy left on a horizontal scrim, vertically centred,
+   proof strip pinned to the bottom. */
 .hero {
-  --hero-drift: var(--dur-drift);
   display: flex;
   flex-direction: column;
   min-height: calc(100svh - var(--topbar-h));
@@ -34,13 +34,14 @@
   object-fit: cover;
   object-position: 62% 40%;
 }
+/* One slow push-in on load, then still (no endless motion, so no pause control needed). */
 .hero__img {
   transform-origin: 60% 45%;
-  animation: hero-drift var(--hero-drift) var(--ease-in-out) infinite alternate;
+  animation: hero-drift var(--dur-drift) var(--ease-out) 1 both;
 }
 @keyframes hero-drift {
-  from { transform: scale(1); }
-  to { transform: scale(1.06) translate3d(-1%, -0.6%, 0); }
+  from { transform: scale(1.06) translate3d(-1%, -0.6%, 0); }
+  to { transform: scale(1); }
 }
 
 /* ---- Copy ---- */
@@ -53,6 +54,7 @@
   margin-top: auto;   /* phones: copy sits low, the photo shows above it */
   max-width: var(--hero-measure);
 }
+/* Dark chip, not glass: small caps text needs >= 4.5:1 over the brightest part of the photo. */
 .hero__tag {
   display: inline-flex;
   align-items: center;
@@ -60,12 +62,12 @@
   padding: var(--space-2xs) var(--space-s);
   border: 1px solid var(--line-dark);
   border-radius: var(--radius-s);
-  background: var(--glass);
+  background: var(--chip-dark);
   -webkit-backdrop-filter: var(--blur-glass);
   backdrop-filter: var(--blur-glass);
   color: var(--on-dark);
   font-family: var(--font-label);
-  font-size: var(--fs-2xs);
+  font-size: var(--fs-label);
   letter-spacing: var(--ls-caps);
   line-height: var(--lh-snug);
   text-transform: uppercase;
@@ -78,16 +80,16 @@
 }
 .hero__title {
   margin-top: var(--space-m);
-  max-width: 18ch;
+  max-width: var(--measure-title);
   color: var(--on-dark);
   font-size: var(--fs-h1);
   line-height: var(--lh-tight);
 }
 .hero__lead {
   margin-top: var(--space-m);
-  max-width: 44ch;
+  max-width: var(--measure-lead);
   color: var(--on-dark-2);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-lead);
   line-height: var(--lh-body);
 }
 
@@ -100,44 +102,49 @@
 }
 .hero__phone { font-variant-numeric: tabular-nums; }
 
-/* ---- Proof strip (partials/proof-strip.njk): one line of figures with hairline dividers ---- */
+/* ---- Proof strip (partials/proof-strip.njk) ----
+   Figures at the display size, labels at the lead size (the hero subheader's). Phones: one row per
+   figure (figure | label) between hairlines. */
 .hero__proof {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--space-m);
   margin-top: var(--space-xl);
-  padding-top: var(--space-m);
   border-top: 1px solid var(--line-dark);
 }
 .hero__proof-item {
-  padding-inline: var(--space-xs);
-  border-left: 1px solid var(--line-dark);
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  padding-block: var(--space-xs);
+  border-bottom: 1px solid var(--line-dark);
 }
-.hero__proof-item:first-child { padding-inline-start: 0; border-left: 0; }
-.hero__proof-item:last-child { padding-inline-end: 0; }
+.hero__proof-item:last-child { border-bottom: 0; padding-bottom: 0; }
 .hero__proof-figure {
   color: var(--on-dark);
-  font-size: var(--fs-stat);
+  font-size: var(--fs-display);
   font-weight: var(--fw-bold);
   font-variant-numeric: tabular-nums;
   letter-spacing: var(--ls-tight);
-  line-height: var(--lh-snug);
+  line-height: var(--lh-tight);
   white-space: nowrap;
 }
 .hero__proof-number { display: inline-block; text-align: end; }
+/* « 30 à 50 % »: the « à » at full size, regular weight, so it never reads as « 30à50 ». */
 .hero__proof-sep {
-  margin-inline: 0.2em;
-  font-size: 0.7em;
+  margin-inline: var(--space-2xs);
   font-weight: var(--fw-regular);
   color: var(--on-dark-2);
 }
 .hero__proof-label {
-  margin-top: var(--space-3xs);
   color: var(--on-dark-2);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-lead);
   line-height: var(--lh-snug);
+  text-wrap: balance;
 }
 
-/* ---- Video variant (B): placeholder tag + pause control, bottom right ---- */
+/* ---- Video variant (B): placeholder tag + pause control, top right ---- */
 .hero__video-ui {
   position: absolute;
   top: calc(var(--header-h) + var(--space-s));
@@ -150,9 +157,10 @@
   padding: var(--space-3xs) var(--space-xs);
   border: 1px dashed var(--line-dark);
   border-radius: var(--radius-s);
+  background: var(--chip-dark);
   color: var(--on-dark-2);
   font-family: var(--font-label);
-  font-size: var(--fs-2xs);
+  font-size: var(--fs-label);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
 }
@@ -176,13 +184,21 @@
 .hero__pause[data-paused] .hero__pause-icon--pause { display: none; }
 .hero__pause[data-paused] .hero__pause-icon--play { display: block; }
 
-/* Phones (BrokerFlo mobile): the CTA (short label) and a round call button side by side. */
+/* Phones (BrokerFlo mobile): the CTA (short label) and a square call button side by side, the same
+   height. */
 @media (max-width: 40rem) {
   .hero__tag { letter-spacing: var(--ls-label-tight); }
-  .hero__actions { flex-wrap: nowrap; }
-  .hero__cta { flex: 1; justify-content: space-between; padding-inline-start: var(--space-m); font-size: var(--fs-base); white-space: nowrap; }
-  .hero__phone { flex: none; padding: var(--space-2xs); }
+  .hero__actions { flex-wrap: nowrap; align-items: stretch; }
+  .hero__cta {
+    flex: 1;
+    justify-content: space-between;
+    padding-block: var(--space-2xs);
+    padding-inline-start: var(--space-m);
+    white-space: nowrap;
+  }
+  .hero__phone { flex: none; aspect-ratio: 1; padding: 0; }
   .hero__phone .btn__label { display: none; }
+  .hero__phone .btn__badge { background: none; }
 }
 @media (max-width: 23.99rem) {
   .hero__tag { letter-spacing: 0; }
@@ -190,26 +206,32 @@
 }
 
 @media (min-width: 48rem) {
-  .hero__proof-item { padding-inline: var(--space-l); }
-  .hero__proof-label { font-size: var(--fs-sm); }
+  .hero__proof {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 0;
+    padding-top: var(--space-m);
+  }
+  .hero__proof-item {
+    display: block;
+    grid-column: auto;
+    padding: 0 var(--space-l);
+    border-bottom: 0;
+    border-left: 1px solid var(--line-dark);
+  }
+  .hero__proof-item:first-child { padding-inline-start: 0; border-left: 0; }
+  .hero__proof-label { margin-top: var(--space-2xs); }
 }
 
 /* ---- Desktop: horizontal scrim, copy centred in the space above the strip ---- */
 @media (min-width: 64rem) {
   .hero {
-    min-height: min(calc(100svh - var(--topbar-h)), 60rem);
+    min-height: min(calc(100svh - var(--topbar-h)), var(--hero-max));
     padding-block: calc(var(--header-h) + var(--space-xl)) var(--space-xl);
   }
   .hero__media::after { background: var(--scrim-hero-wide); }
   .hero__content { margin-block: auto; }
-  .hero__proof {
-    display: flex;
-    margin-top: var(--space-2xl);
-    padding-top: 0;
-    border-top: 0;
-  }
+  .hero__proof { margin-top: var(--space-2xl); padding-top: var(--space-l); }
   .hero__proof-item { padding-inline: var(--space-xl); }
-  .hero__proof-label { margin-top: var(--space-3xs); }
 }
 
 @media (prefers-reduced-motion: reduce) {

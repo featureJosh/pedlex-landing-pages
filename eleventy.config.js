@@ -68,7 +68,9 @@ export default function (eleventyConfig) {
   // Content strings may hold limited inline HTML (<strong>, <em>, <br>). Strip it for attributes/meta.
   // 10000 -> "10 000" (fr-CA, narrow no-break space) / "10,000" (en-CA). stats-counter.js formats the same way.
   eleventyConfig.addFilter("num", (n, lang = "fr") => new Intl.NumberFormat(`${lang}-CA`).format(n));
-  eleventyConfig.addFilter("plain", (s = "") => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
+  // Strips tags and collapses ordinary whitespace. Only ASCII whitespace: the FR no-break spaces
+  // (U+00A0 before « : », U+202F before « ? ») must survive into attributes like data-error-*.
+  eleventyConfig.addFilter("plain", (s = "") => String(s).replace(/<[^>]+>/g, "").replace(/[ \t\r\n]+/g, " ").trim());
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },

@@ -27,7 +27,8 @@
   </div>
   <div class="container">
     <div class="site-footer__legal">
-      <p>© {{ build.year }} {{ co.legalName }}. {{ c.footer.rights }} · <span class="nowrap">{{ c.footer.rbq }} {{ co.rbq }}</span></p>
+      {#- The « · » sits inside the no-wrap RBQ span so it never dangles at a line end. #}
+      <p>© {{ build.year }} {{ co.legalName }}. {{ c.footer.rights }} <span class="nowrap">· {{ c.footer.rbq }} {{ co.rbq }}</span></p>
       <ul class="site-footer__legal-links" role="list">
         <li><a href="{{ co.privacy[lang] }}" target="_blank" rel="noopener">{{ c.footer.privacy }}</a></li>
         <li><button type="button" class="link-button" data-cookie-open>{{ c.footer.cookies }}</button></li>

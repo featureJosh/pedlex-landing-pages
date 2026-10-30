@@ -11,6 +11,20 @@ Format:
 
 ---
 
+## 2026-10-30 17:45 · lead
+- **Branches:** `main` is the only branch (Josh: « this is the new main… purge all other branches »). Deleted `explore/kimi` (19069b5) and `rounded-branch` (39f9468); removed the Pedlex-main worktree; `main` now lives in the `Pedlex Landing Page` folder.
+- **Repo public + GitHub Pages** (Josh): `gh repo edit --visibility public`; Pages source = workflow; `PAGES_ENABLED=true`. A sub-agent fixed the old failed deploy (2b30909: Pages was off on the private repo; actions bumped to Node 24 majors). `ci.yml` actions bumped too. Nothing pushed.
+- **Round-2 review batch** (Josh's notes + QA/User/Client r2, all in one pass; triage in PROJECT.md §8 « Round 2 »):
+  - Type: `--fs-label` 13 / `--fs-body` 16–17 / `--fs-lead` 18–22 / `--fs-display` 28–42 + `--fs-h1`; old `--fs-2xs…--fs-stat`, `--fw-medium/semibold`, `--font-condensed` removed; one h3 treatment; measures widened (`--measure-lead` 60ch, `--head-width` 52rem). Barlow removed (faces, `@fontsource/barlow-condensed`, `copy-fonts.mjs`).
+  - New tokens: `--target`, `--btn-h(-sm/-lg)`, `--icon-s/m/tile`, `--logo-w(-footer)`, `--client-logo-w/h`, `--card-pad`, `--col-min-2/3/4`, `--measure-narrow/title`, `--head-width`, `--hero-max`, `--peek-col`, `--focus-ring`, `--stroke-bold`, `--opacity-muted/disabled`, `--nudge`, `--lh-control`, `--blur-header`, `--chip-dark`; `--topbar-h` 44px everywhere; `--section-pad` min 40px.
+  - Header/top bar: header actions (new call button + CTA) hidden at rest and shown as soon as the header sticks, i.e. the top bar ([data-topbar]) has scrolled away (`header.js`). A first version waited for the hero CTA to pass; Josh: too late, a brief duplicate is fine; top bar without CTA, 50 ans message (short on phones), square call button on phones; white focus ring on dark surfaces.
+  - Hero: dark tag chip, wider lead, drift once, proof strip at display/lead sizes (rows on phones), same-height phone actions; `stats-counter.js` never zeroes in advance and fires without an inset margin; `hero-video.js` drops `aria-pressed`; placeholder loop regenerated without text.
+  - Sections: trust caption body-bold one line + marquee pause button; compact phone cards (icon + title row) in problem and why; why video stretches on desktop + quiet play mark; reviews samples (« mark, initials, « Exemple »), `reviews.js` tab stop only while scrolling; form numbered 07, intro top-aligned, phone + city share a row on phones, card padding 16 on phones, submit one line; footer 44px links, « · » with the RBQ span; cookie strip on phones + Escape + focus return; `scroll-to.js` lands on the card below 64rem; `lead-form.js` accepts extensions; `plain` filter keeps FR no-break spaces; `button` macro `iconStart`, `ctaRow` short label.
+  - Copy: see PROJECT.md §9 item 9.
+- QA: build clean; no overflow at 360/390/768/1024/1440/1920 (FR) or 390/1440 (EN); scripted checks all pass (counter at 7 viewports, header timing, CTA focus at 390×664, cookie Escape/focus, marquee pause, reviews tab stop, « poste 22 » submit → merci, merci arrow, EN + /video/ pages). Shots: `qa/shots/r2b/`, `qa/shots/r2b-en/`, `qa/shots/r2b-merci/`.
+- **Not met:** mobile length 8 628px at 390 (budget 7 500), first field 6 985 (budget 5 000). Decision needed (HANDOFF).
+
+
 ## 2026-10-29 19:05 · lead
 - **Square-based shapes on `main`** (Josh: « Pedlex likes its square-based design… rounded things aren't banned, but keep them to a minimum »). Radius tokens to 2px (`--radius-s/m/l`), `--radius-pill` replaced by `--radius-round` (video play/pause only). Buttons, button badges, hero tag chip, top-bar/hero dots, process numbers, FAQ toggle, form checks, testimonial tags/avatars/bars, thank-you icon and steps are now square. Files: `00-tokens.css`, `button.css`, `topbar.css`, `header.css`, `hero.css`, `process.css`, `reviews.css`, `why.css`, `faq.css`, `form.css`, `pages/thanks.css`, `ui.njk` (comment).
 - **`rounded-branch`** created at 39f9468: the round-2 build with pills and round badges, kept for comparison (local only).

@@ -1,5 +1,6 @@
 /* Buttons (rendered by the `button` macro). Square-cornered actions in Scania Sans bold, mixed case.
-   A trailing icon sits in a square badge that nudges on hover. One primary CTA style site-wide.
+   A trailing icon sits in a square badge that nudges on hover (a leading one, `iconStart`, for
+   « back » links). One primary CTA style site-wide. Every button uses the body size.
    Variants: primary (navy), secondary (outline), on-dark (white, for dark sections and photos),
    glass (translucent white outline, the quiet second action on photos). */
 .btn {
@@ -13,17 +14,17 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
-  min-height: 3rem;
+  min-height: var(--btn-h);
   padding: var(--space-2xs) var(--space-m);
   border: 1px solid var(--btn-border);
   border-radius: var(--radius-s);
   background: var(--btn-bg);
   color: var(--btn-fg);
   font-family: var(--font-sans);
-  font-size: var(--fs-btn);
+  font-size: var(--fs-body);
   font-weight: var(--fw-bold);
   letter-spacing: 0;
-  line-height: 1.2;
+  line-height: var(--lh-control);
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -39,8 +40,9 @@
 .btn:active { transform: translateY(1px); box-shadow: none; }
 
 /* Square icon badge at the end of the button (BrokerFlo-style, squared). The end padding tightens
-   so the badge sits evenly inside the button. */
-.btn:has(.btn__badge) { padding-inline-end: var(--space-2xs); }
+   so the badge sits evenly inside the button; a leading badge tightens the start instead. */
+.btn:has(.btn__badge:last-child) { padding-inline-end: var(--space-2xs); }
+.btn:has(.btn__badge:first-child) { padding-inline-start: var(--space-2xs); }
 .btn__badge {
   display: inline-grid;
   place-items: center;
@@ -52,9 +54,9 @@
   color: var(--btn-badge-fg);
   transition: background-color var(--dur) var(--ease-out);
 }
-.btn__icon { width: 1.05em; height: 1.05em; transition: transform var(--dur) var(--ease-out); }
-.btn:hover .btn__icon { transform: translateX(2px); }
-.btn:hover .btn__icon.lucide-arrow-left { transform: translateX(-2px); }
+.btn__icon { width: var(--icon-s); height: var(--icon-s); transition: transform var(--dur) var(--ease-out); }
+.btn:hover .btn__icon { transform: translateX(var(--nudge)); }
+.btn:hover .btn__icon.lucide-arrow-left { transform: translateX(calc(var(--nudge) * -1)); }
 
 .btn--secondary {
   --btn-bg: transparent;
@@ -85,11 +87,11 @@
 }
 .btn--glass:hover { box-shadow: none; }
 
-.btn--sm { min-height: 2.5rem; padding: var(--space-2xs) var(--space-s); font-size: var(--fs-sm); }
+.btn--sm { min-height: var(--btn-h-sm); padding: var(--space-2xs) var(--space-s); }
 .btn--sm .btn__badge { width: var(--space-m); height: var(--space-m); }
-.btn--lg { min-height: 3.5rem; padding: var(--space-xs) var(--space-l); font-size: var(--fs-md); }
+.btn--lg { min-height: var(--btn-h-lg); padding: var(--space-xs) var(--space-l); }
 .btn--lg .btn__badge { width: calc(var(--space-l) + var(--space-2xs)); height: calc(var(--space-l) + var(--space-2xs)); }
-.btn[disabled], .btn[aria-disabled="true"] { opacity: 0.6; pointer-events: none; }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: var(--opacity-disabled); pointer-events: none; }
 
 /* Long/short label swap for tight spaces (header CTA on phones). */
 .btn__label--short { display: none; }
@@ -107,10 +109,14 @@
   margin-top: var(--section-gap);
 }
 .cta-row--center { justify-content: center; text-align: center; }
-.cta-row__note { font-size: var(--fs-sm); color: var(--text-3); }
+.cta-row__note { font-size: var(--fs-label); color: var(--text-3); }
 .section--dark .cta-row__note { color: var(--on-dark-3); }
-/* Phones: full-width CTA rows; the badge goes so the label keeps one line. */
+
+/* Phones: full-width CTAs on one line. The badge goes and the large size tightens, so even the
+   longest FR label (« Demandez votre consultation gratuite ») fits at 360px. */
 @media (max-width: 40rem) {
-  .cta-row .btn { width: 100%; padding-inline: var(--space-m); }
-  .cta-row .btn__badge { display: none; }
+  .cta-row .btn,
+  .lead-form__submit { width: 100%; padding-inline: var(--space-s); white-space: nowrap; }
+  .cta-row .btn__badge,
+  .lead-form__submit .btn__badge { display: none; }
 }

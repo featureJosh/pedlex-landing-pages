@@ -4,7 +4,8 @@
     video frame (left) beside the head and four compact reasons (right); the certification strip
     closes the section. Grid areas in why.css place the three blocks.
     The video is a PLACEHOLDER until Pedlex supplies the film: a real Pedlex photo as the poster, a
-    decorative play badge and a dashed « vidéo à venir » tag. Nothing is clickable yet.
+    quiet decorative play mark with the dashed « vidéo à venir » tag right under it, so nobody expects
+    it to play. Nothing is clickable yet.
     Styles: styles/sections/why.css -#}
 {%- from "components/ui.njk" import sectionHead, featureCard -%}
 <section class="section why" id="why" aria-labelledby="why-title">
@@ -14,8 +15,10 @@
       <figure class="why__video" data-reveal>
         <div class="media why__video-frame">
           {% picture c.why.video.image, c.why.video.alt, "(min-width: 64rem) 36rem, 100vw" %}
-          <span class="why__play" aria-hidden="true">{% icon "play" %}</span>
-          {%- if c.why.video.placeholder %}<span class="why__video-tag">{{ c.why.video.label | safe }}</span>{% endif %}
+          <span class="why__play">
+            <span class="why__play-icon" aria-hidden="true">{% icon "play" %}</span>
+            {%- if c.why.video.placeholder %}<span class="why__video-tag">{{ c.why.video.label | safe }}</span>{% endif %}
+          </span>
         </div>
         <figcaption class="why__video-caption">{{ c.why.video.title | safe }}</figcaption>
       </figure>

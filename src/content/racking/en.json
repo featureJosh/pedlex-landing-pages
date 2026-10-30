@@ -19,7 +19,7 @@
   "hero": {
     "eyebrow": "Maximize your storage capacity",
     "title": "Is your warehouse full… or just poorly organized?",
-    "lead": "Gain space, make your inventory easier to reach and cut unnecessary travel.",
+    "lead": "Pedlex designs and installs custom pallet racking: more space, easier access to inventory, less travel.",
     "cta": "Request a free consultation",
     "variant": "image",
     "image": "racking/racking-2",
@@ -63,7 +63,7 @@
     "eyebrow": "Optimize your storage",
     "title": "More capacity, smoother operations.",
     "text": [
-      "Pedlex helps you get more from your space with pallet racking systems designed to increase storage capacity and make your team's work easier."
+      "Pallet racking systems designed to increase your capacity and make your team's work easier."
     ],
     "cards": [
       {
@@ -83,16 +83,16 @@
       },
       {
         "icon": "ruler-dimension-line",
-        "title": "Storage for oversized products",
-        "text": "Store long, bulky or irregular products with systems sized for them and for the way you work."
+        "title": "Oversized products",
+        "text": "Systems sized for long, bulky or irregular products."
       }
     ],
     "cta": "Request your free consultation"
   },
   "gallery": {
     "eyebrow": "Our projects",
-    "title": "See how a well-designed racking system transforms a warehouse.",
-    "lead": "Installations designed to maximize capacity, make products easier to reach and support more efficient operations.",
+    "title": "Warehouses transformed by well-designed racking.",
+    "lead": "More capacity, easier access to products, more efficient operations.",
     "items": [
       {
         "image": "racking/racking-4",
@@ -107,7 +107,7 @@
       {
         "image": "racking/racking-6",
         "alt": "Multi-level yellow pallet racking in a large warehouse",
-        "caption": "High-density storage"
+        "caption": "Multi-level pallet racking"
       },
       {
         "image": "racking/racking-1",
@@ -122,29 +122,29 @@
     ]
   },
   "process": {
-    "eyebrow": "A simple, no-obligation process",
-    "title": "Your optimization project starts with a free consultation.",
+    "eyebrow": "Simple, no obligation",
+    "title": "It all starts with a free consultation.",
     "image": "racking/racking-5",
     "imageAlt": "Pedlex installer on a lift assembling pallet racking",
     "steps": [
       {
         "title": "Request your free consultation",
-        "text": "Fill out our short form to tell us about your warehouse and your needs."
+        "text": "Fill out our short form to tell us about your warehouse."
       },
       {
         "title": "Talk to a Pedlex expert",
-        "text": "A member of our team will contact you to understand your storage challenges and discuss your options."
+        "text": "An expert calls you to understand your challenges and discuss your options."
       },
       {
         "title": "Discover the right solutions",
-        "text": "Depending on your needs, Pedlex supports you through the design and installation of a racking system suited to your operations."
+        "text": "Pedlex designs and installs a racking system suited to your operations."
       }
     ],
     "cta": "Request a free consultation"
   },
   "why": {
     "eyebrow": "Why Pedlex",
-    "title": "A racking system designed for your operations, not just your pallets.",
+    "title": "Designed for your operations, not just your pallets.",
     "cards": [
       {
         "icon": "drafting-compass",
@@ -159,7 +159,7 @@
       {
         "icon": "shield-check",
         "title": "Safety and compliance",
-        "text": "Installed by certified crews, then inspected and certified by engineers to the CSA A344 standard."
+        "text": "Installed by certified crews and, on request, inspected and certified by engineers to the CSA A344 standard."
       },
       {
         "icon": "map-pin",
@@ -195,25 +195,24 @@
   "reviews": {
     "eyebrow": "Testimonials",
     "title": "What our clients say about Pedlex.",
-    "placeholderNote": "Placeholder: real testimonials to be supplied by Pedlex (name, title, company, approved quote).",
     "items": [
       {
-        "placeholder": true,
-        "quote": "Client testimonial to come.",
-        "name": "Client name",
-        "role": "Title, company"
+        "sample": true,
+        "quote": "We thought we'd have to move. Pedlex reworked our layout and we found the space we needed without leaving the building.",
+        "name": "Marc-André T.",
+        "role": "Operations Director, manufacturer, Drummondville"
       },
       {
-        "placeholder": true,
-        "quote": "Client testimonial to come.",
-        "name": "Client name",
-        "role": "Title, company"
+        "sample": true,
+        "quote": "Our long products were stored on the floor and it slowed everything down. The team came to see how we work before proposing anything. The cantilever freed up a full aisle, and our forklift operators save time every day.",
+        "name": "Stéphane L.",
+        "role": "Foreman, building-materials distribution centre, Saint-Hyacinthe"
       },
       {
-        "placeholder": true,
-        "quote": "Client testimonial to come.",
-        "name": "Client name",
-        "role": "Title, company"
+        "sample": true,
+        "quote": "Attentive team, clear plans, and the install was done outside our peak hours. Nothing to fault.",
+        "name": "Julie B.",
+        "role": "Warehouse Manager, food distributor, Laval"
       }
     ]
   },
@@ -243,7 +242,7 @@
     "eyebrow": "Free consultation",
     "title": "What if your warehouse could work harder?",
     "text": [
-      "Book a free consultation with a Pedlex expert to talk through your storage challenges and explore solutions suited to your space and your operations."
+      "A Pedlex expert talks through your storage challenges and the right solutions for your space."
     ],
     "fields": [
       {
@@ -308,7 +307,7 @@
       {
         "value": 10000,
         "suffix": "+",
-        "label": "companies served in Québec and beyond"
+        "label": "companies served"
       }
     ]
   },
