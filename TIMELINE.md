@@ -11,6 +11,10 @@ Format:
 
 ---
 
+## 2026-10-30 21:55 · lead
+- **Hero video → « Pedlex Hero Draft »** (Josh, urgent). Master copied from Downloads to `assets-source/racking/header-video/pedlex-hero-draft.mp4` (HEVC 1080p30, 9 s, 11 MB, gitignored); web encode `assets-source/video/racking/pedlex-hero-draft.mp4` (H.264 High 1920×1080, no audio, 5.1 MB, faststart, same ffmpeg settings as v2) + first-frame poster. `hero.video` FR + EN updated; the v2 encode removed.
+
+
 ## 2026-10-30 21:40 · lead
 - **Hero video v2** (Josh replaced v1 with `assets-source/racking/header-video/header-video-v2.mp4`). The master is HEVC 1920×1080, 10 s, 47 MB with an AAC track: Chrome/Edge/Firefox on many Windows/Android setups can't decode HEVC, and 47 MB is too heavy for phones. Josh chose « Install ffmpeg, convert »: installed `Gyan.FFmpeg` 9.0.2 via winget, encoded `ffmpeg -an -c:v libx264 -profile:v high -preset slow -crf 23 -maxrate 6M -bufsize 12M -pix_fmt yuv420p -vf scale=1920:-2 -movflags +faststart` → `assets-source/video/racking/header-video-v2.mp4` (5.3 MB), first frame → `header-video-v2-poster.jpg`. Same footage, re-encoded only.
 - Wiring: `hero.video` FR + EN point at the v2 encode; the `racking/header-video` passthrough is removed (masters never ship); `.gitignore` keeps `assets-source/racking/header-video/` (masters) out of git; v1 (`hero-section_video.mp4` + poster) deleted as Josh did.
