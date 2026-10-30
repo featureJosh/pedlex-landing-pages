@@ -348,7 +348,7 @@ Reports: [qa/qa-2026-10-30-r2.md](qa/qa-2026-10-30-r2.md), [qa/user-2026-10-30-r
 - [x] **Josh:** 4-size type system site-wide + hero H1; wider measures (lead 60ch, heads 52rem); copy trims logged in §9 (2026-10-30)
 - [x] **Josh:** proof figures up to the display size, labels at the hero lead size (2026-10-30)
 - [x] QA-1 / USER-1 / CLIENT-20 [hero] counter showed zeros until scroll → numbers stay real, count-up starts when visible, no inset margin (2026-10-30)
-- [ ] QA-2 [page, phones] length 8 874 → **8 628px** at 390 (first field 7 084 → 6 985). Budget ≤ 7 500 / ≤ 5 000 still missed: the bigger body/label sizes ate most of the savings. **Needs a lead/Josh decision** on what to drop on phones (options in HANDOFF)
+- [ ] QA-2 [page, phones] length 8 874 → **8 628px** at 390 (first field 7 084 → 6 985). Budget ≤ 7 500 / ≤ 5 000 still missed: the bigger body/label sizes ate most of the savings. **Parked (Josh, 2026-10-30: leave for now)**; options in HANDOFF
 - [x] QA-3 / USER-9 [consultation] CTA lands on the form card below 64rem; first field on screen at 390×664 (2026-10-30)
 - [x] QA-4 [global] white focus ring on the top bar and the transparent header (2026-10-30)
 - [x] QA-5 [trust] marquee pause/play button (44px, label swaps) (2026-10-30)
