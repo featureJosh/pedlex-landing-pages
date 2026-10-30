@@ -11,6 +11,11 @@ Format:
 
 ---
 
+## 2026-10-30 21:10 · lead
+- **Hero video live** (Josh added `assets-source/racking/header-video/hero-section_video.mp4`, 854×480, 10.1 s, 6.9 MB). Racking FR + EN switched to `hero.variant: "video"` with that file; the placeholder flag is gone. Poster `hero-section_poster.jpg` = the video's own first frame (screen capture of the decoded frame, nothing generated). New passthrough `assets-source/racking/header-video` → `assets/video/racking` (`eleventy.config.js`). The preview-only `/video/` twin is now made only for pages whose main hero is still the image (`landingPages.js`, hub link in `index.njk`).
+- Check: plays muted and loops at 390 and 1440 (FR, EN), pause button works, no placeholder tag, no console or network errors.
+
+
 ## 2026-10-30 20:50 · lead
 - Deploys: 310b518 and 1668b0a live on GitHub Pages (914d24b superseded). Pages runs were slow (GitHub Actions degraded).
 - **Josh (mobile):** problem cards back in boxes on phones (the hairline list from QA3-4 read as less appealing). Compact form: white card, 40px icon tile beside the title, text full width below, 24px padding, 12px gap. CTA stays after the cards. Section 1 163px at 390. Why reasons keep the bare-icon list.

@@ -21,13 +21,12 @@
     "title": "Votre entrepôt est plein… ou simplement mal optimisé?",
     "lead": "Pedlex conçoit et installe des palettiers sur mesure : plus d'espace, un inventaire accessible, moins de déplacements.",
     "cta": "Demandez une consultation gratuite",
-    "variant": "image",
+    "variant": "video",
     "image": "racking/racking-2",
     "imageAlt": "Grande installation de palettiers bleus et orange dans un entrepôt réalisée par Pedlex",
     "video": {
-      "src": "placeholders/hero-video-placeholder.webm",
-      "poster": "placeholders/hero-video-poster.jpg",
-      "placeholder": true
+      "src": "video/racking/hero-section_video.mp4",
+      "poster": "video/racking/hero-section_poster.jpg"
     }
   },
   "trust": {

@@ -422,7 +422,7 @@ Report: [qa/qa-2026-10-30-r3.md](qa/qa-2026-10-30-r3.md) (21 findings: 8 major, 
 | English copy (all pages) | Maïeutyk (Erin) | Official EN (Luxy draft live meanwhile) | Waiting |
 | Vector logo (« défie l'espace », sans slogan, white) | Drive (Luxy) | Crisp logo (329px PNG meanwhile) | Not in repo |
 | 4+ client logos from the approved list (Bombardier, Air Canada, CAE, Hydro-Québec…), vector/hi-res | Pedlex / Luxy Drive | Trust bar (placeholders meanwhile) | Waiting |
-| Campaign videos (4) | Erin | Hero video-loop option (placeholder loop meanwhile) | WeTransfer expired; re-send via Drive |
+| Campaign videos (4) | Erin | Hero video-loop option | **Hero loop delivered by Josh 2026-10-30** (`assets-source/racking/header-video/hero-section_video.mp4`, 854×480, 10 s, 6.9 MB; poster = its first frame), now the Racking hero (FR + EN). A 1080p export would look sharper on large screens |
 | 1–2 named projects with a figure (e.g. Groupe Ricochet, Airbus) + matching photos, or a short client quote | Pedlex | Gallery captions / proof (CLIENT-5, USER-3) | Requested |
 | 2 more large industrial racking photos | Pedlex | Gallery (5 slides now) | Requested |
 | CSA A344: is engineer inspection/certification standard or on request? (wording now « sur demande ») | Pedlex | Why card | Ask |

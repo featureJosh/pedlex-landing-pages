@@ -17,7 +17,7 @@ bodyClass: "page-hub"
         <span class="hub__slug">{{ e.slug }}</span>
         <span class="hub__lang">{{ e.lang | upper }}</span>
         <a href="{{ e.url | url }}">Landing</a>
-        {%- if e.c.hero and e.c.hero.video %}
+        {%- if e.c.hero and e.c.hero.video and e.c.hero.variant != "video" %}
         <a href="{{ (e.url + 'video/') | url }}">Hero B (video)</a>
         {%- endif %}
         <a href="{{ e.thanksUrl | url }}">Thank-you</a>

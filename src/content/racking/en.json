@@ -21,13 +21,12 @@
     "title": "Is your warehouse full… or just poorly organized?",
     "lead": "Pedlex designs and installs custom pallet racking: more space, easier access to inventory, less travel.",
     "cta": "Request a free consultation",
-    "variant": "image",
+    "variant": "video",
     "image": "racking/racking-2",
     "imageAlt": "Large blue and orange pallet racking installation in a warehouse, built by Pedlex",
     "video": {
-      "src": "placeholders/hero-video-placeholder.webm",
-      "poster": "placeholders/hero-video-poster.jpg",
-      "placeholder": true
+      "src": "video/racking/hero-section_video.mp4",
+      "poster": "video/racking/hero-section_poster.jpg"
     }
   },
   "trust": {

@@ -11,6 +11,8 @@ export default function (eleventyConfig) {
   // Neutral stand-ins for missing media (CLAUDE.md rule 3) and, later, real hero/company videos.
   eleventyConfig.addPassthroughCopy({ "assets-source/placeholders": "assets/placeholders" });
   eleventyConfig.addPassthroughCopy({ "assets-source/video": "assets/video" });
+  // Racking hero video as Josh delivered it (2026-10-30), poster = its first frame.
+  eleventyConfig.addPassthroughCopy({ "assets-source/racking/header-video": "assets/video/racking" });
   // Production builds of a single landing (LANDING=racking) don't ship the internal QA hub.
   if (process.env.LANDING) eleventyConfig.ignores.add("src/index.njk");
   eleventyConfig.addWatchTarget("src/styles/");
