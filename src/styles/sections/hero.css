@@ -212,12 +212,13 @@
   .hero__proof {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 0;
-    padding-top: var(--space-m);
   }
+  /* Breathing room under the top hairline lives on the items: the list reset
+     (ul[role="list"] { padding: 0 }) outranks a padding on .hero__proof. */
   .hero__proof-item {
     display: block;
     grid-column: auto;
-    padding: 0 var(--space-l);
+    padding: var(--space-m) var(--space-l) 0;
     border-bottom: 0;
     border-left: 1px solid var(--line-dark);
   }
@@ -233,8 +234,8 @@
   }
   .hero__media::after { background: var(--scrim-hero-wide); }
   .hero__content { margin-block: auto; }
-  .hero__proof { margin-top: var(--space-2xl); padding-top: var(--space-l); }
-  .hero__proof-item { padding-inline: var(--space-xl); }
+  .hero__proof { margin-top: var(--space-2xl); }
+  .hero__proof-item { padding-top: var(--space-l); padding-inline: var(--space-xl); }
 }
 
 @media (prefers-reduced-motion: reduce) {

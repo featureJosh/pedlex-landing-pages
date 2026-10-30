@@ -11,6 +11,10 @@ Format:
 
 ---
 
+## 2026-10-30 20:20 · lead
+- **Josh (desktop):** proof figures touched the strip's top hairline. Cause: the list reset `ul[role="list"] { padding: 0 }` outranks `.hero__proof { padding-top }`, so the planned 24/32px never applied. The padding now sits on `.hero__proof-item` (24px from 48rem, 32px from 64rem). Measured hairline → figure: 33px at 1290, 25px at 768; phones unchanged.
+
+
 ## 2026-10-30 20:00 · lead
 - Pushed 64398bb (Josh: « Push it »).
 - **Josh's mobile feedback:**
