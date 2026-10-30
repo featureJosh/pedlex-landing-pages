@@ -61,12 +61,10 @@
   .site-header__phone .btn__badge { order: -1; background: none; width: auto; }
   .site-header__phone:has(.btn__badge) { padding-inline: var(--space-s); }
 }
-/* Phones: the CTA badge goes so logo + call + short CTA fit at 390px; below 24rem the call button
-   goes too (the top bar and the hero keep the number). */
-@media (max-width: 26rem) {
+/* Phones: the CTA badge goes; up to 30rem the call button goes too, so logo + CTA sit inside the
+   gutters (the top bar, hero and form keep the number; QA3-3). */
+@media (max-width: 29.99rem) {
   .site-header__cta .btn__badge { display: none; }
   .site-header__cta { padding-inline: var(--space-s); }
-}
-@media (max-width: 23.99rem) {
   .site-header__phone { display: none; }
 }

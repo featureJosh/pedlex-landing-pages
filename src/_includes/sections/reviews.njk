@@ -17,13 +17,12 @@
       <li class="reviews__item">
         <figure class="reviews__card">
           <span class="reviews__mark" aria-hidden="true">«</span>
-          {%- if item.sample %}<span class="reviews__tag">{{ c.ui.sample }}</span>{% endif %}
           <blockquote class="reviews__quote">
             <p>{{ item.quote | safe }}</p>
           </blockquote>
           <figcaption class="reviews__author">
             <span class="reviews__avatar" aria-hidden="true">{{ initials | join("") | truncate(2, true, "") }}</span>
-            <span class="reviews__who"><span class="reviews__name">{{ item.name | safe }}</span><span class="reviews__role">{{ item.role | safe }}</span></span>
+            <span class="reviews__who"><span class="reviews__name">{{ item.name | safe }}</span><span class="reviews__role">{% if item.sample %}<span class="reviews__tag">{{ c.ui.sample }}</span> · {% endif %}{{ item.role | safe }}</span></span>
           </figcaption>
         </figure>
       </li>

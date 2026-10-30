@@ -1,5 +1,5 @@
 /* Testimonials (#reviews, tint). White quote cards: a French « mark, the quote, then the author
-   (initials tile, name, role). Sample cards carry a dashed « Exemple » tag.
+   (initials tile, name, role). Sample cards say « Exemple » at the start of the role line.
    Phones: horizontal scroll-snap row that bleeds to the screen edges; from 48rem: three columns. */
 /* Two classes so the padding beats the base `ul[role="list"] { padding: 0 }` reset. */
 .reviews .reviews__list {
@@ -37,19 +37,6 @@
   font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
 }
-.reviews__tag {
-  position: absolute;
-  top: var(--space-m);
-  right: var(--space-m);
-  padding: var(--space-3xs) var(--space-xs);
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-s);
-  color: var(--text-3);
-  font-family: var(--font-label);
-  font-size: var(--fs-label);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-}
 .reviews__quote {
   flex: 1;
   color: var(--ink);
@@ -80,6 +67,12 @@
 .reviews__who { display: grid; line-height: var(--lh-snug); }
 .reviews__name { color: var(--ink); font-size: var(--fs-body); font-weight: var(--fw-bold); }
 .reviews__role { color: var(--text-3); font-size: var(--fs-label); }
+.reviews__tag { color: var(--color-accent); font-weight: var(--fw-bold); }
+
+/* Phones: each card hugs its own quote instead of stretching to the longest (QA3-7). */
+@media (max-width: 47.99rem) {
+  .reviews .reviews__list { align-items: start; }
+}
 
 @media (min-width: 48rem) {
   .reviews .reviews__list {

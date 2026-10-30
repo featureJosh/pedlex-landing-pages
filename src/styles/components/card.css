@@ -1,6 +1,6 @@
 /* Feature card: icon chip + title + text. Shared by Problem (4 cards) and Why Pedlex (4 reasons).
    Use the `featureCard` macro in components/ui.njk; never hand-write this markup.
-   The title is the site's one h3 treatment (lead size, bold, as in 02-base.css). */
+   The title is the site's one h3 treatment (02-base.css: lead size, body size on phones, bold). */
 .card {
   position: relative;
   display: flex;
@@ -29,10 +29,7 @@
   color: var(--navy-900);
 }
 .card__icon .icon { width: var(--icon-m); height: var(--icon-m); }
-.card__title {
-  font-size: var(--fs-lead);
-  color: var(--ink);
-}
+.card__title { color: var(--ink); }
 .card__text {
   font-size: var(--fs-body);
   line-height: var(--lh-body);

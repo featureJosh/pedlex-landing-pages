@@ -22,7 +22,7 @@
 
 .process__steps {
   display: grid;
-  gap: var(--space-l);
+  gap: var(--space-m);
 }
 .process__step {
   position: relative;
@@ -36,7 +36,7 @@
   content: "";
   position: absolute;
   top: var(--space-xl);
-  bottom: calc(var(--space-l) * -1);
+  bottom: calc(var(--space-m) * -1);
   left: calc(var(--space-xl) / 2);
   width: 1px;
   background: var(--line-dark);
@@ -57,7 +57,6 @@
 .process__body { padding-top: var(--space-2xs); }
 .process__title {
   color: var(--on-dark);
-  font-size: var(--fs-lead);
   line-height: var(--lh-snug);
 }
 .process__text {

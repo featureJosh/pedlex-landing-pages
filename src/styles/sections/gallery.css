@@ -34,14 +34,22 @@
   font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
 }
+/* Digits in Scania Sans: the Headline cut's wide zero reads « O1 » (QA3-8). */
 .gallery__num {
   flex: none;
   color: var(--color-accent);
-  font-family: var(--font-label);
+  font-family: var(--font-sans);
   font-size: var(--fs-label);
   font-weight: var(--fw-regular);
   letter-spacing: var(--ls-caps);
   font-variant-numeric: tabular-nums;
+}
+
+/* Phones: square thumbnails (more photo), the number above a regular-weight title so captions stay
+   at one or two lines (QA3-8). */
+@media (max-width: 40rem) {
+  .gallery__media { aspect-ratio: 1; }
+  .gallery__caption { flex-direction: column; gap: var(--space-3xs); font-weight: var(--fw-regular); }
 }
 
 @media (min-width: 64rem) {

@@ -81,6 +81,7 @@
   --lh-snug: 1.25;
   --lh-control: 1.2;     /* buttons */
   --lh-body: 1.6;
+  --lh-lead: 1.45;       /* leads (hero + section): tighter than body so they read as one block */
   --ls-tight: -0.02em;
   --ls-display: -0.03em;
   --ls-caps: 0.08em;
@@ -103,7 +104,7 @@
   --space-2xl: 4rem;     /* 64 */
   --space-3xl: 6rem;     /* 96 */
 
-  --section-pad: clamp(2.5rem, 1.5rem + 4.6vw, 6.5rem);  /* vertical padding of every section: 40-104 */
+  --section-pad: clamp(3rem, 1.5rem + 4.6vw, 6.5rem);    /* vertical padding of every section: 48-104 */
   --section-gap: clamp(1.75rem, 1.35rem + 1.9vw, 3.25rem); /* section head -> content: 28-52 */
   --grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);         /* card grids */
   --card-pad: clamp(1.25rem, 1rem + 1vw, 2rem);
@@ -131,7 +132,7 @@
   --icon-s: 1rem;
   --icon-m: 1.5rem;
   --icon-tile: 3rem;
-  --logo-w: clamp(6rem, 1rem + 10vw, 11.5rem);           /* header logo: 96 on phones, 160 at 1440 */
+  --logo-w: clamp(7rem, 1rem + 10vw, 11.5rem);           /* header logo: 112 on phones, 160 at 1440 */
   --logo-w-footer: 9rem;
   --client-logo-w: clamp(7rem, 6.3rem + 1.5vw, 9rem);    /* trust marquee tile */
   --client-logo-h: clamp(2.25rem, 2rem + 0.5vw, 3rem);
@@ -179,5 +180,9 @@
   :root {
     --header-h: 4rem;
     --fs-body: 1rem;
+    /* Phones (QA3-1/2): H1 fits three lines at 360-430; a fixed 30px display keeps a clear step
+       over the 16px bold h3. */
+    --fs-h1: clamp(2rem, 8.7vw, 2.5rem);
+    --fs-display: 1.875rem;
   }
 }

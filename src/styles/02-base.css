@@ -40,6 +40,10 @@ h1, h2, h3, h4 {
 }
 h1, h2 { font-weight: var(--fw-display); letter-spacing: var(--ls-display); }
 h3 { font-size: var(--fs-lead); }
+/* Phones: h3 at the body size (bold) so card titles don't rival the H2 (QA3-2). */
+@media (max-width: 47.99rem) {
+  h3 { font-size: var(--fs-body); }
+}
 p, li, dd { text-wrap: pretty; }
 
 a {

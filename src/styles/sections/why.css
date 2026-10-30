@@ -130,11 +130,27 @@
   opacity: var(--opacity-muted);
 }
 
-/* Phones: icon beside the title, the text full width under both (same as the problem cards). */
+/* Phones: icon beside the title, the text full width under both (same as the problem list).
+   Bare icons, no tiles (QA3-9).
+   Video placeholder: a smaller play mark and the « à venir » tag as a solid chip in the bottom-left
+   corner, so the placeholder note doesn't dominate the frame (QA3-6). */
 @media (max-width: 39.99rem) {
-  .why__list .card { align-items: center; row-gap: var(--space-2xs); }
-  .why__list .card__icon { grid-row: auto; width: calc(var(--space-l) + var(--space-2xs)); height: calc(var(--space-l) + var(--space-2xs)); }
+  .why__list .card { align-items: center; column-gap: var(--space-xs); row-gap: var(--space-2xs); }
+  .why__list .card__icon { grid-row: auto; width: auto; height: auto; background: none; color: var(--color-accent); }
   .why__list .card__text { grid-column: 1 / -1; }
+  .why__play-icon { width: var(--target); height: var(--target); }
+  .why__video-tag {
+    position: absolute;
+    bottom: var(--space-s);
+    left: var(--space-s);
+    border-style: solid;
+    border-color: var(--line-dark);
+  }
+  .why__video-caption {
+    color: var(--text-3);
+    font-size: var(--fs-label);
+    font-weight: var(--fw-regular);
+  }
 }
 @media (min-width: 40rem) {
   .why__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }

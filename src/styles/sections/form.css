@@ -92,6 +92,10 @@
 @media (max-width: 63.99rem) {
   .consult__call { justify-content: center; text-align: center; }
 }
+/* Phones: bare check marks, no tiles (QA3-9). */
+@media (max-width: 47.99rem) {
+  .consult__check { background: none; color: var(--blue-300); }
+}
 
 /* ---- Card --------------------------------------------------------------------------- */
 .consult__card {

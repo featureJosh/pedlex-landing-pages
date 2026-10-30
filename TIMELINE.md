@@ -11,6 +11,22 @@ Format:
 
 ---
 
+## 2026-10-30 19:30 · lead
+- **Mobile visual QA round 3** (agent): `qa/qa-2026-10-30-r3.md`, 21 findings; Josh approved the top 10 (« Yes, fix all 10 »). Triage in PROJECT.md §8 « Round 3 ».
+- Fixes (phones unless noted):
+  - Tokens: phone `--fs-h1` clamp(2rem, 8.7vw, 2.5rem) and `--fs-display` 1.875rem; new `--lh-lead` 1.45 (all widths, `.section-lead`, `.hero__lead`); `--section-pad` min 3rem; `--logo-w` min 7rem.
+  - `02-base.css`: h3 at `--fs-body` below 48rem; `.card__title` / `.process__title` no longer set their own size.
+  - Hero: tag hidden ≤ 40rem; proof labels body size, rows centred (lead size from 48rem); lead `text-wrap: pretty`.
+  - Header: call button + CTA badge hidden ≤ 29.99rem (CTA overran the gutter up to 480px).
+  - Problem: hairline list with bare icons ≤ 39.99rem; below 80rem `.problem__intro` is `display: contents` and the CTA row is ordered after the cards.
+  - Why: bare icons, 44px play mark, solid « à venir » chip bottom-left, label-size caption.
+  - Consultation: bare check marks below 48rem.
+  - Gallery: square thumbnails and stacked number/title ≤ 40rem; digits in `--font-sans` (also `.eyebrow__index`, all widths).
+  - Reviews: « Exemple » moved from the dashed corner tag into the role line (`reviews.njk`, all widths); phone cards `align-items: start`.
+  - Process: step gap `--space-m`.
+- Check: build clean; no page overflow at 360/390/430/480/600/768/1024/1440/1920; H1 three lines at 360/390/430; hero 800px at 390 with the full proof strip on screen; sticky CTA inside the gutter at 360/390/430. Length at 390: 8 541px (first field 6 893). Shots: `qa/shots/r3-fix/`.
+
+
 ## 2026-10-30 18:40 · lead
 - **GitHub Pages live:** no deploy had ever run (all earlier Pages runs were skipped while Pages was off, and the 7 commits since were unpushed). Josh asked to fix it ASAP, so the lead pushed `main` (ec6a89c..f6f3b41). The Pages run succeeded; /, /racking/, /racking/en/ and /racking/merci/ return 200 and fonts, CSS and images load (checked at 390).
 - **Trust: marquee pause button removed** (Josh: « it looks ugly »). Button, its CSS, the JS wiring and `ui.marquee` strings deleted. The loop still pauses on hover/focus; reduced motion keeps the static row. Accepted WCAG 2.2.2 gap (PROJECT.md §8 QA-5).

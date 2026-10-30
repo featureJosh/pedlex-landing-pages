@@ -90,7 +90,8 @@
   max-width: var(--measure-lead);
   color: var(--on-dark-2);
   font-size: var(--fs-lead);
-  line-height: var(--lh-body);
+  line-height: var(--lh-lead);
+  text-wrap: pretty;
 }
 
 .hero__actions {
@@ -116,8 +117,8 @@
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: subgrid;
-  align-items: baseline;
-  padding-block: var(--space-xs);
+  align-items: center;
+  padding-block: var(--space-2xs);
   border-bottom: 1px solid var(--line-dark);
 }
 .hero__proof-item:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -137,9 +138,10 @@
   font-weight: var(--fw-regular);
   color: var(--on-dark-2);
 }
+/* Phones: body size so each label fits one line beside its figure; lead size from 48rem. */
 .hero__proof-label {
   color: var(--on-dark-2);
-  font-size: var(--fs-lead);
+  font-size: var(--fs-body);
   line-height: var(--lh-snug);
   text-wrap: balance;
 }
@@ -187,7 +189,9 @@
 /* Phones (BrokerFlo mobile): the CTA (short label) and a square call button side by side, the same
    height. */
 @media (max-width: 40rem) {
-  .hero__tag { letter-spacing: var(--ls-label-tight); }
+  /* The tag wraps into a full-width banner on phones; the top bar and the H1 carry the message. */
+  .hero__tag { display: none; }
+  .hero__title { margin-top: 0; }
   .hero__actions { flex-wrap: nowrap; align-items: stretch; }
   .hero__cta {
     flex: 1;
@@ -201,7 +205,6 @@
   .hero__phone .btn__badge { background: none; }
 }
 @media (max-width: 23.99rem) {
-  .hero__tag { letter-spacing: 0; }
   .hero__cta { padding-inline-start: var(--space-s); gap: var(--space-2xs); }
 }
 
@@ -219,7 +222,7 @@
     border-left: 1px solid var(--line-dark);
   }
   .hero__proof-item:first-child { padding-inline-start: 0; border-left: 0; }
-  .hero__proof-label { margin-top: var(--space-2xs); }
+  .hero__proof-label { margin-top: var(--space-2xs); font-size: var(--fs-lead); }
 }
 
 /* ---- Desktop: horizontal scrim, copy centred in the space above the strip ---- */

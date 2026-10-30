@@ -125,7 +125,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 **Page order (Raffi):** top bar → sticky header → hero (+ proof strip) → client logos → problem (01) → réalisations (02) → process (03) → why Pedlex (04) → testimonials (05) → FAQ (06) → form (always last) → footer. Eyebrows are numbered automatically from the page order (`src/landing.njk`).
 
 **System:**
-- **Four type sizes for the whole site + the hero H1** (Josh, 2026-10-30: « 3-4 font sizes… the less is better », no exceptions). `--fs-label` 13 (eyebrows, chips, captions, meta, legal) · `--fs-body` 16–17 (body, card text, buttons, FAQ questions, quotes) · `--fs-lead` 18–22 (leads, every h3, proof-strip labels) · `--fs-display` 28–42 (every h2, proof-strip figures) · `--fs-h1` 36–68 (hero only). Every `font-size` in the CSS is one of these. Weights: 400 and 700 only (all Scania Sans ships). H1/H2 regular mixed case, h3 bold. **Scania Sans Headline** (caps, extended) is the label voice only. Barlow is gone (faces, package and copy step).
+- **Four type sizes for the whole site + the hero H1** (Josh, 2026-10-30: « 3-4 font sizes… the less is better », no exceptions). `--fs-label` 13 (eyebrows, chips, captions, meta, legal) · `--fs-body` 16–17 (body, card text, buttons, FAQ questions, quotes) · `--fs-lead` 18–22 (leads, every h3, proof-strip labels) · `--fs-display` 28–42 (every h2, proof-strip figures) · `--fs-h1` 36–68 (hero only). Every `font-size` in the CSS is one of these. **Phones** (< 48rem, QA r3): H1 32–40 (`clamp(2rem, 8.7vw, 2.5rem)`, three lines), display fixed 30, body 16, every h3 at body size bold; leads use `--lh-lead` 1.45. Weights: 400 and 700 only (all Scania Sans ships). H1/H2 regular mixed case, h3 bold. **Scania Sans Headline** (caps, extended) is the label voice only. Barlow is gone (faces, package and copy step).
 - **Shape: square-based** (Josh, 2026-10-29: Pedlex likes its square design). Every corner is 2px (`--radius-s/m/l`); markers, chips, badges, number tiles and avatars are square. Rounds only where they are needed: the video play/pause controls (`--radius-round`).
 - **Buttons:** square-cornered, Scania Sans bold mixed case, trailing icon in a square badge (BrokerFlo, squared). Variants: primary (navy), secondary, on-dark (white), glass (on photos). Full-width CTA rows on phones drop the badge so the label stays on one line.
 - **Header:** top bar (navy-950: « 50 ans · 1976–2026 » + family-company message, phone and FR/EN at the side; phones get a short message and a square call button; no CTA; scrolls away) + sticky header. Over the hero it is transparent with the white logo and **no actions**: the hero CTA is the only CTA on the first screen at rest (Josh, 2026-10-30). As soon as the header sticks (top bar scrolled away, ~44px) it turns white with the navy logo and shows the call button + CTA; a brief overlap with the hero CTA is accepted (Josh).
@@ -133,7 +133,7 @@ The final host is **undecided** (brief §10 #1): WordPress (as quoted), raw file
 - **Réalisations:** all photos visible at once. Phones: one wide + 2-column grid; desktop: 12-column mosaic (1 large + 2 stacked, then 2 wide), numbered title under each photo.
 - **Process:** dark band over the installer photo (strong scrim), centred head, numbered white squares joined by a hairline, one centred CTA.
 - **Why Pedlex:** company-video frame (placeholder: real hq-fleet photo as poster, a quiet play mark with the dashed « vidéo à venir » tag right under it) beside the head and the four reasons as a flat icon list; from 64rem the frame stretches to the column height; certification strip below.
-- **Testimonials:** three cards with a French « mark and an initials tile. Until Pedlex supplies approved quotes they are **samples** (Josh, 2026-10-30): realistic fictional people at generic companies, no figures or claims, each tagged « Exemple ». Real quotes replace them one for one. Phones: horizontal snap row.
+- **Testimonials:** three cards with a French « mark and an initials tile. Until Pedlex supplies approved quotes they are **samples** (Josh, 2026-10-30): realistic fictional people at generic companies, no figures or claims, each marked « Exemple » at the start of the role line. Real quotes replace them one for one. Phones: horizontal snap row.
 - Lengths: ~8 630px at 390 after the 2026-10-30 batch (was ~8 870), first form field at ~6 990px; budget is ≤ 7 500 / ≤ 5 000 (see §8 QA-2 r2).
 
 > **⚠ Read this before any design work (Josh, 2026-10-29).** Be **inspired** by pedlex.com, never **guided** by it. **This landing page sets the precedent for Pedlex's NEW website**: the direction we set here is the direction their next site will take. So it has to look forward, not back.
@@ -386,6 +386,21 @@ Reports: [qa/qa-2026-10-30-r2.md](qa/qa-2026-10-30-r2.md), [qa/user-2026-10-30-r
 - [x] CLIENT-36 [consultation] form numbered « 07 » (Josh) (2026-10-30)
 - **Held for Pedlex (§9):** USER-4 named project/result · CLIENT-23 « 30 à 50 % » vs « jusqu'à 40 % » · USER-14 / CLIENT-24 logos · CLIENT-31 slogan (vector logo) · CLIENT-35 CNESST permission
 - **Declined (Josh, 2026-10-30):** USER-15 remove « Découvrir pedlex.com » (the client's call, stays) · USER-11 expand the FAQ (kept as is until the client confirms) · QA-29 desktop tab order (keep the current order; the client likes it)
+
+### Round 3 (2026-10-30) · mobile visual pass (Josh: phones look « incredibly amateur », desktop good)
+Report: [qa/qa-2026-10-30-r3.md](qa/qa-2026-10-30-r3.md) (21 findings: 8 major, 9 minor, 4 nit). Josh approved the top 10; all fixed 2026-10-30. Phone-only unless noted; desktop unchanged apart from the « Exemple » line, Sans digits and the lead line-height.
+- [x] QA3-1 [hero] phones: tag hidden, H1 three lines at 360–430, hero 800px at 390 (whole proof strip on the first screen)
+- [x] QA3-2 [global] phones: h3 at body size, display 30px; new `--lh-lead` 1.45 on every lead (all widths)
+- [x] QA3-3 [header] call button and CTA badge hidden up to 30rem (the CTA overran the gutter at 384–480px); logo min 112px
+- [x] QA3-4 [problem] phones: hairline list with bare icons, no boxes; below 80rem the CTA closes the section (after the cards)
+- [x] QA3-5 [hero] proof labels at body size on phones, rows centred and tighter (198 → 155px)
+- [x] QA3-6 [why] phones: 44px play mark, « à venir » as a small solid chip bottom-left, caption at label size; bare icons
+- [x] QA3-7 [reviews] « Exemple » moved into the role line (all widths, no dashed box); phone cards hug their quote
+- [x] QA3-8 [gallery] phones: square thumbnails, number above a regular-weight title; `.gallery__num` and `.eyebrow__index` digits in Scania Sans (all widths)
+- [x] QA3-9 [global] icon tiles kept only where they number or identify (process, review initials): problem, why and consultation checks use bare icons on phones
+- [x] QA3-14 [global] `--section-pad` minimum 48px; process steps gap 24
+- [ ] Not in the approved 10 (open): QA3-10 trust caption alignment, QA3-11 process number chips, QA3-12 consultation preamble, QA3-13 footer « · » + legal links, QA3-15 cookie copy trim, QA3-16 eyebrow square, QA3-17 CTA heights, QA3-18–21 nits
+- Lengths at 390: 8 628 → **8 541px**, first field 6 985 → 6 893 (squares in the gallery and the bigger section padding take back part of the savings).
 
 ### Declined (with reason)
 - QA-23 [header] short CTA « Consultation gratuite » not logged as a client question: settled by Josh's decision that labels follow context (§9 Q1).

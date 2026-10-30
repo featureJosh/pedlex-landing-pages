@@ -51,7 +51,8 @@
   background: currentColor;
   flex: none;
 }
-.eyebrow__index { color: var(--text-3); font-variant-numeric: tabular-nums; }
+/* Digits in Scania Sans: the Headline cut's wide zero reads « O1 » (QA3-8). */
+.eyebrow__index { color: var(--text-3); font-family: var(--font-sans); font-variant-numeric: tabular-nums; }
 .section--dark .eyebrow { color: var(--blue-300); }
 .section--dark .eyebrow__index { color: var(--on-dark-3); }
 
@@ -70,7 +71,7 @@
   margin-top: var(--space-s);
   max-width: var(--measure-lead);
   font-size: var(--fs-lead);
-  line-height: var(--lh-body);
+  line-height: var(--lh-lead);
   color: var(--text-2);
 }
 .section--dark .section-lead { color: var(--on-dark-2); }
