@@ -29,10 +29,6 @@
       "play": "Lire la vidéo",
       "placeholder": "Vidéo à venir"
     },
-    "marquee": {
-      "pause": "Mettre le défilement des logos en pause",
-      "play": "Reprendre le défilement des logos"
-    },
     "sample": "Exemple"
   },
   "form": {

@@ -1,7 +1,7 @@
 /* Trust bar (sections/trust.njk). White, compact: a one-line caption over client logos.
    Default (no JS / reduced motion): static, centred, wrapping row.
    [data-marquee-ready] (set by scripts/sections/trust-marquee.js): one slow seamless loop with soft
-   edge fades; pauses on hover, keyboard focus and the pause button ([data-marquee-paused]). */
+   edge fades; pauses on hover and keyboard focus (no pause button: Josh, 2026-10-30). */
 .trust {
   /* One loop of the logo set; trust-marquee.js multiplies it if the set is cloned for width. */
   --trust-loop: var(--dur-marquee);
@@ -66,34 +66,12 @@
   padding-inline-end: var(--trust-gap);
 }
 .trust__marquee[data-marquee-ready]:hover .trust__rail,
-.trust__marquee[data-marquee-ready]:focus-within .trust__rail,
-.trust__marquee[data-marquee-paused] .trust__rail {
+.trust__marquee[data-marquee-ready]:focus-within .trust__rail {
   animation-play-state: paused;
 }
 @keyframes trust-marquee {
   to { transform: translateX(-50%); }
 }
-
-/* Pause / play: a quiet square control centred under the logos. */
-.trust__pause {
-  display: grid;
-  place-items: center;
-  width: var(--target);
-  height: var(--target);
-  margin: var(--space-2xs) auto 0;
-  padding: 0;
-  border: 1px solid transparent;
-  border-radius: var(--radius-s);
-  background: none;
-  color: var(--text-3);
-  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
-}
-.trust__pause[hidden] { display: none; }
-.trust__pause:hover { border-color: var(--line); color: var(--navy-900); }
-.trust__pause-icon { width: var(--icon-s); height: var(--icon-s); }
-.trust__pause-icon--play,
-.trust__pause[data-paused] .trust__pause-icon--pause { display: none; }
-.trust__pause[data-paused] .trust__pause-icon--play { display: block; }
 
 @media (min-width: 48rem) {
   .trust { --trust-gap: var(--space-2xl); }

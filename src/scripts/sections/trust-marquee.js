@@ -3,8 +3,8 @@
    aria-hidden with empty alts so assistive tech reads each company once. If one set is narrower
    than the viewport, each half repeats it so the loop never shows a gap, and the duration grows to
    keep the same speed. The loop length comes from the --dur-marquee token (00-tokens.css).
-   The section's [data-marquee-pause] button stops and restarts it (WCAG 2.2.2).
-   Reduced motion (or no JS): nothing runs, the static centred row stays and the button stays hidden.
+   It pauses on hover and keyboard focus (CSS); no pause button (Josh, 2026-10-30).
+   Reduced motion (or no JS): nothing runs, the static centred row stays.
    Markup: sections/trust.njk. Styles: styles/sections/trust.css. */
 (function () {
   const seconds = (v) => (v.trim().endsWith("ms") ? parseFloat(v) / 1000 : parseFloat(v)) || 40;
@@ -32,16 +32,6 @@
         rail.appendChild(clone);
       }
       root.style.setProperty("--trust-loop", `${perSet * perHalf}s`);
-
-      const btn = root.parentElement.querySelector("[data-marquee-pause]");
-      if (!btn) return;
-      btn.hidden = false;
-      btn.addEventListener("click", () => {
-        const paused = !root.hasAttribute("data-marquee-paused");
-        root.toggleAttribute("data-marquee-paused", paused);
-        btn.toggleAttribute("data-paused", paused);
-        btn.setAttribute("aria-label", paused ? btn.dataset.labelPlay : btn.dataset.labelPause);
-      });
     });
   });
 })();

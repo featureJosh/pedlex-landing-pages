@@ -351,7 +351,7 @@ Reports: [qa/qa-2026-10-30-r2.md](qa/qa-2026-10-30-r2.md), [qa/user-2026-10-30-r
 - [ ] QA-2 [page, phones] length 8 874 → **8 628px** at 390 (first field 7 084 → 6 985). Budget ≤ 7 500 / ≤ 5 000 still missed: the bigger body/label sizes ate most of the savings. **Parked (Josh, 2026-10-30: leave for now)**; options in HANDOFF
 - [x] QA-3 / USER-9 [consultation] CTA lands on the form card below 64rem; first field on screen at 390×664 (2026-10-30)
 - [x] QA-4 [global] white focus ring on the top bar and the transparent header (2026-10-30)
-- [x] QA-5 [trust] marquee pause/play button (44px, label swaps) (2026-10-30)
+- [x] ~~QA-5 [trust] marquee pause/play button~~ built, then **removed** (Josh, 2026-10-30: « it looks ugly »). The loop pauses on hover and keyboard focus; reduced motion keeps the static row. Known gap vs WCAG 2.2.2 for touch users, accepted by Josh
 - [x] QA-6 / USER-3 / CLIENT-25 [cookie] phone strip 154px, clear of the hero CTA; Escape dismisses; focus returns to the opener (2026-10-30)
 - [x] QA-7 [global] 44px targets: header buttons, cookie buttons, top-bar links, footer links (2026-10-30)
 - [x] QA-8 [global] one h3 treatment (lead size, bold) for cards, steps and reasons (2026-10-30)

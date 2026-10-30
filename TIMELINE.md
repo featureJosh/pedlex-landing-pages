@@ -11,6 +11,12 @@ Format:
 
 ---
 
+## 2026-10-30 18:40 · lead
+- **GitHub Pages live:** no deploy had ever run (all earlier Pages runs were skipped while Pages was off, and the 7 commits since were unpushed). Josh asked to fix it ASAP, so the lead pushed `main` (ec6a89c..f6f3b41). The Pages run succeeded; /, /racking/, /racking/en/ and /racking/merci/ return 200 and fonts, CSS and images load (checked at 390).
+- **Trust: marquee pause button removed** (Josh: « it looks ugly »). Button, its CSS, the JS wiring and `ui.marquee` strings deleted. The loop still pauses on hover/focus; reduced motion keeps the static row. Accepted WCAG 2.2.2 gap (PROJECT.md §8 QA-5).
+- Mobile visual QA round 3 started (Josh: mobile looks « incredibly amateur », desktop good): report due at `qa/qa-2026-10-30-r3.md`.
+
+
 ## 2026-10-30 17:45 · lead
 - **Branches:** `main` is the only branch (Josh: « this is the new main… purge all other branches »). Deleted `explore/kimi` (19069b5) and `rounded-branch` (39f9468); removed the Pedlex-main worktree; `main` now lives in the `Pedlex Landing Page` folder.
 - **Repo public + GitHub Pages** (Josh): `gh repo edit --visibility public`; Pages source = workflow; `PAGES_ENABLED=true`. A sub-agent fixed the old failed deploy (2b30909: Pages was off on the private repo; actions bumped to Node 24 majors). `ci.yml` actions bumped too. Nothing pushed.

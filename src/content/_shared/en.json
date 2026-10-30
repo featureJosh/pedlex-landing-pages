@@ -29,10 +29,6 @@
       "play": "Play the video",
       "placeholder": "Video to come"
     },
-    "marquee": {
-      "pause": "Pause the logo scroll",
-      "play": "Resume the logo scroll"
-    },
     "sample": "Sample"
   },
   "form": {
