@@ -11,6 +11,11 @@ Format:
 
 ---
 
+## 2026-10-30 20:50 · lead
+- Deploys: 310b518 and 1668b0a live on GitHub Pages (914d24b superseded). Pages runs were slow (GitHub Actions degraded).
+- **Josh (mobile):** problem cards back in boxes on phones (the hairline list from QA3-4 read as less appealing). Compact form: white card, 40px icon tile beside the title, text full width below, 24px padding, 12px gap. CTA stays after the cards. Section 1 163px at 390. Why reasons keep the bare-icon list.
+
+
 ## 2026-10-30 20:35 · lead
 - **Josh (desktop):** the 1-2-3 process row leaned left (the hairline stopped at chip 3). From 48rem the hairline now continues past the last chip to the column's right edge, so the steps sit on one full-width track (`process.css`; the desktop rule repeats the phone rail's `:not(:last-child)` selector so it wins). Phones keep the vertical rail. Checked 390/768/1440/2000, no overflow.
 

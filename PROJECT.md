@@ -392,7 +392,7 @@ Report: [qa/qa-2026-10-30-r3.md](qa/qa-2026-10-30-r3.md) (21 findings: 8 major, 
 - [x] QA3-1 [hero] phones: tag hidden, H1 three lines at 360–430, hero 800px at 390 (whole proof strip on the first screen)
 - [x] QA3-2 [global] phones: h3 at body size, display 30px; new `--lh-lead` 1.45 on every lead (all widths)
 - [x] QA3-3 [header] call button and CTA badge hidden up to 30rem (the CTA overran the gutter at 384–480px); logo min 112px
-- [x] QA3-4 [problem] phones: hairline list with bare icons, no boxes; below 80rem the CTA closes the section (after the cards)
+- [x] QA3-4 [problem] below 80rem the CTA closes the section (after the cards). The phone hairline list was tried, then **reverted to compact boxed cards** (Josh, 2026-10-30: the boxes read better); icon tile beside the title
 - [x] QA3-5 [hero] proof labels at body size on phones, rows centred and tighter (198 → 155px)
 - [x] QA3-6 [why] phones: 44px play mark, « à venir » as a small solid chip bottom-left, caption at label size; bare icons
 - [x] QA3-7 [reviews] « Exemple » moved into the role line (all widths, no dashed box); phone cards hug their quote

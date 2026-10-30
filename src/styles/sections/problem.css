@@ -33,29 +33,23 @@
   .problem__intro .cta-row { order: 1; }
 }
 
-/* Phones: no boxes, no tiles. A hairline list (the FAQ's language): bare icon beside the title, the
-   text full width under both (QA3-4, QA3-9). */
+/* Phones: the boxed cards stay (Josh, 2026-10-30: the boxes read better than a bare list), in a
+   compact form: icon tile beside the title, the text full width under both, tighter padding. */
 @media (max-width: 39.99rem) {
-  .problem__cards { gap: 0; border-top: var(--border); }
+  .problem__cards { gap: var(--space-xs); }
   .problem__cards .card {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
-    column-gap: var(--space-xs);
-    row-gap: var(--space-2xs);
-    padding: var(--space-m) 0;
-    border: 0;
-    border-bottom: var(--border);
-    border-radius: 0;
-    background: none;
+    column-gap: var(--space-s);
+    row-gap: var(--space-xs);
+    padding: var(--space-m);
   }
-  .problem__cards .card:hover { box-shadow: none; transform: none; }
   .problem__cards .card__icon {
-    width: auto;
-    height: auto;
+    width: calc(var(--space-l) + var(--space-2xs));
+    height: calc(var(--space-l) + var(--space-2xs));
     margin: 0;
-    background: none;
-    color: var(--color-accent);
   }
+  .problem__cards .card__icon .icon { width: var(--space-m); height: var(--space-m); }
   .problem__cards .card__text { grid-column: 1 / -1; }
 }
