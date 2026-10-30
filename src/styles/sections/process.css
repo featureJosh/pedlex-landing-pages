@@ -1,6 +1,6 @@
 /* Process (#process, dark). Photo backdrop under the band scrim, centred head, three numbered steps.
    Phones: number chip + text side by side, a vertical hairline joins the chips.
-   From 48rem: three columns, chips on one line joined by a horizontal hairline. */
+   From 48rem: three columns, chips on one hairline track that runs the full width. */
 .process { isolation: isolate; overflow: hidden; }
 .process__backdrop {
   position: absolute;
@@ -77,13 +77,20 @@
     align-content: start;
     row-gap: var(--space-m);
   }
+  /* One track across the full width: the hairline runs from chip to chip and on past the last one
+     to the column's right edge, so the row doesn't lean left (Josh, 2026-10-30). */
+  .process__step::before,
   .process__step:not(:last-child)::before {
+    content: "";
+    position: absolute;
     top: calc(var(--space-xl) / 2);
     bottom: auto;
     left: calc(var(--space-xl) + var(--space-s));
     right: calc(var(--space-s) - var(--grid-gap));
     width: auto;
     height: 1px;
+    background: var(--line-dark);
   }
+  .process__step:last-child::before { right: 0; }
   .process__body { padding-top: 0; }
 }
