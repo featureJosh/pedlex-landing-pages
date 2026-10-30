@@ -11,6 +11,14 @@ Format:
 
 ---
 
+## 2026-10-30 20:00 · lead
+- Pushed 64398bb (Josh: « Push it »).
+- **Josh's mobile feedback:**
+  - Hero proof figures were misaligned (« 50 % » pushed right, « 10 000+ » indented). Cause: `stats-counter.js` locked each number to a px `min-width` measured once (before the webfont / at the load-time font size) and never released it, so a resize or a late font left right-aligned gaps. Now measured after `document.fonts.ready`, in em, and cleared when the count ends.
+  - Testimonials stack vertically below 48rem (no horizontal scroll row). `reviews.js` and `data-reviews-row` removed (no scroller, no tab stop needed); `--peek-col` token removed.
+- Check: figures flush left at 390, 725 and after resizing 1440 → 725; reviews stacked at 390/725, three columns at 1440; no overflow; build clean.
+
+
 ## 2026-10-30 19:30 · lead
 - **Mobile visual QA round 3** (agent): `qa/qa-2026-10-30-r3.md`, 21 findings; Josh approved the top 10 (« Yes, fix all 10 »). Triage in PROJECT.md §8 « Round 3 ».
 - Fixes (phones unless noted):

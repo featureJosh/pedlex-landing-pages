@@ -122,7 +122,6 @@
   --hero-max: 60rem;                                     /* hero height cap on tall desktops */
   --split-gap: clamp(2rem, 1rem + 4vw, 5rem);            /* text <-> media columns */
   --gallery-row: clamp(11rem, 2rem + 13vw, 15rem);       /* mosaic row height (>= 64rem) */
-  --peek-col: 84%;                                       /* phone scroll rows: next card peeks in */
 
   /* --- Controls --- */
   --target: 2.75rem;       /* 44px minimum touch target */

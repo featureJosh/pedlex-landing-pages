@@ -1,24 +1,11 @@
 /* Testimonials (#reviews, tint). White quote cards: a French « mark, the quote, then the author
    (initials tile, name, role). Sample cards say « Exemple » at the start of the role line.
-   Phones: horizontal scroll-snap row that bleeds to the screen edges; from 48rem: three columns. */
-/* Two classes so the padding beats the base `ul[role="list"] { padding: 0 }` reset. */
-.reviews .reviews__list {
+   Phones: the cards stack vertically (Josh, 2026-10-30: the horizontal row doesn't work on
+   mobile); from 48rem: three columns. */
+.reviews__list {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: var(--peek-col);
   gap: var(--space-s);
-  margin-inline: calc(var(--gutter) * -1);
-  padding-inline: var(--gutter);
-  scroll-padding-inline: var(--gutter);
-  padding-block: var(--space-3xs);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
 }
-.reviews__list::-webkit-scrollbar { display: none; }
-.reviews__list:focus-visible { outline-offset: calc(var(--space-3xs) * -1); }
-.reviews__item { scroll-snap-align: start; }
 
 .reviews__card {
   position: relative;
@@ -69,19 +56,10 @@
 .reviews__role { color: var(--text-3); font-size: var(--fs-label); }
 .reviews__tag { color: var(--color-accent); font-weight: var(--fw-bold); }
 
-/* Phones: each card hugs its own quote instead of stretching to the longest (QA3-7). */
-@media (max-width: 47.99rem) {
-  .reviews .reviews__list { align-items: start; }
-}
 
 @media (min-width: 48rem) {
-  .reviews .reviews__list {
-    grid-auto-flow: row;
-    grid-auto-columns: auto;
+  .reviews__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--grid-gap);
-    margin-inline: 0;
-    padding-inline: 0;
-    overflow: visible;
   }
 }

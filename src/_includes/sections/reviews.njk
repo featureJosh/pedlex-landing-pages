@@ -3,14 +3,13 @@
     Until Pedlex supplies approved testimonials the items are SAMPLES (Josh, 2026-10-30): realistic,
     fictional people at generic companies (no real names, no figures or claims), each card tagged
     « Exemple ». Real quotes replace them one for one; drop `sample` then.
-    Phones: a horizontal scroll-snap row (keeps the page short); from 48rem: three columns. The row is
-    only a tab stop while it actually scrolls (scripts/sections/reviews.js).
+    Phones: the cards stack vertically (Josh, 2026-10-30); from 48rem: three columns.
     Styles: styles/sections/reviews.css -#}
 {%- from "components/ui.njk" import sectionHead -%}
 <section class="section section--tint reviews" id="reviews" aria-labelledby="reviews-title">
   <div class="container">
     {{ sectionHead(c.reviews.eyebrow, c.reviews.title, null, { id: "reviews-title", align: "center", index: sectionIndex }) }}
-    <ul class="reviews__list section-body" role="list" aria-label="{{ c.reviews.eyebrow | plain }}" data-reviews-row data-reveal-stagger>
+    <ul class="reviews__list section-body" role="list" aria-label="{{ c.reviews.eyebrow | plain }}" data-reveal-stagger>
       {%- for item in c.reviews.items %}
       {%- set initials = [] %}
       {%- for word in (item.name | plain).split(" ") %}{% if word %}{% set _ = initials.push(word | first | upper) %}{% endif %}{% endfor %}

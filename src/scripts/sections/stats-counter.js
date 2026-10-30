@@ -15,17 +15,18 @@
     const items = Pedlex.$$("[data-count-to]", group)
       .map((el) => ({ el, to: Number(el.dataset.countTo) }))
       .filter(({ to }) => Number.isFinite(to));
-    // Reserve each final width so the suffix doesn't shift while counting. Measured here, not at
-    // ready: by now the webfont has loaded (and the group separator is narrower than a digit).
+    // Reserve each final width (in em, so it follows the font size) so the suffix doesn't shift while
+    // counting; released at the end so a resize can never leave a stale gap.
     items.forEach(({ el, to }) => {
       el.textContent = fmt.format(to);
-      el.style.minWidth = `${el.getBoundingClientRect().width}px`;
+      el.style.minWidth = `${el.getBoundingClientRect().width / parseFloat(getComputedStyle(el).fontSize)}em`;
     });
     const start = performance.now();
     (function frame(now) {
       const t = Math.min(1, (now - start) / DURATION);
       items.forEach(({ el, to }) => { el.textContent = fmt.format(Math.round(to * easeOut(t))); });
       if (t < 1) requestAnimationFrame(frame);
+      else items.forEach(({ el }) => { el.style.minWidth = ""; });
     })(start);
   }
 
@@ -39,7 +40,8 @@
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         io.unobserve(entry.target);
-        run(entry.target);
+        // Measure with the webfont, not the fallback (a wider fallback reserved too much width).
+        (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => run(entry.target));
       });
     });
     groups.forEach((g) => io.observe(g));
