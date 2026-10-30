@@ -11,6 +11,11 @@ Format:
 
 ---
 
+## 2026-10-30 21:40 · lead
+- **Hero video v2** (Josh replaced v1 with `assets-source/racking/header-video/header-video-v2.mp4`). The master is HEVC 1920×1080, 10 s, 47 MB with an AAC track: Chrome/Edge/Firefox on many Windows/Android setups can't decode HEVC, and 47 MB is too heavy for phones. Josh chose « Install ffmpeg, convert »: installed `Gyan.FFmpeg` 9.0.2 via winget, encoded `ffmpeg -an -c:v libx264 -profile:v high -preset slow -crf 23 -maxrate 6M -bufsize 12M -pix_fmt yuv420p -vf scale=1920:-2 -movflags +faststart` → `assets-source/video/racking/header-video-v2.mp4` (5.3 MB), first frame → `header-video-v2-poster.jpg`. Same footage, re-encoded only.
+- Wiring: `hero.video` FR + EN point at the v2 encode; the `racking/header-video` passthrough is removed (masters never ship); `.gitignore` keeps `assets-source/racking/header-video/` (masters) out of git; v1 (`hero-section_video.mp4` + poster) deleted as Josh did.
+
+
 ## 2026-10-30 21:10 · lead
 - **Hero video live** (Josh added `assets-source/racking/header-video/hero-section_video.mp4`, 854×480, 10.1 s, 6.9 MB). Racking FR + EN switched to `hero.variant: "video"` with that file; the placeholder flag is gone. Poster `hero-section_poster.jpg` = the video's own first frame (screen capture of the decoded frame, nothing generated). New passthrough `assets-source/racking/header-video` → `assets/video/racking` (`eleventy.config.js`). The preview-only `/video/` twin is now made only for pages whose main hero is still the image (`landingPages.js`, hub link in `index.njk`).
 - Check: plays muted and loops at 390 and 1440 (FR, EN), pause button works, no placeholder tag, no console or network errors.

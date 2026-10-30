@@ -29,7 +29,7 @@
 
 ## Next actions
 0. **Mobile length decision** (QA-2 r2): 8 628px at 390 vs the 7 500 budget. Options: hide the Why video placeholder on phones until the film exists (≈ −280px); 2-column icon+title problem cards on phones without the body text (≈ −300px); drop the certification strip on phones (≈ −150px); show 3 gallery photos on phones (≈ −200px). **Josh, 2026-10-30: leave the length for now**; revisit when real media lands.
-1. Josh / Raffi: drop in real media: upscaled hero photo (`assets-source/racking/racking-2` or a new key in `hero.image`), ~~hero video~~ (done 2026-10-30: `assets-source/racking/header-video/`, live as the Racking hero; a higher-resolution export would sharpen it, the delivered file is 854×480), company video (wire `why.video`), testimonials (replace the sample `reviews.items`, drop `sample`), real client logos.
+1. Josh / Raffi: drop in real media: upscaled hero photo (`assets-source/racking/racking-2` or a new key in `hero.image`), ~~hero video~~ (v2 live 2026-10-30; for a new cut, encode the master to H.264 / no audio / ≤ 8 MB into `assets-source/video/racking/` and update `hero.video` — ffmpeg is installed via winget, see TIMELINE), company video (wire `why.video`), testimonials (replace the sample `reviews.items`, drop `sample`), real client logos.
 2. Pedlex answers in PROJECT.md §9 (testimonials, 30–50 % source, logos, CSA wording, CNESST permission, vector logo).
 3. Josh pushes `main` when the demo is ready (that deploys GitHub Pages; agents never push).
 4. Then: Général / Mezzanines / Rousseau pages reuse this system.

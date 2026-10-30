@@ -4,6 +4,9 @@ _site/
 src/assets/img/
 src/assets/fonts/
 src/_data/images.json
+# Video masters (e.g. the 47 MB HEVC hero export). The site ships the web encodes in
+# assets-source/video/ (H.264, no audio); keep masters on the drive, not in git.
+assets-source/racking/header-video/
 # Local QA artefacts (screenshots from scripts/shoot.mjs)
 qa/shots/
 # Agent worktrees (Claude Code workflows)
